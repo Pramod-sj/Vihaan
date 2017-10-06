@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Vihaan</string>
+    <string name="e">Choose an Event</string>
+    <string-array name="Events">
+        <item>Poster Presentation</item>
+        <item>Code Trove</item>
+        <item>Quiz</item>
+        <item>Problem Statement</item>
+        <item>Photography and PhotoShop</item>
+        <item>VES Talk</item>
+    </string-array>
+    <string name="title_activity_main_window">Vihaan</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    
+
+</resources>
