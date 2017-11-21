@@ -8,14 +8,15 @@
     tools:context="registrationform.com.registrationform.MainActivity"
     android:weightSum="1"
     android:id="@+id/container"
-    android:background="@drawable/reg_animation">
+    android:background="@drawable/startbg">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Register Yourself"
-        android:textSize="40dp"
+        android:textAllCaps="true"
+        android:textSize="35dp"
         android:textStyle="bold"
         android:textColor="#ffff"
         android:layout_marginTop="50dp"/>

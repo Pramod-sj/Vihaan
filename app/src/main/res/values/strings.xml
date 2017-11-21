@@ -12,6 +12,7 @@
     <string name="title_activity_main_window">Vihaan</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    
+    <string name="codetrove">Are you too sound at cracking codes?
+        \n Code trove of vihaan brings you a treasure hunt kinda event in which you have to crack current code to get the glimpse of next. Sounds interesting?Participating in it will.</string>
 
 </resources>

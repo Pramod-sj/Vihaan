@@ -1,5 +1,6 @@
 package registrationform.com.registrationform;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     //This is our tablayout
     private TabLayout tabLayout;
     //This is our viewPager
+
     private ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         setContentView(R.layout.activity_main_window);
 
         //Adding toolbar to the activity
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -54,14 +57,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(MainWindow.this);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainWindow.this ,MainActivity.class);
-                startActivity(intent);
-            }
-        });
+
         viewPager.setOnPageChangeListener(
                 new ViewPager.SimpleOnPageChangeListener() {
                     @Override
@@ -69,6 +65,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
                         tabLayout.getTabAt(position).select();
                     }
                 });
+
     }
 
     @Override
@@ -84,6 +81,17 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main_window, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 }
