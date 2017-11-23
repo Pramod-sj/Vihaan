@@ -45,12 +45,16 @@ public class event_activity extends Fragment{
         webSettings.setAppCacheEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-
         webSettings.setEnableSmoothTransition(true);
         /*String html = "<html><head></head>";
         html += "<body></body></html>";
         webView.loadDataWithBaseURL("file:///android_asset/resize.html",html,"text/html","UTF-8",null);*/
         webView.setWebViewClient(new WebViewClient(){
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                webView.loadUrl("file:///android_asset/nointernet.html");
+
+            }
+
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -71,5 +75,6 @@ public class event_activity extends Fragment{
         });
         return view;
     }
+
 
 }

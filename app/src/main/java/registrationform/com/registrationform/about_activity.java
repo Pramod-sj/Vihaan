@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -43,6 +44,10 @@ public class about_activity extends Fragment{
         webSettings.setEnableSmoothTransition(true);
         // Force links and redirects to open in the WebView instead of in a browser
         webView.setWebViewClient(new WebViewClient(){
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                webView.loadUrl("file:///android_asset/nointernet.html");
+
+            }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -54,6 +59,7 @@ public class about_activity extends Fragment{
                 super.onPageFinished(view, url);
                 progressBar.setVisibility(View.GONE);
             }
+
         });
         webView.setOnTouchListener(new View.OnTouchListener() {
             @Override

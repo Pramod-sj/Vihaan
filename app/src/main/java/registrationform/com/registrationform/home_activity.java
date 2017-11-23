@@ -45,6 +45,10 @@ public class home_activity extends Fragment{
         webSettings.setEnableSmoothTransition(true);
         // Force links and redirects to open in the WebView instead of in a browser
         webView.setWebViewClient(new WebViewClient(){
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                webView.loadUrl("file:///android_asset/nointernet.html");
+
+            }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);

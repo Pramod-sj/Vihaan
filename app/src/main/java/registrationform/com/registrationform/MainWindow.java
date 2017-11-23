@@ -13,6 +13,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,14 +30,11 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     //This is our viewPager
 
     private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_window);
-
-        //Adding toolbar to the activity
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -52,10 +51,16 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         //Creating our pager adapter
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
+
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
 
+        viewPager.setCurrentItem(1);
+        tabLayout.setScrollPosition(1,0,true);
+
         //Adding onTabSelectedListener to swipe views
+
+
         tabLayout.setOnTabSelectedListener(MainWindow.this);
 
         viewPager.setOnPageChangeListener(
@@ -87,6 +92,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     public void onBackPressed(){
         moveTaskToBack(true);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -117,13 +123,10 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    // Top Rated fragment activity
                     return new event_activity();
                 case 1:
-                    // Games fragment activity
                     return new home_activity();
                 case 2:
-                    // Movies fragment activity
                     return new about_activity();
             }
 
