@@ -1,28 +1,14 @@
 package registrationform.com.registrationform;
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
 
 public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     //This is our tablayout
@@ -41,8 +27,10 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Events"));
-        tabLayout.addTab(tabLayout.newTab().setText("Home"));
+        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
+        tabLayout.addTab(tabLayout.newTab().setText("Partners"));
         tabLayout.addTab(tabLayout.newTab().setText("About us"));
+
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Initializing viewPager
@@ -125,9 +113,12 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
                 case 0:
                     return new event_activity();
                 case 1:
-                    return new home_activity();
+                    return new schedules_activity();
                 case 2:
+                    return new sponsers_activity();
+                case 3:
                     return new about_activity();
+
             }
 
             return null;
@@ -135,7 +126,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 4 total pages.
             return tabCount;
         }
 
@@ -145,9 +136,12 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
                 case 0:
                     return "Events";
                 case 1:
-                    return "Home";
+                    return "Schedule";
                 case 2:
+                    return "Partners";
+                case 3:
                     return "About us";
+
             }
             return null;
         }

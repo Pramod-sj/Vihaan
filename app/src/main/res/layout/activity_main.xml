@@ -19,14 +19,13 @@
         android:textSize="35dp"
         android:textStyle="bold"
         android:textColor="#ffff"
-        android:layout_marginTop="50dp"/>
-
+        android:layout_marginTop="40dp"/>
 
     <EditText
         android:id="@+id/et1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:hint="Name (Full Name)"
         android:inputType="textCapWords"
         android:padding="10dp"
@@ -39,7 +38,7 @@
         android:id="@+id/et2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_gravity="center_horizontal"
@@ -51,7 +50,7 @@
         android:id="@+id/et3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -69,7 +68,7 @@
         android:textStyle="bold"
         android:textColor="#ffff"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="25dp"/>
 
     <Spinner
         android:id="@+id/events"

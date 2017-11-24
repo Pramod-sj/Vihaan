@@ -1,27 +1,22 @@
 package registrationform.com.registrationform;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 public class MainActivity extends AppCompatActivity  {
     EditText name,c_name,email;
     Button b;
     Spinner s;
-    DatabaseHelper mydb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mydb=new DatabaseHelper(this); //call this database constructor to create database
         name=(EditText)findViewById(R.id.et1);
         c_name=(EditText)findViewById(R.id.et2);
         email=(EditText)findViewById(R.id.et3);
@@ -51,19 +46,11 @@ public class MainActivity extends AppCompatActivity  {
                     Toast.makeText(getApplicationContext(), "Invalid Email id", Toast.LENGTH_SHORT).show();
                 }
                 if ((isEmailValid(email_id)==true) && (validateName(college_name)==true) && (validateName(full_name)==true)) {
-                    boolean x = mydb.insertData(full_name, college_name, email_id, val);
-                    if(x==true){
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-                        /*Intent i=new Intent(MainActivity.this,MainWindow.class);
-                        startActivity(i);*/
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(),"Failed", Toast.LENGTH_LONG).show();
+                        Intent i=new Intent(MainActivity.this,MainWindow.class);
+                        startActivity(i);
 
-                    }
                 }
-                Intent i=new Intent(MainActivity.this,MainWindow.class);
-                startActivity(i);
             }
         });
     }

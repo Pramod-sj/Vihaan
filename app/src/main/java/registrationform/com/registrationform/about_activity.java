@@ -4,13 +4,8 @@ package registrationform.com.registrationform;
  * Created by pramo on 10/4/2017.
  */
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,11 +14,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import static registrationform.com.registrationform.R.id.container;
-import static registrationform.com.registrationform.R.layout.about;
-
 public class about_activity extends Fragment{
     ProgressBar progressBar;
     WebView webView;
@@ -32,17 +22,17 @@ public class about_activity extends Fragment{
         View view=inflater.inflate(R.layout.about, container, false);
         progressBar=(ProgressBar)view.findViewById(R.id.pg3);
         webView = (WebView)view.findViewById(R.id.webView);
-        webView.loadUrl("http://www.vesvihaan.com/About");
+        webView.loadUrl("http://www.vesvihaan.com/app/About");
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
-        //Keep in mind that by doing this the webview will not update immediately every page if anything changes but decrease loading time.
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        webSettings.setAppCacheEnabled(true);
-        webSettings.setDomStorageEnabled(true);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSettings.setEnableSmoothTransition(true);
-        // Force links and redirects to open in the WebView instead of in a browser
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setUseWideViewPort(true);
         webView.setWebViewClient(new WebViewClient(){
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 webView.loadUrl("file:///android_asset/nointernet.html");
