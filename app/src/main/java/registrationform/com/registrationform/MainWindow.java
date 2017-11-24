@@ -81,12 +81,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         moveTaskToBack(true);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main_window, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+
 
 }
 

@@ -1,102 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="registrationform.com.registrationform.MainActivity"
-    android:weightSum="1"
-    android:id="@+id/container"
-    android:background="@drawable/startbg">
+    android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Register Yourself"
-        android:textAllCaps="true"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        android:textColor="#ffff"
-        android:layout_marginTop="40dp"/>
+        </RelativeLayout>
 
-    <EditText
-        android:id="@+id/et1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:hint="Name (Full Name)"
-        android:inputType="textCapWords"
-        android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:maxLength="20"
-        android:background="@drawable/roundedentry"
-        />
-    <EditText
-        android:id="@+id/et2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="center_horizontal"
-        android:hint="College Name"
-        android:background="@drawable/roundedentry"
-        android:padding="10dp"
-        />
-    <EditText
-        android:id="@+id/et3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
-        android:background="@drawable/roundedentry"
-        />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Select Event:"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="#ffff"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"/>
-
-    <Spinner
-        android:id="@+id/events"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:entries="@array/Events"
-        android:prompt="@string/e"
-        android:padding="10dp"
-        android:background="@drawable/roundedentry"
-        />
-
-    <Button
-        android:id="@+id/bt1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="40dp"
-        android:text="Register"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:layout_weight="-1"
-        android:background="@drawable/buttonstyle"/>
-
-</LinearLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/pg6"
+            android:indeterminateDrawable="@drawable/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="240dp"/>
+    </RelativeLayout>
+</RelativeLayout>

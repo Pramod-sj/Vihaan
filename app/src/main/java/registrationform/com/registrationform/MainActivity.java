@@ -1,66 +1,54 @@
 package registrationform.com.registrationform;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
-public class MainActivity extends AppCompatActivity  {
-    EditText name,c_name,email;
-    Button b;
-    Spinner s;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+public class MainActivity extends AppCompatActivity {
+    WebView webView;
+    View view;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        name=(EditText)findViewById(R.id.et1);
-        c_name=(EditText)findViewById(R.id.et2);
-        email=(EditText)findViewById(R.id.et3);
-        b=(Button)findViewById(R.id.bt1);
-        s=(Spinner)findViewById(R.id.events);
+        progressBar=(ProgressBar)findViewById(R.id.pg6);
+        webView = (WebView)findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("http://www.vesvihaan.com/app/register");
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        webSettings.setLoadsImagesAutomatically(true);
+        webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+        webSettings.setEnableSmoothTransition(true);
 
-        b.setOnClickListener(new View.OnClickListener() {
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setUseWideViewPort(true);
+        webView.setWebViewClient(new WebViewClient(){
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                webView.loadUrl("file:///android_asset/nointernet.html");
+
+            }
+
             @Override
-            public void onClick(View view) {
-                String full_name = name.getText().toString();
-                String college_name = c_name.getText().toString();
-                String email_id = email.getText().toString();
-                String val = s.getSelectedItem().toString();
-                if (TextUtils.isEmpty(full_name)) {
-                    Toast.makeText(getApplicationContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
-                } else if (!validateName(full_name)) {
-                    Toast.makeText(getApplicationContext(), "Invalid Name", Toast.LENGTH_SHORT).show();
-                }
-                if (TextUtils.isEmpty(college_name)) {
-                    Toast.makeText(getApplicationContext(), "Please enter your college name", Toast.LENGTH_SHORT).show();
-                } else if (!validateName(college_name)) {
-                    Toast.makeText(getApplicationContext(), "Invalid college Name", Toast.LENGTH_SHORT).show();
-                }
-                if (TextUtils.isEmpty(email_id)) {
-                    Toast.makeText(getApplicationContext(), "Empty email field", Toast.LENGTH_SHORT).show();
-                } else if (!isEmailValid(email_id)) {
-                    Toast.makeText(getApplicationContext(), "Invalid Email id", Toast.LENGTH_SHORT).show();
-                }
-                if ((isEmailValid(email_id)==true) && (validateName(college_name)==true) && (validateName(full_name)==true)) {
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-                        Intent i=new Intent(MainActivity.this,MainWindow.class);
-                        startActivity(i);
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                progressBar.setVisibility(View.VISIBLE);
+            }
 
-                }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-    public static boolean validateName( String name )
-    {
-        return name.matches( "^[a-zA-Z\\s]*$" );
-    } // end method validateFirstName
-
 }

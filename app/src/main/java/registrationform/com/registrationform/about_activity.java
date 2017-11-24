@@ -30,6 +30,7 @@ public class about_activity extends Fragment{
         webSettings.setEnableSmoothTransition(true);
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webSettings.setAppCacheEnabled(true);
+        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         webSettings.setDomStorageEnabled(true);
         webSettings.setUseWideViewPort(true);

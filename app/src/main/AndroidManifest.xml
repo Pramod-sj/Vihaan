@@ -27,13 +27,12 @@
             android:label="@string/title_activity_main_window"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:noHistory="true"/>
+            />
 
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-
 
     </application>
 
