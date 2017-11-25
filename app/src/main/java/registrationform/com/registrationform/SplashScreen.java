@@ -1,5 +1,4 @@
 package registrationform.com.registrationform;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -37,11 +36,11 @@ public class SplashScreen extends AppCompatActivity{
                     public void run() {
                         eventNotify();
                     }
-                },5000);
+                },7000);
                 finish();
 
             }
-        }, 2000);
+        }, 1000);
     }
 
 

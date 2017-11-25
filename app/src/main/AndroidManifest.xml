@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="registrationform.com.registrationform">
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
@@ -31,6 +36,10 @@
 
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".aboutapp_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 

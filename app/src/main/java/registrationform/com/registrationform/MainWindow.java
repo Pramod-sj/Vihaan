@@ -1,26 +1,151 @@
 package registrationform.com.registrationform;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
-    //This is our tablayout
-    private TabLayout tabLayout;
-    //This is our viewPager
-
-    private ViewPager viewPager;
-
+    TabLayout tabLayout;
+    FloatingActionButton fab11,fab22,fab33;
+    FloatingActionMenu fab_menu;
+    ViewPager viewPager;
+    int versionCode = BuildConfig.VERSION_CODE;
+    String versionName = BuildConfig.VERSION_NAME;
+    String newVersion = "1.0";
+    AlertDialog.Builder builder1,builder2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_window);
+        fab11 = (FloatingActionButton)findViewById(R.id.fab1);
+        fab22 = (FloatingActionButton)findViewById(R.id.fab2);
+        fab33 = (FloatingActionButton)findViewById(R.id.fab3);
+        fab_menu = (FloatingActionMenu) findViewById(R.id.fab_menu);
+
+        //Setting permission so that there is no need to create another async class
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        //end
+        //setting permission SO THAT IT ALLOW TO INSTALL NEW UPDATE
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        //END
+
+
+        builder1 = new AlertDialog.Builder(this);
+        builder2 = new AlertDialog.Builder(this);
+
+        //Uncomment the below code to Set the message and title from the strings.xml file
+        //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+
+        //Setting message manually and performing action on button click
+        builder1.setMessage("Update "+newVersion+" is available to download")
+                .setCancelable(false)
+                .setPositiveButton("Download", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                downloadapk();
+                            }
+                        },500);
+
+                    }
+                })
+                .setNegativeButton("Later", new DialogInterface.OnClickListener() {
+                     public void onClick(final DialogInterface dialog, int id) {
+                            new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.cancel();
+                    }
+                },500);
+
+            }
+        });
+
+        builder2.setMessage("You are currently runing latest version")
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, int id) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog.cancel();
+                            }
+                        },500);
+
+                    }
+                });
+        //Creating dialog box
+        final AlertDialog alert1 = builder1.create();
+        final AlertDialog alert2 = builder2.create();
+        //Setting the title manually
+        alert1.setTitle("New update is available!");
+        alert2.setTitle("No update");
+        final Float curVer=Float.parseFloat(versionName);
+        final Float newVer=Float.parseFloat(newVersion);
+
+
+
+
+
+
+        fab11.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i=new Intent(MainWindow.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
+        fab22.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i=new Intent(MainWindow.this,aboutapp_Activity.class);
+                startActivity(i);
+            }
+        });
+        fab33.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                fab_menu.close(true);
+                Toast.makeText(getApplicationContext(),"Checking for update....",Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable(){
+                    @Override
+                    public void run(){
+                        if(curVer<newVer) {
+                            alert1.show();
+                        }
+                        else {
+                            alert2.show();
+                        }
+                    }
+                },2200);
+            }
+        });
 
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -79,6 +204,50 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     @Override
     public void onBackPressed(){
         moveTaskToBack(true);
+    }
+
+    public void downloadapk() {
+        try {
+            URL url = new URL("http://www.appsapk.com/downloading/latest/MP3%20Cutter%20and%20Ringtone%20Maker-2.0.apk");
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setDoOutput(true);
+            urlConnection.connect();
+
+            File sdcard = Environment.getExternalStorageDirectory();
+            File file = new File(sdcard, "filename.apk");
+
+            FileOutputStream fileOutput = new FileOutputStream(file);
+            InputStream inputStream = urlConnection.getInputStream();
+
+            byte[] buffer = new byte[1024];
+            int bufferLength = 0;
+
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
+                fileOutput.write(buffer, 0, bufferLength);
+            }
+            fileOutput.close();
+
+            this.installApk();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException f){
+            Toast.makeText(getApplicationContext(),"Please set Storage permission",Toast.LENGTH_LONG).show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void installApk() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri uri = Uri.fromFile(new File("/sdcard/filename.apk"));
+        intent.setDataAndType(uri, "application/vnd.android.package-archive");
+        startActivity(intent);
     }
 
 
