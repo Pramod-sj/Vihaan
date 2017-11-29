@@ -1,7 +1,12 @@
 package registrationform.com.registrationform;
 
+import android.app.DownloadManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,6 +20,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -29,12 +35,13 @@ import java.net.URL;
 
 public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     TabLayout tabLayout;
+    DownloadManager downloadManager;
     FloatingActionButton fab11,fab22,fab33;
     FloatingActionMenu fab_menu;
     ViewPager viewPager;
     int versionCode = BuildConfig.VERSION_CODE;
     String versionName = BuildConfig.VERSION_NAME;
-    String newVersion = "1.0";
+    String newVersion = "1.2";
     AlertDialog.Builder builder1,builder2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +60,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         //END
-
-
         builder1 = new AlertDialog.Builder(this);
         builder2 = new AlertDialog.Builder(this);
-
         //Uncomment the below code to Set the message and title from the strings.xml file
         //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
 
@@ -87,7 +91,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             }
         });
 
-        builder2.setMessage("You are currently runing latest version")
+        builder2.setMessage("You are currently running latest version")
                 .setCancelable(false)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, int id) {
@@ -108,17 +112,12 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         alert2.setTitle("No update");
         final Float curVer=Float.parseFloat(versionName);
         final Float newVer=Float.parseFloat(newVersion);
-
-
-
-
-
-
         fab11.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent i=new Intent(MainWindow.this,MainActivity.class);
                 startActivity(i);
+                fab_menu.close(true);
             }
         });
         fab22.setOnClickListener(new View.OnClickListener(){
@@ -126,6 +125,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             public void onClick(View view){
                 Intent i=new Intent(MainWindow.this,aboutapp_Activity.class);
                 startActivity(i);
+                fab_menu.close(true);
             }
         });
         fab33.setOnClickListener(new View.OnClickListener(){
@@ -144,12 +144,13 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
                         }
                     }
                 },2200);
+
             }
         });
 
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-
+        //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Events"));
         tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
@@ -207,53 +208,17 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     }
 
     public void downloadapk() {
-        try {
-            URL url = new URL("http://www.appsapk.com/downloading/latest/MP3%20Cutter%20and%20Ringtone%20Maker-2.0.apk");
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setDoOutput(true);
-            urlConnection.connect();
-
-            File sdcard = Environment.getExternalStorageDirectory();
-            File file = new File(sdcard, "filename.apk");
-
-            FileOutputStream fileOutput = new FileOutputStream(file);
-            InputStream inputStream = urlConnection.getInputStream();
-
-            byte[] buffer = new byte[1024];
-            int bufferLength = 0;
-
-            while ((bufferLength = inputStream.read(buffer)) > 0) {
-                fileOutput.write(buffer, 0, bufferLength);
-            }
-            fileOutput.close();
-
-            this.installApk();
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException f){
-            Toast.makeText(getApplicationContext(),"Please set Storage permission",Toast.LENGTH_LONG).show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+            String url = "http://www.appsapk.com/downloading/latest/MP3%20Cutter%20and%20Ringtone%20Maker-2.0.apk";
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+            request.setTitle("Updating to VIHAAN "+newVersion);
+            request.allowScanningByMediaScanner();
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "filename.apk");
+            // get download service and enqueue file
+            DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+            manager.enqueue(request);
     }
-
-    public void installApk() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri uri = Uri.fromFile(new File("/sdcard/filename.apk"));
-        intent.setDataAndType(uri, "application/vnd.android.package-archive");
-        startActivity(intent);
-    }
-
-
-
 }
-
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
