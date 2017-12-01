@@ -34,7 +34,7 @@ public class SplashScreen extends AppCompatActivity{
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        eventNotify();
+                        Notification();
                     }
                 },7000);
                 finish();
@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity{
     }
 
 
-    public void eventNotify(){
+    public void Notification(){
         PendingIntent pi = PendingIntent.getActivity(this, 0, new Intent(this, MainWindow.class), 0);
         Resources r = getResources();
         Notification notification = new NotificationCompat.Builder(this)

@@ -6,6 +6,7 @@
     android:background="@drawable/startbg"
     >
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Vihaan 2018"
@@ -14,11 +15,11 @@
         android:textStyle="bold"
         android:textColor="#ffff"
         android:fontFamily="sans-serif-condensed"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="110dp"
         />
     <TextView
+        android:id="@+id/col_name"
+        android:layout_below="@id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="v.e.s. computer science"
@@ -27,25 +28,56 @@
         android:fontFamily="sans-serif-condensed"
         android:textStyle="bold"
         android:textAllCaps="true"
-        android:textColor="#ffff"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="220dp"
-        />
+        android:textColor="#ffff" />
+    <TextView
+        android:layout_below="@id/col_name"
+        android:id="@+id/emp1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
+
+    <TextView
+        android:layout_below="@id/emp1"
+        android:id="@+id/emp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
     <Button
         android:id="@+id/regbutton"
+        android:layout_below="@id/emp2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
-        android:layout_marginTop="300dp"
         android:text="Register"
         android:textAllCaps="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
-        android:background="@drawable/buttonstyle"/>
+        android:background="@drawable/buttonstyle"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/empty1"
+        android:text=""
+        android:layout_below="@+id/regbutton"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/empty2"
+        android:layout_below="@+id/empty1"
+        android:text=""/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/empty3"
+        android:layout_below="@+id/empty2"
+        android:text=""/>
     <TextView
         android:id="@+id/txt1"
+        android:layout_below="@+id/empty3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:linksClickable="true"
@@ -55,7 +87,7 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:textAlignment="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="440dp"/>
+        android:layout_centerHorizontal="true"
+        />
+
 </RelativeLayout>

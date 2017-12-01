@@ -1,7 +1,6 @@
 package registrationform.com.registrationform;
 
 import android.app.DownloadManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.provider.Settings;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,18 +20,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     TabLayout tabLayout;
@@ -41,8 +32,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     ViewPager viewPager;
     int versionCode = BuildConfig.VERSION_CODE;
     String versionName = BuildConfig.VERSION_NAME;
-    String newVersion = "1.2";
-    AlertDialog.Builder builder1,builder2;
+    String newVersion = "1.0";
+    AlertDialog.Builder builder1,builder2,noconn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +103,20 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         alert2.setTitle("No update");
         final Float curVer=Float.parseFloat(versionName);
         final Float newVer=Float.parseFloat(newVersion);
+
+        final startpage_activity sa=new startpage_activity();
+        noconn=new AlertDialog.Builder(this);
+        noconn.setMessage("Need internet for checking update");
+        noconn.setPositiveButton("Enable", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        });
+        noconn.setNegativeButton("Later", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
         fab11.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -132,18 +137,25 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             @Override
             public void onClick(View view){
                 fab_menu.close(true);
-                Toast.makeText(getApplicationContext(),"Checking for update....",Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable(){
-                    @Override
-                    public void run(){
-                        if(curVer<newVer) {
-                            alert1.show();
+                if(isConnected_custom()==true) {
+                    Toast.makeText(getApplicationContext(), "Checking for update....", Toast.LENGTH_SHORT).show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (curVer < newVer) {
+                                alert1.show();
+                            } else {
+                                alert2.show();
+                            }
                         }
-                        else {
-                            alert2.show();
-                        }
-                    }
-                },2200);
+                    }, 2200);
+                }
+                else{
+
+                    final AlertDialog alert = noconn.create();
+                    alert.setTitle("No Internet");
+                    alert.show();
+                }
 
             }
         });
@@ -169,8 +181,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
 
-        viewPager.setCurrentItem(1);
-        tabLayout.setScrollPosition(1,0,true);
+        viewPager.setCurrentItem(0);
+        tabLayout.setScrollPosition(0,0,true);
 
         //Adding onTabSelectedListener to swipe views
 
@@ -207,17 +219,37 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         moveTaskToBack(true);
     }
 
+
     public void downloadapk() {
+        try {
             String url = "http://www.appsapk.com/downloading/latest/MP3%20Cutter%20and%20Ringtone%20Maker-2.0.apk";
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-            request.setTitle("Updating to VIHAAN "+newVersion);
+            request.setTitle("Updating to VIHAAN " + newVersion);
             request.allowScanningByMediaScanner();
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "filename.apk");
             // get download service and enqueue file
             DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
             manager.enqueue(request);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(),"Please grant storage permission",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Settings.ACTION_APPLICATION_SETTINGS));
+        }
     }
+    public boolean isConnected_custom(){
+        boolean isInternetAvailable = false;
+        try {
+            ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(startpage_activity.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if(networkInfo != null && (networkInfo.isConnected())){
+                isInternetAvailable  = true;
+            }
+        }
+        catch(Exception exception) {}
+        return isInternetAvailable;
+    }
+
 }
 
     /**

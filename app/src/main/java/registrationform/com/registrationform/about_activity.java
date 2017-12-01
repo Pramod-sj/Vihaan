@@ -4,6 +4,7 @@ package registrationform.com.registrationform;
  * Created by pramo on 10/4/2017.
  */
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,23 +23,13 @@ public class about_activity extends Fragment{
         View view=inflater.inflate(R.layout.about, container, false);
         progressBar=(ProgressBar)view.findViewById(R.id.pg3);
         webView = (WebView)view.findViewById(R.id.webView);
-        webView.loadUrl("http://www.vesvihaan.com/app/About");
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setLoadsImagesAutomatically(true);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSettings.setEnableSmoothTransition(true);
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        webSettings.setAppCacheEnabled(true);
-        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        webSettings.setDomStorageEnabled(true);
         webSettings.setUseWideViewPort(true);
+        webView.loadUrl("file:///android_asset/about");
         webView.setWebViewClient(new WebViewClient(){
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                webView.loadUrl("file:///android_asset/nointernet.html");
-
-            }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
