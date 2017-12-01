@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>V.E.S VIHAAN </title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://www.vesvihaan.com/components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.vesvihaan.com/components/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://www.vesvihaan.com/assets/css/main.css">
+    <!-- scripts  -->
+    <!--<script src="https://www.vesvihaan.com/components/jquery/dist/jquery.min.js"></script>
+    <script src="https://www.vesvihaan.com/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://www.vesvihaan.com/components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+    <script src="https://www.vesvihaan.com/assets/js/main.js"></script>-->
+</head>
+<body data-spy="scroll" data-target="#site-nav" >
+
+<section id="about" class="section about">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+
+                <h3 class="section-title">About V.E.S. Computer Science </h3>
+
+                <p align="justify">Computer Science is the study of computers and computational systems. The Principal areas of study within this course include operating systems, databases systems, programming languages, networks and security, software engineering etc. The course is designed such that the students after graduation can definitely get a good job in industry. They can also go for post-graduation and contribute in the field of research. In addition to Computer Science subjects, you will also learn some papers of Mathematics and Statistics (as per year) which are useful to this field. The subjects like -
+                    Computer Science teaches the techniques for developing software,
+                    Mathematics develops the ability to think, reason &amp; develop logic,
+                    Thus a computer science student always performs well either in industry or in higher education.
+                </p>
+
+                <figure>
+                    <img alt="" class="img-responsive" src="https://www.vesvihaan.com//assets/images/photos/pic1.jpg">
+                </figure>
+
+            </div><!-- /.col-sm-6 -->
+
+            <div class="col-sm-6">
+
+                <h3 class="section-title multiple-title">Our Efforts </h3>
+
+                <p>Our efforts have translated into the following Learning Outcomes
+                    We have produced four University Rank holders from 1999 to 2012 at TYBSc Comp Sci<br>
+                    Our students have won Performance awards in companies where they are placed
+                    Projects completed by students are utilized in the administration of the college<br>
+                    Our students have presented research papers in various types of conferences<br>
+                    Students are doing internships/projects in companies<br>
+                    Participation in Industry Project<br>
+                    Student volunteer for social work</p>
+
+                <ul>
+
+                    <li>Established in 1999</li>
+                    <li>Committed, Experienced and qualified staff</li>
+                    <li>Well-Equipped Laboratory with internet connectivity</li>
+                    <li>Recipient of Star College Grant (DBT)</li>
+                    <li>Has a good placement record and conducts Joint Campus Recruitment Programs by companies like IGate, Tech Mahindra, HCL, TCS, Wipro etc for students of computer science, IT,  Chemistry, Maths, Biotechtech and Microbiology of various colleges</li>
+                    <li>Has a strong &amp; active alumni who visit &amp; provide guidance on career aspects, soft skills and Technology</li>
+                    <li>Provides Guidance for Post Graduate Courses like MCA, NCST, DAC and certification courses like RHCE, Oracle Certifications and Java Certifications</li>
+                    <li>Conduct of Workshops and Enrichment sessions</li>
+                    <li>Conduct of Subject specific Industrial Visit</li>
+
+                </ul>
+
+            </div><!-- /.col-sm-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+<!-- Phot -->
+
+<section id="photos" class="section photos">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="section-title">Photos</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="grid">
+
+                    <li class="grid-item grid-item-sm-6">
+                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic4.jpg">
+                    </li>
+
+                    <li class="grid-item grid-item-sm-3">
+                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic5.jpg">
+                    </li>
+
+                    <li class="grid-item grid-item-sm-3">
+                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic3.jpg">
+                    </li>
+
+                    <li class="grid-item grid-item-sm-3">
+                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic2.jpg">
+                    </li>
+
+                    <li class="grid-item grid-item-sm-3">
+                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic1.jpg">
+                    </li>
+
+                    <li class="grid-item grid-item-sm-3">
+                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic3.jpg">
+                    </li>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="site-info">Designed and  Developed  by <br>Team Vihaan'18 </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

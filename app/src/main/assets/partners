@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>V.E.S VIHAAN </title>
+    <!-- css -->
+    <link rel="stylesheet" href="https://www.vesvihaan.com/components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.vesvihaan.com/components/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://www.vesvihaan.com/assets/css/main.css">
+    <!-- scripts  -->
+    <!--<script src="https://www.vesvihaan.com/components/jquery/dist/jquery.min.js"></script>
+    <script src="https://www.vesvihaan.com/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://www.vesvihaan.com/components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+    <script src="https://www.vesvihaan.com/assets/js/main.js"></script>-->
+</head>
+<body data-spy="scroll" data-target="#site-nav" >
+
+<section  class="section partner site-header1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Vihaan  Partners</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <h4>Web Hosting Partner </h4>
+                <a href="https://my.vapourhost.com/aff.php?aff=162" class="partner-box vapourhost-partner"></a>
+            </div>
+
+</section>

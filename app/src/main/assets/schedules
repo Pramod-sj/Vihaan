@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>V.E.S VIHAAN </title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://www.vesvihaan.com/components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.vesvihaan.com/components/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://www.vesvihaan.com/assets/css/main.css">
+    <!-- scripts  -->
+    <!--<script src="https://www.vesvihaan.com/components/jquery/dist/jquery.min.js"></script>
+    <script src="https://www.vesvihaan.com/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="https://www.vesvihaan.com/components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
+    <script src="https://www.vesvihaan.com/assets/js/main.js"></script>-->
+</head>
+<body data-spy="scroll" data-target="#site-nav" >
+<section id="schedule" class="section schedule site-header1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title" style="color: white;">Day 1</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="09:30">09:30 am</time> - <time datetime="10:30">10:30 am</time>
+                    </div>
+                    <h3>Inauguration</h3>
+                    <p>V.E.S. Auditorium </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white">Techtonic</h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="09:30">09:30 am</time> - <time datetime="10:30">10:30 am</time>
+                    </div>
+                    <h3>Round - 1</h3>
+                    <p>V.E.S. Auditorium </p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="11:15">11:15 am</time>
+                    </div>
+                    <h3>Submission Of Synopsis</h3>
+                    <p>Computer Science Lab  (1<sup>st</sup> Floor)</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="11:30">11:30 am</time> - <time datetime="14:00">2:00 pm</time>
+                    </div>
+                    <h3>Round - 2</h3>
+                    <p>Computer Science Lab  (1<sup>st</sup> Floor)</p>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white">Posteria</h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="10:30">10:30 am</time> - <time datetime="12:30">12:30 am</time>
+                    </div>
+                    <h3>Round - 1</h3>
+                    <p>V.E.S. Quadrangle</p>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white">Mega Blog </h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="14:00">02:00 pm</time> - <time datetime="15:00">03:00 pm</time>
+                    </div>
+                    <h3>Round - 1</h3>
+                    <p>Computer Science Lab  (4<sup>th</sup> Floor)</p>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white">Quiriosity </h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="14:45">02:45 pm</time> - <time datetime="17:00">05:00 pm</time>
+                    </div>
+                    <h3>Round - 1</h3>
+                    <p>V.E.S. Auditorium</p>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title" style="margin-top: 40px;color: white">Day 2</h2>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white">App Ki Peshkash</h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="10:00">10:00 am</time> - <time datetime="12:00">12:00 pm</time>
+                    </div>
+                    <h3>Round - 1</h3>
+                    <p>Computer Science Lab  (4<sup>th</sup> Floor)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white;">Freeze The Moment </h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="11:30">11:30 am</time> - <time datetime="13:30">1:30 pm</time>
+                    </div>
+                    <h3>Round - 1</h3>
+                    <p>Computer Science Lab  (1<sup>st</sup> Floor)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white;">Code Trove </h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="12:00">12:30 am</time> - <time datetime="15:00">03:00 pm</time>
+                    </div>
+                    <h3>Round - 1</h3>
+                    <p>V.E.S. Auditorium</p>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white;">V.E.S Talk </h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="15:00">03:00 pm</time> - <time datetime="18:00">06:00 pm</time>
+                    </div>
+
+                    <p>V.E.S. Auditorium</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="section-title " style="margin-top: 30px;color: white;">Prize Distribution</h3>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="schedule-box">
+                    <div class="time">
+                        <time datetime="18:00">06:00 pm</time>
+                    </div>
+
+                    <p>V.E.S. Auditorium</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
