@@ -1,4 +1,4 @@
-package registrationform.com.registrationform;
+package com.vesvihaan;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.ProgressBar;
+
+
 public class SplashScreen extends AppCompatActivity{
 
     @Override

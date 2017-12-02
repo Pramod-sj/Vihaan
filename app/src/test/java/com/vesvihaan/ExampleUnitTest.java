@@ -1,4 +1,4 @@
-package registrationform.com.registrationform;
+package com.vesvihaan;
 
 import org.junit.Test;
 

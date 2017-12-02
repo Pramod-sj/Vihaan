@@ -1,8 +1,9 @@
-package registrationform.com.registrationform;
+package com.vesvihaan;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
 
 /**
  * Created by pramod_sj on 25/11/17.

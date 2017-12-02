@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="registrationform.com.registrationform">
+    package="com.vesvihaan">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INSTALL_PACKAGES"
@@ -16,8 +16,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".SplashScreen"
+            android:name="com.vesvihaan.SplashScreen"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -25,23 +26,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name="com.vesvihaan.firebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.vesvihaan.Firebase_Messaging_Service">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+
         <activity
-            android:name=".startpage_activity"
+            android:name="com.vesvihaan.startpage_activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".MainWindow"
+            android:name="com.vesvihaan.MainWindow"
             android:label="@string/title_activity_main_window"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.vesvihaan.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".aboutapp_Activity"
+            android:name="com.vesvihaan.aboutapp_Activity"
             android:screenOrientation="portrait"/>
 
     </application>

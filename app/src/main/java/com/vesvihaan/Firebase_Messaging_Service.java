@@ -1,11 +1,13 @@
-package registrationform.com.registrationform;
+package com.vesvihaan;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -24,10 +26,13 @@ public class Firebase_Messaging_Service extends FirebaseMessagingService {
         nb.setContentTitle("VIHAAN");
         nb.setAutoCancel(true);
         nb.setContentIntent(pi);
+        nb.setVibrate(new long[]{150, 300, 150, 400});
+        Uri no = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Ringtone ring = RingtoneManager.getRingtone(getApplicationContext(), no);
+        ring.play();
         nb.setContentText(remoteMessage.getNotification().getBody());
         nb.setSmallIcon(android.R.drawable.ic_popup_reminder);
         NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0,nb.build());
-
     }
 }

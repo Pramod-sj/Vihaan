@@ -1,4 +1,4 @@
-package registrationform.com.registrationform;
+package com.vesvihaan;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,17 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 
 public class MainActivity extends AppCompatActivity  {
     EditText f_name,l_name,c_name,email,phone,class_nm;

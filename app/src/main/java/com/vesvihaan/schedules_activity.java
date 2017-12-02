@@ -1,38 +1,34 @@
-package registrationform.com.registrationform;
+package com.vesvihaan;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
 /**
  * Created by pramod_sj on 23/11/17.
  */
 
-public class sponsers_activity extends android.support.v4.app.Fragment {
+public class schedules_activity extends android.support.v4.app.Fragment{
     ProgressBar progressBar;
     View view;
     WebView webView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.sponsers, container, false);
-        progressBar = (ProgressBar) view.findViewById(R.id.pg4);
-        webView = (WebView) view.findViewById(R.id.webView);
-
+        view = inflater.inflate(R.layout.schedules, container, false);
+        progressBar = (ProgressBar) view.findViewById(R.id.pg5);
+        webView = (WebView) view.findViewById(R.id.webView1);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSettings.setEnableSmoothTransition(true);
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        webSettings.setUseWideViewPort(true);
-        webView.loadUrl("file:///android_asset/partners");
-        webView.setWebViewClient(new WebViewClient() {
-
+        webView.loadUrl("file:///android_asset/schedules");
+        webView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -45,12 +41,9 @@ public class sponsers_activity extends android.support.v4.app.Fragment {
                 progressBar.setVisibility(View.GONE);
             }
         });
-        webView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
+
         return view;
     }
 }
+
+

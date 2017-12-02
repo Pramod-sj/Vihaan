@@ -1,4 +1,4 @@
-package registrationform.com.registrationform;
+package com.vesvihaan;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+
 /**
  * Created by pramo on 10/18/2017.
  */
@@ -59,8 +61,6 @@ public class startpage_activity extends AppCompatActivity {
             }
         });
     }
-
-
     public boolean isConnected_custom(){
         boolean isInternetAvailable = false;
         try {
@@ -73,5 +73,4 @@ public class startpage_activity extends AppCompatActivity {
         catch(Exception exception) {}
         return isInternetAvailable;
     }
-
 }
