@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity  {
         b=(Button)findViewById(R.id.bt1);
         s=(Spinner)findViewById(R.id.events);
         noconn=new AlertDialog.Builder(this);
+        noconn.setCancelable(false);
         noconn.setMessage("Need internet for checking update");
         noconn.setPositiveButton("Enable", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

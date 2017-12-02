@@ -25,6 +25,7 @@ public class startpage_activity extends AppCompatActivity {
         txt1=(TextView)findViewById(R.id.txt1);
         regbutton=(Button)findViewById(R.id.regbutton);
         noconn=new AlertDialog.Builder(this);
+        noconn.setCancelable(false);
         noconn.setMessage("This app requires internet please enable your phone's wifi or data");
         noconn.setPositiveButton("Enable", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
