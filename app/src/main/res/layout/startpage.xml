@@ -51,6 +51,7 @@
         android:layout_marginRight="120dp"
         android:text="Register"
         android:textAllCaps="true"
+        android:elevation="15dp"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:background="@drawable/buttonstyle"
