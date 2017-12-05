@@ -2,7 +2,9 @@ package com.vesvihaan;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.media.Ringtone;
@@ -18,31 +20,52 @@ import android.widget.ProgressBar;
 
 
 public class SplashScreen extends AppCompatActivity{
-
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    int totalcount;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
         final ProgressBar spinner;
-        spinner=(ProgressBar)findViewById(R.id.probar);
+        spinner = (ProgressBar) findViewById(R.id.probar);
         spinner.setMax(100);
         spinner.setVisibility(View.VISIBLE);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreen.this, startpage_activity.class);
-                startActivity(intent);
-                spinner.setVisibility(View.GONE);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Notification();
-                    }
-                },7000);
-                finish();
+        prefs=getPreferences(Context.MODE_PRIVATE);
+        editor=prefs.edit();
+        totalcount=prefs.getInt("counter",0);
+        totalcount++;
+        editor.putInt("counter",totalcount);
+        editor.commit();
+        if(totalcount>=2){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent=new Intent(SplashScreen.this,MainWindow.class);
+                    startActivity(intent);
+                    spinner.setVisibility(View.GONE);
+                    finish();
+                }
+            }, 1000);
+        }
+        else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(SplashScreen.this, startpage_activity.class);
+                    startActivity(intent);
+                    spinner.setVisibility(View.GONE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Notification();
+                        }
+                    }, 7000);
+                    finish();
 
-            }
-        }, 1000);
+                }
+            }, 1000);
+        }
     }
 
 
@@ -51,7 +74,7 @@ public class SplashScreen extends AppCompatActivity{
         Resources r = getResources();
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentIntent(pi)
-                .setSmallIcon(android.R.drawable.ic_popup_reminder)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(),
                         R.mipmap.ic_launcher))
                 .setContentTitle(r.getString(R.string.notication_title))

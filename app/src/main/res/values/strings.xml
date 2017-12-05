@@ -6,13 +6,15 @@
     <string name="notication_title">VIHAAN</string>
     <string name="e">Choose an event</string>
     <string-array name="events">
-        <item>Poster Presentation</item>
         <item>Code Trove</item>
-        <item>Quiz</item>
-        <item>Problem Statement</item>
-        <item>Photography and PhotoShop</item>
-        <item>Introview</item>
+        <item>Quiriosity</item>
         <item>Techtonic</item>
+        <item>Posteria</item>
+        <item>Mega Blog</item>
+        <item>Problem Statement</item>
+        <item>Freeze The Moment</item>
+        <item>App Ki Peshkash</item>
+        <item>Introview</item>
         <item>Iotics</item>
     </string-array>
 

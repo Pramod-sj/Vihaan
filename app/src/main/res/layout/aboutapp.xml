@@ -2,6 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#4e4e4e">
     <android.support.v7.widget.CardView
@@ -118,4 +124,5 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

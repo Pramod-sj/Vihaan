@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="registrationform.com.vesvihaan.com.vesvihaan.MainWindow">
+    tools:context="com.vesvihaan.MainWindow">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -19,8 +19,8 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="scrollable"
             app:tabGravity="center"
+            app:tabPaddingTop="0dp"
             app:tabIndicatorColor="#ffffff"/>
     </android.support.design.widget.AppBarLayout>
 
@@ -40,9 +40,8 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         fab:menu_backgroundColor="#ccffffff"
         fab:menu_fab_label="Choose an action"
-        fab:fab_colorNormal="#DA4336"
-        fab:fab_colorPressed="#E75043"
-        fab:fab_colorRipple="#99FFFFFF"
+        fab:menu_colorNormal="#008080"
+        fab:menu_colorPressed="#008080"
         fab:fab_showShadow="true"
         fab:menu_labels_colorNormal="#333333"
         fab:menu_labels_colorPressed="#444444"
@@ -58,23 +57,31 @@
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@android:drawable/ic_menu_add"
             fab:fab_label="Register"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"
+            fab:fab_colorNormal="#008080"
+            fab:fab_colorPressed="#008080"/>
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_upload"
             fab:fab_label="Check for update"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"
+            fab:fab_colorNormal="#008080"
+            fab:fab_colorPressed="#008080"
+            fab:fab_colorRipple="#99FFFFFF"/>
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_info"
+            android:src="@android:drawable/ic_menu_info_details"
             fab:fab_label="About"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"
+            fab:fab_colorNormal="#008080"
+            fab:fab_colorPressed="#008080"
+            fab:fab_colorRipple="#99FFFFFF"/>
     </com.github.clans.fab.FloatingActionMenu>
 
 </android.support.design.widget.CoordinatorLayout>

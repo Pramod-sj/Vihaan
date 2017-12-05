@@ -19,6 +19,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
@@ -33,7 +35,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     ViewPager viewPager;
     int versionCode = BuildConfig.VERSION_CODE;
     String versionName = BuildConfig.VERSION_NAME;
-    String newVersion = "1.0";
+    String newVersion = "1.3";
     AlertDialog.Builder builder1,builder2,noconn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         fab22 = (FloatingActionButton)findViewById(R.id.fab2);
         fab33 = (FloatingActionButton)findViewById(R.id.fab3);
         fab_menu = (FloatingActionMenu) findViewById(R.id.fab_menu);
+
 
         //Setting permission so that there is no need to create another async class
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -143,7 +146,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if (curVer < newVer) {
+                            if (curVer < newVer){
                                 alert1.show();
                             } else {
                                 alert2.show();
@@ -170,8 +173,17 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         tabLayout.addTab(tabLayout.newTab().setText("Partners"));
         tabLayout.addTab(tabLayout.newTab().setText("About us"));
 
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        DisplayMetrics dm=getResources().getDisplayMetrics();
+        int densityDpi = (int)(dm.density * 160f);
+        if(densityDpi>=320){
+            tabLayout.setTabMode(tabLayout.MODE_SCROLLABLE);
+            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        }
+        else{
+            tabLayout.setTabMode(tabLayout.MODE_FIXED);
+            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        }
         //Initializing viewPager
         viewPager = (ViewPager) findViewById(R.id.pager);
 
@@ -223,7 +235,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
     public void downloadapk() {
         try {
-            String url = "http://www.appsapk.com/downloading/latest/MP3%20Cutter%20and%20Ringtone%20Maker-2.0.apk";
+            String url = "http://www.mediafire.com/file/o457h4f6s9bf1k1/Vihaan.apk";
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
             request.setTitle("Updating to VIHAAN " + newVersion);
             request.allowScanningByMediaScanner();
