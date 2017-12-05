@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.DataOutputStream;
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity  {
                         jObject.put("class",class_name);
                         jObject.put("event",val);
 
-                        new SendData().execute("http://vesvihaan.com/Registration/submit_data", jObject.toString());
+                        new SendData().execute("http://vesvihaan.com/Registration/submit_data?",jObject.toString());
                     }
                     catch (JSONException e) {
                         e.printStackTrace();
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity  {
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
-                wr.writeBytes("PostData=" + params[1]);
+                wr.writeBytes("postdata=" + params[1]);
                 wr.flush();
                 wr.close();
                 httpURLConnection.setRequestMethod("GET");
@@ -165,16 +167,18 @@ public class MainActivity extends AppCompatActivity  {
                     httpURLConnection.disconnect();
                 }
             }
+            Log.d("Response",data);
             return data;
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            Log.e("TAG", result); // this is expecting a response code to be sent from your server upon receiving the POST data
             if(result == null) {
                 result = "THERE WAS AN ERROR";
             }
+            Log.e("TAG", result); // this is expecting a response code to be sent from your server upon receiving the POST data
+
             //parseJsonData(result);
 
         }
