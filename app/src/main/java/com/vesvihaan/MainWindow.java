@@ -26,6 +26,11 @@ import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
 
 public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     TabLayout tabLayout;
@@ -35,7 +40,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     ViewPager viewPager;
     int versionCode = BuildConfig.VERSION_CODE;
     String versionName = BuildConfig.VERSION_NAME;
-    String newVersion = "1.3";
+    String newVersion = null;
     AlertDialog.Builder builder1,builder2,noconn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +111,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         alert1.setTitle("New update is available!");
         alert2.setTitle("No update");
         final Float curVer=Float.parseFloat(versionName);
-        final Float newVer=Float.parseFloat(newVersion);
 
-        final startpage_activity sa=new startpage_activity();
+        //final startpage_activity sa=new startpage_activity();
         noconn=new AlertDialog.Builder(this);
         noconn.setMessage("Need internet for checking update");
         noconn.setPositiveButton("Enable", new DialogInterface.OnClickListener() {
@@ -142,11 +146,12 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             public void onClick(View view){
                 fab_menu.close(true);
                 if(isConnected_custom()==true) {
+                    final Float newVer=Float.parseFloat(newVersion);
                     Toast.makeText(getApplicationContext(), "Checking for update....", Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if (curVer < newVer){
+                            if (curVer < checkVersion()){
                                 alert1.show();
                             } else {
                                 alert2.show();
@@ -163,7 +168,6 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
             }
         });
-
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -231,11 +235,24 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     public void onBackPressed(){
         moveTaskToBack(true);
     }
-
+    public float checkVersion() {
+        String temp;
+        try {
+            URL url = new URL("https://raw.githubusercontent.com/Pramod-sj/Vihaan/master/version.txt");
+            URLConnection uc = url.openConnection();
+            BufferedReader br = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+            while ((temp = br.readLine()) != null) {
+                newVersion=temp;
+            }
+        }
+        catch (Exception e) {}
+        Toast.makeText(getApplicationContext(),newVersion,Toast.LENGTH_SHORT).show();
+        return Float.parseFloat(newVersion);
+    }
 
     public void downloadapk() {
         try {
-            String url = "http://www.mediafire.com/file/o457h4f6s9bf1k1/Vihaan.apk";
+            String url = "http://www.vesvihaan.com//Vihaan.apk";
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
             request.setTitle("Updating to VIHAAN " + newVersion);
             request.allowScanningByMediaScanner();
