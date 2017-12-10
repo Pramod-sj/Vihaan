@@ -25,8 +25,6 @@ public class schedules_activity extends android.support.v4.app.Fragment{
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
-        webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-        webSettings.setEnableSmoothTransition(true);
         webView.loadUrl("file:///android_asset/schedules");
         webView.setWebViewClient(new WebViewClient(){
             @Override

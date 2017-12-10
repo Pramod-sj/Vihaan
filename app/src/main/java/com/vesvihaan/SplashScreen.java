@@ -46,7 +46,7 @@ public class SplashScreen extends AppCompatActivity{
                     spinner.setVisibility(View.GONE);
                     finish();
                 }
-            }, 1000);
+            }, 2500);
         }
         else {
             new Handler().postDelayed(new Runnable() {
@@ -64,7 +64,7 @@ public class SplashScreen extends AppCompatActivity{
                     finish();
 
                 }
-            }, 1000);
+            }, 1500);
         }
     }
 

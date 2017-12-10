@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity  {
                     catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(getApplicationContext(),jObject.toString(),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),jObject.toString(),Toast.LENGTH_SHORT).show();
                     Intent i=new Intent(MainActivity.this,MainWindow.class);
                     startActivity(i);
                 }

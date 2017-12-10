@@ -146,7 +146,6 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             public void onClick(View view){
                 fab_menu.close(true);
                 if(isConnected_custom()==true) {
-                    final Float newVer=Float.parseFloat(newVersion);
                     Toast.makeText(getApplicationContext(), "Checking for update....", Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -246,7 +245,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             }
         }
         catch (Exception e) {}
-        Toast.makeText(getApplicationContext(),newVersion,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),newVersion,Toast.LENGTH_SHORT).show();
+        Float newVer=Float.parseFloat(newVersion);
         return Float.parseFloat(newVersion);
     }
 

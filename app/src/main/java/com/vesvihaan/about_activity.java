@@ -26,8 +26,6 @@ public class about_activity extends Fragment{
         webView = (WebView)view.findViewById(R.id.webView);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-        webSettings.setEnableSmoothTransition(true);
         webSettings.setUseWideViewPort(true);
         webView.loadUrl("file:///android_asset/about");
         webView.setWebViewClient(new WebViewClient(){

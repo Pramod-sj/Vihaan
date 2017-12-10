@@ -18,10 +18,11 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             app:tabGravity="center"
             app:tabPaddingTop="0dp"
-            app:tabIndicatorColor="#ffffff"/>
+            app:tabIndicatorHeight="1sp"
+            app:tabIndicatorColor="#ffffff "/>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
@@ -40,8 +41,8 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         fab:menu_backgroundColor="#ccffffff"
         fab:menu_fab_label="Choose an action"
-        fab:menu_colorNormal="#008080"
-        fab:menu_colorPressed="#008080"
+        fab:menu_colorNormal="#414141"
+        fab:menu_colorPressed="#414141"
         fab:fab_showShadow="true"
         fab:menu_labels_colorNormal="#333333"
         fab:menu_labels_colorPressed="#444444"
@@ -60,8 +61,8 @@
             android:src="@android:drawable/ic_menu_add"
             fab:fab_label="Register"
             fab:fab_size="mini"
-            fab:fab_colorNormal="#008080"
-            fab:fab_colorPressed="#008080"/>
+            fab:fab_colorNormal="#414141"
+            fab:fab_colorPressed="#414141"/>
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab3"
             android:layout_width="wrap_content"
@@ -69,8 +70,8 @@
             android:src="@android:drawable/ic_menu_upload"
             fab:fab_label="Check for update"
             fab:fab_size="mini"
-            fab:fab_colorNormal="#008080"
-            fab:fab_colorPressed="#008080"
+            fab:fab_colorNormal="#414141"
+            fab:fab_colorPressed="#414141"
             fab:fab_colorRipple="#99FFFFFF"/>
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab2"
@@ -79,8 +80,8 @@
             android:src="@android:drawable/ic_menu_info_details"
             fab:fab_label="About"
             fab:fab_size="mini"
-            fab:fab_colorNormal="#008080"
-            fab:fab_colorPressed="#008080"
+            fab:fab_colorNormal="#414141"
+            fab:fab_colorPressed="#414141"
             fab:fab_colorRipple="#99FFFFFF"/>
     </com.github.clans.fab.FloatingActionMenu>
 

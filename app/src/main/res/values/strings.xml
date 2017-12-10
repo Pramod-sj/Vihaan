@@ -2,7 +2,7 @@
     <string name="app_name">Vihaan</string>
     <string name="title_activity_main_window">Vihaan</string>
     <string name="skip"><u>Skip for now</u></string>
-    <string name="notication">Coming Soon...... :)</string>
+    <string name="notication">On 19th and 20th Jan 2017</string>
     <string name="notication_title">VIHAAN</string>
     <string name="e">Choose an event</string>
     <string-array name="events">
@@ -16,7 +16,54 @@
         <item>App Ki Peshkash</item>
         <item>Introview</item>
         <item>Iotics</item>
+
     </string-array>
+    <string-array name="data">
+        <item>Are you too sound at cracking codes? Code trove of vihaan brings you a treasure hunt kinda event in which you have to crack current code to get the glimpse of next. Sounds interesting?Participating in it will. </item>
+        <item>Quiriosity helps you explore your inquisitivess and gives you the opportunity to answer some of the mysterious questions.</item>
+        <item>Are you ready to crack any problem? Techtonic brings you an opportunity to team up and rack your brains and jump to an most appropiate solution.</item>
+        <item>The poster presentaion event welcomes you all to display your creativeness and just paint up your artistic imagination.</item>
+        <item>Have you ever aspired to be a blogger? If yes,mega blog event helps you to expirence your aspiration brush up your creativeness and explore a beautiful event of blogging.</item>
+        <item>Freeze the moment gives you an open opportunity to capture the moment and edit it in best way you can.</item>
+        <item>Are you good at making android apps? App ki peshkash is an event which helps you to team up . and create something great,unthinkable application.</item>
+        <item>Its a glance of future technology , where there will be a project exhibition </item>
+        <item>An interactive session with well known personalities from the industry.</item>
+
+    </string-array>
+    <string-array name="rules">
+        <item></item>
+        <item>1.Quiz will be based on technical topics.\n2.Will be held in two rounds,each round followed by elimination</item>
+        <item>1.Maximum team of two can be formed,solo entries will be accepted too.
+                \n2.Problems will be given on the spot.
+                \n3.Will be held in two rounds in first round just a gist of problems will be given, select any one per team.</item>
+        <item>1.Topics will be given at the time of regisration.\n2.Maxium team of two can be formed,solo entries will be accepted too.</item>
+        <item>1.Topic will be given on the spot.\n2.Only solo entries will be accepted,no team event.\n3.Best blog will be selected and posted on this website.</item>
+        <item>
+    1.Maxium team of two can be formed,solo entries will be accepted
+    \n2.One partner will click the photo,other will photoshop it.
+    \n3.Photos to be clicked based on theme which will be provided on the spot.
+</item>
+        <item>
+    1.Only solo entries will be accepted.
+    \n2.Participants have to develop app on android studio.
+            \n3.hours of time will be allocated.
+</item>
+        <item>1.Maximum team of two can be formed,solo entries will be accepted </item>
+        <item></item>
 
 
+
+    </string-array>
+    <string-array name="team">
+        <item>Team of two</item>
+        <item>Team of two</item>
+        <item>No team Limit  </item>
+        <item>Team of two / Solo entry accepted </item>
+        <item>Only solo entry accepted </item>
+        <item>Team of two </item>
+        <item>Only solo entry accepted </item>
+        <item>Team of two / Solo entry accepted</item>
+        <item>No Limit</item>
+
+    </string-array>
 </resources>
