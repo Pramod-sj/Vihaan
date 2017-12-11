@@ -18,8 +18,8 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/img1"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/logo_about"
                 android:layout_marginTop="5sp"
                 android:layout_centerHorizontal="true"/>

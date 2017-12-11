@@ -1,5 +1,6 @@
 package com.vesvihaan;
-
+//all server connection and data sending part is not mine .....
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -26,13 +27,25 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity  {
     EditText f_name,l_name,c_name,email,phone,class_nm;
     Button b;
     Spinner s;
-    JSONObject jObject;
+    HashMap<String, String> postDataParams;
+    HTTPURLConnection service;
+    private ProgressDialog pDialog;
+    private int success=0;
     AlertDialog.Builder noconn;
+    String first_name="";
+    String last_name="";
+    String college_name="";
+    String class_name="";
+    String phone_no="";
+    String email_id="";
+    String val="";
+    private String path = "https://regdata.000webhostapp.com/insert.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +53,7 @@ public class MainActivity extends AppCompatActivity  {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
+        service=new HTTPURLConnection();
         f_name=(EditText)findViewById(R.id.et1_first);
         l_name=(EditText)findViewById(R.id.et1_second);
         c_name=(EditText)findViewById(R.id.et4_col);
@@ -104,24 +117,18 @@ public class MainActivity extends AppCompatActivity  {
                 }
 
                 if ((isEmailValid(email_id)==true) && (validateName(college_name)==true) && (validateName(first_name)==true)&& (validatePhone(phone_no)==true)&& (validateName(last_name)==true)&& (validateName(class_name)==true)) {
-                    jObject = new JSONObject();
-                    try{
-                        jObject.put("fname",first_name);
-                        jObject.put("lname",last_name);
-                        jObject.put("email",email_id);
-                        jObject.put("cell",phone_no);
-                        jObject.put("clgname",college_name);
-                        jObject.put("class",class_name);
-                        jObject.put("event",val);
+                    postDataParams=new HashMap<String, String>();
+                    postDataParams.put("fname",first_name.toString());
+                    postDataParams.put("lname",last_name.toString());
+                    postDataParams.put("email",email_id.toString());
+                    postDataParams.put("phone",phone_no);
+                    postDataParams.put("col_name",college_name.toString());
+                    postDataParams.put("col_class",class_name.toString());
+                    postDataParams.put("event",val);
 
-                        new SendData().execute("http://vesvihaan.com/Registration/submit_data?",jObject.toString());
-                    }
-                    catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    //Toast.makeText(getApplicationContext(),jObject.toString(),Toast.LENGTH_SHORT).show();
-                    Intent i=new Intent(MainActivity.this,MainWindow.class);
-                    startActivity(i);
+                    //Call WebService
+                    new PostDataTOServer().execute();
+
                 }
              }
         });
@@ -137,73 +144,44 @@ public class MainActivity extends AppCompatActivity  {
         return phone.matches("^[987]{1,1}[0-9]{9,9}$");
     }
 
-    private class SendData extends AsyncTask<String, Void, String> {
+    private class PostDataTOServer extends AsyncTask<Void, Void, Void> {
+
+        String response = "";
+        //Create hashmap Object to send parameters to web service
+
         @Override
-        protected String doInBackground(String... params) {
-            String data = "";
-            HttpURLConnection httpURLConnection = null;
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(MainActivity.this);
+            pDialog.setMessage("Please wait...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            response= service.ServerData(path,postDataParams);
             try {
-                httpURLConnection = (HttpURLConnection) new URL(params[0]).openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
-                wr.writeBytes("postdata=" + params[1]);
-                wr.flush();
-                wr.close();
-                httpURLConnection.setRequestMethod("GET");
-                InputStream in = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(in);
-                int inputStreamData = inputStreamReader.read();
-                while (inputStreamData != -1) {
-                    char current = (char) inputStreamData;
-                    inputStreamData = inputStreamReader.read();
-                    data += current;
+                JSONObject json = new JSONObject(response);
+                //Get Values from JSONobject
+                System.out.println("success=" + json.get("success"));
+                success = json.getInt("success");
 
-                }
-            } catch (Exception e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
-            } finally {
-                if (httpURLConnection != null) {
-                    httpURLConnection.disconnect();
-                }
             }
-            Log.d("Response",data);
-            return data;
+            return null;
         }
-
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            if(result == null) {
-                result = "THERE WAS AN ERROR";
-            }
-            Log.e("TAG", result); // this is expecting a response code to be sent from your server upon receiving the POST data
-
-            //parseJsonData(result);
+            if (pDialog.isShowing())
+                pDialog.dismiss();
+            Toast.makeText(MainActivity.this,"Successfully Registered",Toast.LENGTH_SHORT).show();
+            Intent i=new Intent(MainActivity.this,MainWindow.class);
+            startActivity(i);
 
         }
-
     }
-    /*private void parseJsonData(String jsonResponse){
-        try
-        {
-            JSONArray jsonArray = new JSONArray(jsonResponse);
-
-            for(int i=0;i<jsonArray.length();i++)
-            {
-                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                String f = jsonObject1.optString("fname");
-                String s = jsonObject1.optString("lname");
-                String Id = jsonObject1.optString("email");
-                String c = jsonObject1.optString("cell");
-                Toast.makeText(getApplicationContext(),f+" "+s,Toast.LENGTH_LONG).show();
-            }
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
-    }*/
 
     public boolean isConnected_custom(){
         boolean isInternetAvailable = false;

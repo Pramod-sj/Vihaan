@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -68,9 +71,22 @@ public class event_activity extends Fragment {
                 data_txt2.setText(data[i]);
                 rule_txt.setText(rules[i]);
                 team_txt.setText(teams[i]);
-                popup = new PopupWindow(customView,600,900, true); // Creation of popup
+                WindowManager wm=(WindowManager)getActivity().getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+                Display display=wm.getDefaultDisplay();
+                DisplayMetrics dm=new DisplayMetrics();
+                display.getMetrics(dm);
+                int width=dm.widthPixels;
+                //Toast.makeText(getActivity().getApplicationContext(),String.valueOf(width)+"*"+String.valueOf(height),Toast.LENGTH_SHORT).show();
+                if(width<=720) {
+                    popup = new PopupWindow(customView, 600, 900, true); // Creation of popup
+                }
+                else{
+                    popup = new PopupWindow(customView, 900, 1200, true);
+                }
                 popup.setAnimationStyle(android.R.style.Animation_Dialog);
-                popup.showAtLocation(customView, Gravity.CENTER,0 , 0);
+                popup.showAtLocation(customView, Gravity.CENTER, 0, 0);
+
+
             }
 
         });

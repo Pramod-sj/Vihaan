@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:id="@+id/container"
-            android:background="@drawable/startbg">
+            android:background="@drawable/layoutborder">
 
             <EditText
                 android:id="@+id/et1_first"
@@ -84,6 +84,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_gravity="center_horizontal"
                 android:hint="Phone no"
+                android:inputType="phone"
+                android:maxLength="10"
                 android:background="@drawable/roundedentry"
                 android:padding="10dp"
                 />

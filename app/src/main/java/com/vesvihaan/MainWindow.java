@@ -21,7 +21,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -62,54 +64,6 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         //END
         builder1 = new AlertDialog.Builder(this);
         builder2 = new AlertDialog.Builder(this);
-        //Uncomment the below code to Set the message and title from the strings.xml file
-        //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
-
-        //Setting message manually and performing action on button click
-        builder1.setMessage("Update "+newVersion+" is available to download")
-                .setCancelable(false)
-                .setPositiveButton("Download", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                downloadapk();
-                            }
-                        },500);
-
-                    }
-                })
-                .setNegativeButton("Later", new DialogInterface.OnClickListener() {
-                     public void onClick(final DialogInterface dialog, int id) {
-                            new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dialog.cancel();
-                    }
-                },500);
-
-            }
-        });
-
-        builder2.setMessage("You are currently running latest version")
-                .setCancelable(false)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, int id) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                dialog.cancel();
-                            }
-                        },500);
-
-                    }
-                });
-        //Creating dialog box
-        final AlertDialog alert1 = builder1.create();
-        final AlertDialog alert2 = builder2.create();
-        //Setting the title manually
-        alert1.setTitle("New update is available!");
-        alert2.setTitle("No update");
         final Float curVer=Float.parseFloat(versionName);
 
         //final startpage_activity sa=new startpage_activity();
@@ -145,14 +99,63 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             @Override
             public void onClick(View view){
                 fab_menu.close(true);
-                if(isConnected_custom()==true) {
+                if(isConnected_custom()==true){
                     Toast.makeText(getApplicationContext(), "Checking for update....", Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             if (curVer < checkVersion()){
+                                //Uncomment the below code to Set the message and title from the strings.xml file
+                                //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+
+                                //Setting message manually and performing action on button click
+                                builder1.setMessage("Update "+newVersion+" is available to download")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Download", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                new Handler().postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        downloadapk();
+                                                    }
+                                                },500);
+
+                                            }
+                                        })
+                                        .setNegativeButton("Later", new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, int id) {
+                                                new Handler().postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        dialog.cancel();
+                                                    }
+                                                },500);
+
+                                            }
+                                        });
+
+                                //Creating dialog box
+                                final AlertDialog alert1 = builder1.create();
+                                //Setting the title manually
+                                alert1.setTitle("New update is available!");
+
                                 alert1.show();
                             } else {
+                                builder2.setMessage("You are currently running latest version")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(final DialogInterface dialog, int id) {
+                                                new Handler().postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        dialog.cancel();
+                                                    }
+                                                },500);
+
+                                            }
+                                        });
+                                final AlertDialog alert2 = builder2.create();
+                                alert2.setTitle("No update");
                                 alert2.show();
                             }
                         }
@@ -178,6 +181,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
         DisplayMetrics dm=getResources().getDisplayMetrics();
         int densityDpi = (int)(dm.density * 160f);
+
         if(densityDpi>=320){
             tabLayout.setTabMode(tabLayout.MODE_SCROLLABLE);
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
