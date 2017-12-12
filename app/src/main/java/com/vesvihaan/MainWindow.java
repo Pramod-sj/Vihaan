@@ -238,6 +238,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
     public void onBackPressed(){
         moveTaskToBack(true);
     }
+
+    //Checking and Downloading updated apk
     public float checkVersion() {
         String temp;
         try {
