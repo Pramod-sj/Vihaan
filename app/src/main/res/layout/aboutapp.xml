@@ -4,7 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#484848">
-    <android.support.v7.widget.CardView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.CardView
         android:id="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,6 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
+                android:fontFamily="sans-serif-condensed"
+
                 android:text="Development by V.E.S. CS Students"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
@@ -48,20 +57,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/t1"
+                android:fontFamily="sans-serif-condensed"
+
                 android:text=""
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="match_parent"
+                android:fontFamily="sans-serif-condensed"
+
                 android:layout_height="wrap_content"
                 android:layout_below="@id/vernumber"
                 android:text=""/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
-            android:id="@+id/l2"
-            android:layout_below="@+id/l1"
+        android:id="@+id/l2"
+        android:layout_below="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="12sp"
+        android:layout_marginRight="12sp"
+        android:layout_marginLeft="12sp"
+        app:cardBackgroundColor="#212121"
+        >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Follow us on"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:layout_marginTop="8sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20sp"
+                android:weightSum="2"
+                >
+                <ImageView
+                    android:id="@+id/fb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/facebook"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="110dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/insta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:layout_marginRight="110dp"
+                    android:src="@drawable/instagram"/>
+            </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+            android:id="@+id/l3"
+            android:layout_below="@+id/l2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12sp"
@@ -116,6 +176,8 @@
                     android:layout_below="@id/websitelink"
                     android:text=""/>
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
 
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
