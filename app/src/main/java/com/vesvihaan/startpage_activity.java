@@ -3,11 +3,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,7 +19,7 @@ import android.widget.TextView;
  */
 
 public class startpage_activity extends AppCompatActivity {
-    Button regbutton;
+    mehdi.sakout.fancybuttons.FancyButton regbutton;
     TextView txt1;
     AlertDialog.Builder noconn;
     @Override
@@ -25,7 +27,7 @@ public class startpage_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startpage);
         txt1=(TextView)findViewById(R.id.txt1);
-        regbutton=(Button)findViewById(R.id.regbutton);
+        regbutton=(mehdi.sakout.fancybuttons.FancyButton)findViewById(R.id.regbutton);
         noconn=new AlertDialog.Builder(this);
         noconn.setCancelable(false);
         noconn.setMessage("This app requires internet please enable your phone's wifi or data");

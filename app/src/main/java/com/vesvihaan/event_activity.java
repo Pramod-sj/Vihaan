@@ -61,7 +61,8 @@ public class event_activity extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 LayoutInflater layoutInflater=(LayoutInflater)getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View customView=layoutInflater.inflate(R.layout.custompopup,null);
-                event_txt1 = (TextView) customView.findViewById(R.id.eventname);
+                event_txt1
+                        = (TextView) customView.findViewById(R.id.eventname);
                 data_txt2 = (TextView) customView.findViewById(R.id.eventdesc);
 
                 rule_txt = (TextView) customView.findViewById(R.id.rule);
@@ -78,10 +79,10 @@ public class event_activity extends Fragment {
                 int width=dm.widthPixels;
                 //Toast.makeText(getActivity().getApplicationContext(),String.valueOf(width)+"*"+String.valueOf(height),Toast.LENGTH_SHORT).show();
                 if(width<=720) {
-                    popup = new PopupWindow(customView, 600, 900, true); // Creation of popup
+                    popup = new PopupWindow(customView, 650, 850, true); // Creation of popup
                 }
                 else{
-                    popup = new PopupWindow(customView, 900, 1200, true);
+                    popup = new PopupWindow(customView, 950, 1150, true);
                 }
                 popup.setAnimationStyle(android.R.style.Animation_Dialog);
                 popup.showAtLocation(customView, Gravity.CENTER, 0, 0);

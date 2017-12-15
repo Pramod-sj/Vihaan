@@ -10,12 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#212121"
-        android:layout_weight="10">
+        android:layout_weight="15">
     <TextView
         android:id="@+id/eventname"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="5dp"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -25,73 +24,72 @@
         android:textSize="25sp"
         android:textAlignment="center"/>
     </LinearLayout>
-        <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"/>
+        android:layout_weight="85">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:orientation="vertical">
     <TextView
-        android:layout_weight="25"
+        android:layout_weight="30"
         android:id="@+id/eventdesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-
+        android:textSize="13sp"
         android:fontFamily="sans-serif"
         android:text=""
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:textColor="#ffffff"
         android:textAlignment="center"
         android:layout_gravity="fill"
         tools:ignore="RtlCompat" />
     <TextView
-
         android:fontFamily="sans-serif"
-        android:layout_weight="10"
+        android:layout_weight="15"
         android:textColor="#ffffff"
         android:textAlignment="center"
+        android:layout_marginTop="10sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Rules"
-
         android:textStyle="bold"
         android:textSize="20sp"/>
     <TextView
-
         android:fontFamily="sans-serif"
         android:id="@+id/rule"
         android:textColor="#ffffff"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:layout_weight="25"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
+        android:layout_height="wrap_content" />
     <TextView
-
         android:fontFamily="sans-serif"
         android:textColor="#ffffff"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Team"
+        android:layout_marginTop="10sp"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_weight="10"/>
     <TextView
-
         android:fontFamily="sans-serif"
         android:id="@+id/team"
         android:textColor="#ffffff"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:layout_weight="20"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -46,7 +46,7 @@
         <activity
             android:name="com.vesvihaan.startpage_activity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/start_page"/>
         <activity
             android:name="com.vesvihaan.MainWindow"
             android:label="@string/title_activity_main_window"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/startbg"
     >
     <TextView
         android:id="@+id/title"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""/>
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/regbutton"
         android:layout_below="@id/emp2"
         android:layout_width="match_parent"
@@ -50,11 +50,11 @@
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
         android:text="Register"
+        fancy:fb_radius="5sp"
         android:textAllCaps="true"
         android:elevation="15dp"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:background="@drawable/buttonstyle"
+        fancy:fb_textColor="#000000"
+        fancy:fb_defaultColor="#ffffff"
         />
     <TextView
         android:layout_width="match_parent"

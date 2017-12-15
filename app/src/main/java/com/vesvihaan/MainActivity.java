@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.StrictMode;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +33,7 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity  {
     EditText f_name,l_name,c_name,email,phone,class_nm;
-    Button b;
+    mehdi.sakout.fancybuttons.FancyButton b;
     Spinner s;
     HashMap<String, String> postDataParams;
     HTTPURLConnection service;
@@ -45,12 +47,11 @@ public class MainActivity extends AppCompatActivity  {
     String phone_no="";
     String email_id="";
     String val="";
-    private String path = "https://regdata.000webhostapp.com/insert.php";
+    private String path = "https://www.vesvihaan.com/insert.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         service=new HTTPURLConnection();
@@ -60,8 +61,11 @@ public class MainActivity extends AppCompatActivity  {
         phone=(EditText)findViewById(R.id.et3_phone);
         class_nm=(EditText)findViewById(R.id.et5_class);
         email=(EditText)findViewById(R.id.et2_email);
-        b=(Button)findViewById(R.id.bt1);
+        b=(mehdi.sakout.fancybuttons.FancyButton)findViewById(R.id.bt1);
         s=(Spinner)findViewById(R.id.events);
+        if(Build.VERSION.SDK_INT>=21){
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        }
         noconn=new AlertDialog.Builder(this);
         noconn.setCancelable(false);
         noconn.setMessage("Need internet for checking update");

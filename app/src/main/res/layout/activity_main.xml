@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -10,7 +11,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_gravity="center_vertical"
             android:textAlignment="center"
             android:text="Register Yourself"
@@ -139,7 +139,7 @@
                 android:background="@drawable/roundedentry"
                 />
 
-            <Button
+            <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/bt1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -149,10 +149,11 @@
                 android:layout_marginRight="100dp"
                 android:layout_marginBottom="40dp"
                 android:text="Submit"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
                 android:elevation="15dp"
-                android:background="@drawable/buttonstyle"/>
+                fancy:fb_textColor="#000000"
+                fancy:fb_defaultColor="#ffffff"
+                fancy:fb_radius="5sp"
+                />
 
         </LinearLayout>
     </ScrollView>
