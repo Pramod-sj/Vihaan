@@ -262,7 +262,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
     public void downloadapk() {
         try {
-            String url = "http://www.vesvihaan.com//Vihaan.apk";
+            String url = "https://github.com/Pramod-sj/Vihaan/raw/master/Vihaan.apk";
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
             request.setTitle("Updating to VIHAAN " + newVersion);
             request.allowScanningByMediaScanner();
