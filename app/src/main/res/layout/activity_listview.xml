@@ -41,10 +41,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text=""/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/des"
-                android:layout_marginRight="3sp"
-
-                android:layout_marginLeft="3sp"
+                android:layout_marginRight="5sp"
+                android:layout_marginLeft="5sp"
                 android:textColor="#FFFFFF"
                 android:fontFamily="sans-serif"
                 android:textAlignment="center"

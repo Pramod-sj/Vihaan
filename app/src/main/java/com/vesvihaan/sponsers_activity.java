@@ -23,15 +23,12 @@ public class sponsers_activity extends android.support.v4.app.Fragment {
         view = inflater.inflate(R.layout.sponsers, container, false);
         progressBar = (ProgressBar) view.findViewById(R.id.pg4);
         webView = (WebView) view.findViewById(R.id.webView);
-
         WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         webSettings.setUseWideViewPort(true);
         webView.loadUrl("file:///android_asset/partners");
         webView.setWebViewClient(new WebViewClient() {
-
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);

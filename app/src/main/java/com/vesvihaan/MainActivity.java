@@ -164,7 +164,8 @@ public class MainActivity extends AppCompatActivity  {
         @Override
         protected Void doInBackground(Void... arg0) {
             response= service.ServerData(path,postDataParams);
-            try {
+            //not getting any response
+            /*try {
                 JSONObject json = new JSONObject(response);
                 //Get Values from JSONobject
                 System.out.println("success=" + json.get("success"));
@@ -172,7 +173,7 @@ public class MainActivity extends AppCompatActivity  {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
+            }*/
             return null;
         }
         @Override
