@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
+
 
 /**
  * Created by pramod_sj on 25/11/17.
@@ -21,6 +23,10 @@ public class aboutapp_Activity extends AppCompatActivity {
     public void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.aboutapp);
+        ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerlayout);
+        container.setDuration(2000);
+        container.setIntensity(0.15f);
+        container.startShimmerAnimation();
         t11=(TextView)findViewById(R.id.vernumber);
         t11.setText("Version "+versionName);
         img1= (ImageView) findViewById(R.id.fb);

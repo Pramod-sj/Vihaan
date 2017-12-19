@@ -2,11 +2,8 @@ package com.vesvihaan;
 /**
  * Created by pramo on 10/4/2017.
  */
-import android.app.Notification;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
@@ -17,11 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class event_activity extends Fragment {
     View view;
@@ -77,7 +72,6 @@ public class event_activity extends Fragment {
                 DisplayMetrics dm=new DisplayMetrics();
                 display.getMetrics(dm);
                 int width=dm.widthPixels;
-                //Toast.makeText(getActivity().getApplicationContext(),String.valueOf(width)+"*"+String.valueOf(height),Toast.LENGTH_SHORT).show();
                 if(width<=720) {
                     popup = new PopupWindow(customView, 650, 850, true); // Creation of popup
                 }
@@ -86,8 +80,6 @@ public class event_activity extends Fragment {
                 }
                 popup.setAnimationStyle(android.R.style.Animation_Dialog);
                 popup.showAtLocation(customView, Gravity.CENTER, 0, 0);
-
-
             }
 
         });

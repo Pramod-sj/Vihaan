@@ -30,13 +30,16 @@
             </intent-filter>
         </activity>
         <service
-            android:name="com.vesvihaan.firebaseInstanceIdService">
+            android:name="com.vesvihaan.firebaseInstanceIdService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
         <service
-            android:name="com.vesvihaan.Firebase_Messaging_Service">
+            android:name="com.vesvihaan.Firebase_Messaging_Service"
+            android:exported="false">
+
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

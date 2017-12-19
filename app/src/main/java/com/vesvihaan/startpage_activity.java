@@ -22,6 +22,7 @@ public class startpage_activity extends AppCompatActivity {
     mehdi.sakout.fancybuttons.FancyButton regbutton;
     TextView txt1;
     AlertDialog.Builder noconn;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

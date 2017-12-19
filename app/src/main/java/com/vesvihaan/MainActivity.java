@@ -84,11 +84,9 @@ public class MainActivity extends AppCompatActivity  {
         if(isConnected_custom()==false){
             alert.show();
         }
-
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(isConnected_custom()==false){
                     alert.show();
                 }
@@ -138,7 +136,8 @@ public class MainActivity extends AppCompatActivity  {
         });
     }
     private boolean isEmailValid(String email) {
-        return email.contains("@");
+
+        return email.matches("^(.+)@(.+)$");
     }
     public static boolean validateName( String name )
     {

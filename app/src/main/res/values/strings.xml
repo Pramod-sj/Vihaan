@@ -37,26 +37,24 @@
     </string-array>
     <string-array name="rules">
         <item></item>
-        <item>1.Quiz will be based on technical topics.\n2.Will be held in two rounds,each round followed by elimination</item>
-        <item>1.Maximum team of two can be formed,solo entries will be accepted too.
-                \n2.Problems will be given on the spot.
-                \n3.Will be held in two rounds in first round just a gist of problems will be given, select any one per team.</item>
-        <item>1.Topics will be given at the time of regisration.\n2.Maxium team of two can be formed,solo entries will be accepted too.</item>
-        <item>1.Topic will be given on the spot.\n2.Only solo entries will be accepted,no team event.\n3.Best blog will be selected and posted on this website.</item>
+        <item>1. Quiz will be based on technical topics.\n2. Will be held in two rounds,each round followed by elimination</item>
+        <item>1. Maximum team of two can be formed,solo entries will be accepted too.
+                \n2. Problems will be given on the spot.
+                \n3. Will be held in two rounds in first round just a gist of problems will be given, select any one per team.</item>
+        <item>1. Topics will be given at the time of registration.\n2. Maximum team of two can be formed,solo entries will be accepted too.\n3. Size of poster should be 3`x6`.</item>
+        <item>1. Topic will be given on the spot.\n2. Only solo entries will be accepted,no team event.\n3. Best blog will be selected and posted on this website.</item>
         <item>
-    1.Maxium team of two can be formed,solo entries will be accepted
-    \n2.One partner will click the photo,other will photoshop it.
-    \n3.Photos to be clicked based on theme which will be provided on the spot.
-</item>
+            1. Maximum team of two can be formed,solo entries will be accepted
+            \n2. One partner will click the photo,other will photoshop it.
+            \n3. Photos to be clicked based on theme which will be provided on the spot.
+        </item>
         <item>
-    1.Only solo entries will be accepted.
-    \n2.Participants have to develop app on android studio.
-            \n3.hours of time will be allocated.
-</item>
+            1. Only solo entries will be accepted.
+            \n2. Participants have to develop app on android studio.
+            \n3. 3 hours of time will be allocated.
+        </item>
         <item>1.Maximum team of two can be formed,solo entries will be accepted </item>
         <item></item>
-
-
 
     </string-array>
     <string-array name="team">

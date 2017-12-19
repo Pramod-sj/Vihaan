@@ -5,9 +5,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -20,7 +22,6 @@ public class Firebase_Messaging_Service extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage){
-        if(remoteMessage.getData().size()>0) {
             String title,message;
             title= remoteMessage.getData().get("title");
             message = remoteMessage.getData().get("message");
@@ -38,6 +39,6 @@ public class Firebase_Messaging_Service extends FirebaseMessagingService {
             nb.setSmallIcon(R.drawable.ic_notification);
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(0, nb.build());
-        }
+
     }
 }

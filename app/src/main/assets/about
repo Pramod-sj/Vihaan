@@ -1,22 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>V.E.S VIHAAN </title>
-
     <!-- css -->
     <link rel="stylesheet" href="https://www.vesvihaan.com/components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.vesvihaan.com/components/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="https://www.vesvihaan.com/assets/css/main.css">
-    <!-- scripts  -->
-    <!--<script src="https://www.vesvihaan.com/components/jquery/dist/jquery.min.js"></script>
-    <script src="https://www.vesvihaan.com/components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://www.vesvihaan.com/components/smooth-scroll/dist/js/smooth-scroll.min.js"></script>
-    <script src="https://www.vesvihaan.com/assets/js/main.js"></script>-->
+
 </head>
 <body data-spy="scroll" data-target="#site-nav" >
 
@@ -25,7 +18,7 @@
         <div class="row">
             <div class="col-sm-6">
 
-                <h3 class="section-title">About V.E.S. Computer Science </h3>
+                <h3 class="section-title">About Computer Science</h3>
 
                 <p align="justify">Computer Science is the study of computers and computational systems. The Principal areas of study within this course include operating systems, databases systems, programming languages, networks and security, software engineering etc. The course is designed such that the students after graduation can definitely get a good job in industry. They can also go for post-graduation and contribute in the field of research. In addition to Computer Science subjects, you will also learn some papers of Mathematics and Statistics (as per year) which are useful to this field. The subjects like -
                     Computer Science teaches the techniques for developing software,
@@ -117,7 +110,6 @@
         <div class="row">
             <div class="col-md-12">
                 <p class="site-info">Designed and  Developed  by <br>Team Vihaan'18 </p>
-
             </div>
         </div>
     </div>

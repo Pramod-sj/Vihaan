@@ -8,7 +8,7 @@
     android:background="@drawable/layoutborder">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50sp"
         android:background="#212121"
         android:layout_weight="15">
     <TextView
@@ -79,7 +79,7 @@
         android:text="Team"
         android:layout_marginTop="10sp"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:layout_weight="10"/>
     <TextView
         android:fontFamily="sans-serif"
@@ -87,9 +87,14 @@
         android:textColor="#ffffff"
         android:textAlignment="center"
         android:textSize="14sp"
-        android:layout_weight="20"
+        android:layout_weight="15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_weight="10"/>
     </LinearLayout>
     </ScrollView>
 </LinearLayout>
