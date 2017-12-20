@@ -29,6 +29,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.kekstudio.dachshundtablayout.DachshundTabLayout;
+import com.kekstudio.dachshundtablayout.indicators.DachshundIndicator;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -37,7 +39,7 @@ import java.net.URLConnection;
 
 
 public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
-    TabLayout tabLayout;
+    DachshundTabLayout tabLayout;
     DownloadManager downloadManager;
     FloatingActionButton fab11,fab22,fab33;
     FloatingActionMenu fab_menu;
@@ -175,7 +177,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             }
         });
         //Initializing the tablayout
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout= (DachshundTabLayout) findViewById(R.id.tabLayout);
         //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Events"));
@@ -197,7 +199,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         }
         //Initializing viewPager
         viewPager = (ViewPager) findViewById(R.id.pager);
-
+        tabLayout.setupWithViewPager(viewPager);
         //Creating our pager adapter
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
@@ -207,7 +209,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
         viewPager.setCurrentItem(0);
         tabLayout.setScrollPosition(0,0,true);
-
+        DachshundIndicator indicator=new DachshundIndicator(tabLayout);
+        tabLayout.setAnimatedIndicator(indicator);
         //Adding onTabSelectedListener to swipe views
 
 

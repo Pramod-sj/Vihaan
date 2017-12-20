@@ -14,6 +14,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ss.com.bannerslider.banners.Banner;
+import ss.com.bannerslider.banners.RemoteBanner;
+import ss.com.bannerslider.views.BannerSlider;
+import ss.com.bannerslider.views.indicators.IndicatorShape;
 
 
 public class about_activity extends Fragment{
@@ -24,6 +33,21 @@ public class about_activity extends Fragment{
         View view=inflater.inflate(R.layout.about, container, false);
         progressBar=(ProgressBar)view.findViewById(R.id.pg3);
         webView = (WebView)view.findViewById(R.id.webView);
+        ScrollView scrollView=(ScrollView)view.findViewById(R.id.scroll);
+        scrollView.setSmoothScrollingEnabled(true);
+
+
+        BannerSlider bannerSlider = (BannerSlider)view.findViewById(R.id.banner);
+        bannerSlider.setDefaultIndicator(IndicatorShape.CIRCLE);
+        List<Banner> banners=new ArrayList<>();
+        //banners.add(new RemoteBanner("Put banner image url here ..."));
+        //add banner using resource drawable
+        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic4.jpg"));
+        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic5.jpg"));
+        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic3.jpg"));
+        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic2.jpg"));
+        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic1.jpg"));
+        bannerSlider.setBanners(banners);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUseWideViewPort(true);

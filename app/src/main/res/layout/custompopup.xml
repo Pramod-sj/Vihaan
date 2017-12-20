@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:weightSum="100"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="400sp"
+    android:layout_height="700sp"
     android:background="@drawable/layoutborder">
     <LinearLayout
         android:layout_width="match_parent"

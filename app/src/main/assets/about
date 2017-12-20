@@ -26,9 +26,6 @@
                     Thus a computer science student always performs well either in industry or in higher education.
                 </p>
 
-                <figure>
-                    <img alt="" class="img-responsive" src="https://www.vesvihaan.com//assets/images/photos/pic1.jpg">
-                </figure>
 
             </div><!-- /.col-sm-6 -->
 
@@ -62,48 +59,6 @@
             </div><!-- /.col-sm-6 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
-</section>
-<!-- Phot -->
-
-<section id="photos" class="section photos">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="section-title">Photos</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="grid">
-
-                    <li class="grid-item grid-item-sm-6">
-                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic4.jpg">
-                    </li>
-
-                    <li class="grid-item grid-item-sm-3">
-                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic5.jpg">
-                    </li>
-
-                    <li class="grid-item grid-item-sm-3">
-                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic3.jpg">
-                    </li>
-
-                    <li class="grid-item grid-item-sm-3">
-                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic2.jpg">
-                    </li>
-
-                    <li class="grid-item grid-item-sm-3">
-                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic1.jpg">
-                    </li>
-
-                    <li class="grid-item grid-item-sm-3">
-                        <img alt="" class="img-responsive center-block" src="https://www.vesvihaan.com//assets/images/photos/computerscience/pic3.jpg">
-                    </li>
-
-
-            </div>
-        </div>
-    </div>
 </section>
 <footer class="site-footer">
     <div class="container">
