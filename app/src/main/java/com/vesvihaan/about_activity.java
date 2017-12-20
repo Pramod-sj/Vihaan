@@ -42,11 +42,16 @@ public class about_activity extends Fragment{
         List<Banner> banners=new ArrayList<>();
         //banners.add(new RemoteBanner("Put banner image url here ..."));
         //add banner using resource drawable
-        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic4.jpg"));
-        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic5.jpg"));
-        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic3.jpg"));
-        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic2.jpg"));
-        banners.add(new RemoteBanner("https://www.vesvihaan.com//assets/images/photos/computerscience/pic1.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic4.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic5.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic3.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic2.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic1.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic6.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic7.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic8.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic9.jpg"));
+        banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/pic10.jpg"));
         bannerSlider.setBanners(banners);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
