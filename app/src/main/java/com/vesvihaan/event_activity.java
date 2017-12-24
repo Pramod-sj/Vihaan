@@ -50,7 +50,7 @@ public class event_activity extends Fragment {
         detail=new AlertDialog.Builder(getContext());
         CustomView c=new CustomView(getActivity(),events,desc,imag_id);
         listView.setAdapter(c);
-
+        listView.setSmoothScrollbarEnabled(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

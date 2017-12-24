@@ -31,6 +31,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.kekstudio.dachshundtablayout.DachshundTabLayout;
 import com.kekstudio.dachshundtablayout.indicators.DachshundIndicator;
+import com.kekstudio.dachshundtablayout.indicators.LineMoveIndicator;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -56,6 +57,12 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         fab22 = (FloatingActionButton)findViewById(R.id.fab2);
         fab33 = (FloatingActionButton)findViewById(R.id.fab3);
         fab_menu = (FloatingActionMenu) findViewById(R.id.fab_menu);
+
+
+        //checking if net is available
+
+
+
         if(Build.VERSION.SDK_INT>=21) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
@@ -180,8 +187,9 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         tabLayout= (DachshundTabLayout) findViewById(R.id.tabLayout);
         //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Events"));
+        tabLayout.addTab(tabLayout.newTab().setText("Gallery"));
         tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
+        tabLayout.addTab(tabLayout.newTab().setText("Events"));
         tabLayout.addTab(tabLayout.newTab().setText("Partners"));
         tabLayout.addTab(tabLayout.newTab().setText("About us"));
 
@@ -207,8 +215,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
 
-        viewPager.setCurrentItem(0);
-        tabLayout.setScrollPosition(0,0,true);
+        viewPager.setCurrentItem(2);
+        tabLayout.setScrollPosition(2,0,true);
         DachshundIndicator indicator=new DachshundIndicator(tabLayout);
         tabLayout.setAnimatedIndicator(indicator);
         //Adding onTabSelectedListener to swipe views
@@ -315,12 +323,14 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    return new event_activity();
+                    return new gallery_activity();
                 case 1:
                     return new schedules_activity();
                 case 2:
-                    return new sponsers_activity();
+                    return new event_activity();
                 case 3:
+                    return new sponsers_activity();
+                case 4:
                     return new about_activity();
 
             }
@@ -330,7 +340,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
         @Override
         public int getCount() {
-            // Show 4 total pages.
+            // Show 5 total pages.
             return tabCount;
         }
 
@@ -338,12 +348,14 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Events";
+                    return "Gallery";
                 case 1:
                     return "Schedule";
                 case 2:
-                    return "Partners";
+                    return "Events";
                 case 3:
+                    return "Partners";
+                case 4:
                     return "About us";
 
             }
