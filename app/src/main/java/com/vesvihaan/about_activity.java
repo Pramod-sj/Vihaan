@@ -33,8 +33,6 @@ public class about_activity extends Fragment{
         View view=inflater.inflate(R.layout.about, container, false);
         progressBar=(ProgressBar)view.findViewById(R.id.pg3);
         webView = (WebView)view.findViewById(R.id.webView);
-        ScrollView scrollView=(ScrollView)view.findViewById(R.id.scroll);
-        scrollView.setSmoothScrollingEnabled(true);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUseWideViewPort(true);

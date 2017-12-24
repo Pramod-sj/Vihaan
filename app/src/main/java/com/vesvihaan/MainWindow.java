@@ -55,30 +55,22 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         setContentView(R.layout.activity_main_window);
         fab11 = (FloatingActionButton)findViewById(R.id.fab1);
         fab22 = (FloatingActionButton)findViewById(R.id.fab2);
-        fab33 = (FloatingActionButton)findViewById(R.id.fab3);
         fab_menu = (FloatingActionMenu) findViewById(R.id.fab_menu);
-
-
         //checking if net is available
-
-
-
         if(Build.VERSION.SDK_INT>=21) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
         //Setting permission so that there is no need to create another async class
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        //StrictMode.setThreadPolicy(policy);
         //end
         //setting permission SO THAT IT ALLOW TO INSTALL NEW UPDATE
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
+        //StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        //StrictMode.setVmPolicy(builder.build());
         //END
         builder1 = new AlertDialog.Builder(this);
         builder2 = new AlertDialog.Builder(this);
-        final Float curVer=Float.parseFloat(versionName);
-
         //final startpage_activity sa=new startpage_activity();
         noconn=new AlertDialog.Builder(this);
         noconn.setMessage("Need internet for checking update");
@@ -108,81 +100,12 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
                 fab_menu.close(true);
             }
         });
-        fab33.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                fab_menu.close(true);
-                if(isConnected_custom()==true){
-                    Toast.makeText(getApplicationContext(), "Checking for update....", Toast.LENGTH_SHORT).show();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (curVer < checkVersion()){
-                                //Uncomment the below code to Set the message and title from the strings.xml file
-                                //builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+        if(isConnected_custom()==false){
+            final AlertDialog alert = noconn.create();
+            alert.setTitle("No Internet");
+            alert.show();
+        }
 
-                                //Setting message manually and performing action on button click
-                                builder1.setMessage("Update "+newVersion+" is available to download")
-                                        .setCancelable(false)
-                                        .setPositiveButton("Download", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                new Handler().postDelayed(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        downloadapk();
-                                                    }
-                                                },500);
-
-                                            }
-                                        })
-                                        .setNegativeButton("Later", new DialogInterface.OnClickListener() {
-                                            public void onClick(final DialogInterface dialog, int id) {
-                                                new Handler().postDelayed(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        dialog.cancel();
-                                                    }
-                                                },500);
-
-                                            }
-                                        });
-
-                                //Creating dialog box
-                                final AlertDialog alert1 = builder1.create();
-                                //Setting the title manually
-                                alert1.setTitle("New update is available!");
-
-                                alert1.show();
-                            } else {
-                                builder2.setMessage("You are currently running latest version")
-                                        .setCancelable(false)
-                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            public void onClick(final DialogInterface dialog, int id) {
-                                                new Handler().postDelayed(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        dialog.cancel();
-                                                    }
-                                                },500);
-
-                                            }
-                                        });
-                                final AlertDialog alert2 = builder2.create();
-                                alert2.setTitle("No update");
-                                alert2.show();
-                            }
-                        }
-                    }, 2200);
-                }
-                else{
-
-                    final AlertDialog alert = noconn.create();
-                    alert.setTitle("No Internet");
-                    alert.show();
-                }
-
-            }
-        });
         //Initializing the tablayout
         tabLayout= (DachshundTabLayout) findViewById(R.id.tabLayout);
         //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -254,40 +177,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         moveTaskToBack(true);
     }
 
-    //Checking and Downloading updated apk
-    public float checkVersion() {
-        String temp;
-        try {
-            URL url = new URL("https://raw.githubusercontent.com/Pramod-sj/Vihaan/master/version.txt");
-            URLConnection uc = url.openConnection();
-            BufferedReader br = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-            while ((temp = br.readLine()) != null) {
-                newVersion=temp;
-            }
-        }
-        catch (Exception e) {}
-        //Toast.makeText(getApplicationContext(),newVersion,Toast.LENGTH_SHORT).show();
-        Float newVer=Float.parseFloat(newVersion);
-        return Float.parseFloat(newVersion);
-    }
 
-    public void downloadapk() {
-        try {
-            String url = "https://github.com/Pramod-sj/Vihaan/raw/master/Vihaan.apk";
-            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-            request.setTitle("Updating to VIHAAN " + newVersion);
-            request.allowScanningByMediaScanner();
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Vihaan.apk");
-            // get download service and enqueue file
-            DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-            manager.enqueue(request);
-        }
-        catch(Exception e){
-            Toast.makeText(getApplicationContext(),"Please grant storage permission",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Settings.ACTION_APPLICATION_SETTINGS));
-        }
-    }
     public boolean isConnected_custom(){
         boolean isInternetAvailable = false;
         try {

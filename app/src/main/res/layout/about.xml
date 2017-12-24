@@ -10,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:scrollX="0sp"
-        android:scrollY="0sp"
         >
         <LinearLayout
             android:layout_width="match_parent"
