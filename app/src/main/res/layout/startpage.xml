@@ -8,8 +8,9 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vihaan 2018"
+        android:layout_height="70sp"
+        android:text="Vihaan'18"
+        android:gravity="center_vertical"
         android:textAlignment="center"
         android:textSize="52sp"
         android:textStyle="bold"
@@ -17,14 +18,18 @@
         android:fontFamily="sans-serif-condensed"
         android:layout_marginTop="110dp"
         />
+
     <TextView
         android:id="@+id/col_name"
         android:layout_below="@id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="v.e.s. computer science"
+        android:layout_height="80sp"
+        android:gravity="center_vertical"
+        android:text="v.e.s.a.s.c. computer science"
         android:textAlignment="center"
         android:textSize="27sp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
         android:fontFamily="sans-serif-condensed"
         android:textStyle="bold"
         android:textAllCaps="true"

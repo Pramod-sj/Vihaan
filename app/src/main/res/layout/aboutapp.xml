@@ -15,9 +15,9 @@
         android:id="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:layout_marginLeft="10sp"
+        android:layout_marginTop="8sp"
+        android:layout_marginRight="8sp"
+        android:layout_marginLeft="8sp"
         app:cardBackgroundColor="#212121"
         >
         <RelativeLayout
@@ -42,8 +42,9 @@
                     <TextView
                         android:id="@+id/title"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70sp"
                         android:text="VIHAAN"
+                        android:gravity="center_vertical"
                         android:fontFamily="sans-serif-condensed"
                         android:textColor="#ffffff"
                         android:textSize="50sp"
@@ -52,30 +53,26 @@
                     <TextView
                         android:id="@+id/t1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="80sp"
+                        android:gravity="center_vertical"
                         android:layout_below="@+id/title"
                         android:fontFamily="sans-serif-condensed"
 
-                        android:text="Development by V.E.S. CS Students"
+                        android:text="Development by V.E.S.A.S.C. Computer Science students"
                         android:textColor="#ffffff"
                         android:textSize="20sp"
                         android:textAlignment="center"/>
                         <TextView
                             android:id="@+id/vernumber"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:layout_height="40sp"
                             android:layout_below="@+id/shimmerlayout"
                             android:fontFamily="sans-serif-condensed"
                             android:text=""
                             android:textColor="#ffffff"
                             android:textSize="20sp"
                             android:textAlignment="center"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:fontFamily="sans-serif-condensed"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/vernumber"
-                            android:text=""/>
 
                 </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
@@ -86,9 +83,9 @@
         android:layout_below="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="12sp"
-        android:layout_marginRight="12sp"
-        android:layout_marginLeft="12sp"
+        android:layout_marginTop="8sp"
+        android:layout_marginRight="8sp"
+        android:layout_marginLeft="8sp"
         app:cardBackgroundColor="#212121"
         >
             <TextView
@@ -102,7 +99,7 @@
                 android:layout_marginTop="8sp"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35sp"
                 android:orientation="horizontal"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="20sp"
@@ -133,9 +130,10 @@
             android:layout_below="@+id/l2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12sp"
-            android:layout_marginRight="12sp"
-            android:layout_marginLeft="12sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginRight="8sp"
+            android:layout_marginLeft="8sp"
+            android:layout_marginBottom="8sp"
             app:cardBackgroundColor="#212121"
             >
             <RelativeLayout
@@ -147,6 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Source Code"
+                    android:textStyle="bold"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="15sp"
@@ -165,6 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/webtext"
+                    android:textStyle="bold"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
                     android:textSize="15sp"

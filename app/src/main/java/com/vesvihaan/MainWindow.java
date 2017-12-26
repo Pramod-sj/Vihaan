@@ -73,7 +73,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         builder2 = new AlertDialog.Builder(this);
         //final startpage_activity sa=new startpage_activity();
         noconn=new AlertDialog.Builder(this);
-        noconn.setMessage("Need internet for checking update");
+        noconn.setMessage("Some feature will not work, please enable Internet ");
         noconn.setPositiveButton("Enable", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
@@ -138,9 +138,9 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
 
-        viewPager.setCurrentItem(2);
-        tabLayout.setScrollPosition(2,0,true);
-        DachshundIndicator indicator=new DachshundIndicator(tabLayout);
+        viewPager.setCurrentItem(0);
+        tabLayout.setScrollPosition(0,0,true);
+        LineMoveIndicator indicator=new LineMoveIndicator(tabLayout);
         tabLayout.setAnimatedIndicator(indicator);
         //Adding onTabSelectedListener to swipe views
 
@@ -213,11 +213,11 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    return new gallery_activity();
+                    return new event_activity();
                 case 1:
                     return new schedules_activity();
                 case 2:
-                    return new event_activity();
+                    return new gallery_activity();
                 case 3:
                     return new sponsers_activity();
                 case 4:
@@ -238,11 +238,11 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Gallery";
+                    return "Events";
                 case 1:
                     return "Schedule";
                 case 2:
-                    return "Events";
+                    return "Gallery";
                 case 3:
                     return "Partners";
                 case 4:

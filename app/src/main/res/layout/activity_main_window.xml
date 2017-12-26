@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:tabGravity="center"
+            app:ddIndicatorHeight="4sp"
             app:tabPaddingTop="0dp"
             app:tabIndicatorHeight="1sp"
             app:tabIndicatorColor="#ffffff "/>
