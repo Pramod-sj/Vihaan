@@ -50,7 +50,7 @@ public class SplashScreen extends AppCompatActivity{
                     spinner.setVisibility(View.GONE);
                     finish();
                 }
-            }, 2500);
+            }, 1000);
         }
         else {
             new Handler().postDelayed(new Runnable() {
