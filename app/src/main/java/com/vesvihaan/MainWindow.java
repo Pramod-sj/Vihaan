@@ -141,6 +141,7 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         viewPager.setCurrentItem(0);
         tabLayout.setScrollPosition(0,0,true);
         LineMoveIndicator indicator=new LineMoveIndicator(tabLayout);
+        indicator.setEdgeRadius(1);
         tabLayout.setAnimatedIndicator(indicator);
         //Adding onTabSelectedListener to swipe views
 
