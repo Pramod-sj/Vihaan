@@ -1,6 +1,9 @@
 package com.vesvihaan;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,20 +36,21 @@ public class sponsers_activity extends android.support.v4.app.Fragment {
         view = inflater.inflate(R.layout.sponsers, container, false);
         BannerSlider bannerSlider = (BannerSlider)view.findViewById(R.id.sbanner);
         BannerSlider bannerSlider1 = (BannerSlider)view.findViewById(R.id.web_banner);
-        bannerSlider.setDefaultIndicator(IndicatorShape.CIRCLE);
+        BannerSlider bannerSlider2 = (BannerSlider)view.findViewById(R.id.mbanner);
         List<Banner> banners=new ArrayList<>();
         List<Banner> banners1=new ArrayList<>();
-
+        List<Banner> banners2=new ArrayList<>();
         //banners.add(new RemoteBanner("Put banner image url here ..."));
         //add banner using resource drawable
+        banners2.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/sponsers/times.jpg"));
         banners1.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/sponsers/vapourhost.jpg"));
         banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/sponsers/coffee.jpg"));
         banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/sponsers/raj.jpg"));
         banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/sponsers/senergy.jpg"));
         banners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/sponsers/squad.jpg"));
+        bannerSlider2.setBanners(banners2);
         bannerSlider.setBanners(banners);
         bannerSlider1.setBanners(banners1);
-
         bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
             @Override
             public void onClick(int position) {
