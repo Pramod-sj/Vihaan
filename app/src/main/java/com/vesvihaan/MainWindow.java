@@ -55,12 +55,15 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         setContentView(R.layout.activity_main_window);
         fab11 = (FloatingActionButton)findViewById(R.id.fab1);
         fab22 = (FloatingActionButton)findViewById(R.id.fab2);
+        fab33 = (FloatingActionButton)findViewById(R.id.fab3);
         fab_menu = (FloatingActionMenu) findViewById(R.id.fab_menu);
         //checking if net is available
         if(Build.VERSION.SDK_INT>=21) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
+        //whenever user click outside of the expandable fab ,fab collapses
+        fab_menu.setClosedOnTouchOutside(true);
         //Setting permission so that there is no need to create another async class
         //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         //StrictMode.setThreadPolicy(policy);
@@ -95,6 +98,26 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
         fab22.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                try {
+                    Intent email = new Intent(Intent.ACTION_VIEW,Uri.parse("mailto:"+"pramodsinghjantwal@gmail.com"));
+                    email.putExtra(Intent.EXTRA_SUBJECT,"Feedback");
+                    //cant use the following code due to some security policie
+                                        //email.setAction(Intent.ACTION_SEND);//email.setData(Uri.parse("pramodsinghjantwal@gmail.com"));
+                    //email.setType("plain/text");
+                    //email.setClassName("com.google.android.gm","com.google.android.gm.ComposeActivityGmail");
+                    //email.putExtra(Intent.EXTRA_EMAIL, "pramodsinghjantwal@gmail.com");
+                    startActivity(email);
+                }
+                catch(Exception e){
+                    Toast.makeText(getApplicationContext(),"Please install Gmail App",Toast.LENGTH_SHORT).show();
+                }
+                fab_menu.close(true);
+            }
+        });
+
+        fab33.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
                 Intent i=new Intent(MainWindow.this,aboutapp_Activity.class);
                 startActivity(i);
                 fab_menu.close(true);
@@ -105,7 +128,6 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
             alert.setTitle("No Internet");
             alert.show();
         }
-
         //Initializing the tablayout
         tabLayout= (DachshundTabLayout) findViewById(R.id.tabLayout);
         //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -140,8 +162,8 @@ public class MainWindow extends AppCompatActivity implements TabLayout.OnTabSele
 
         viewPager.setCurrentItem(0);
         tabLayout.setScrollPosition(0,0,true);
-        LineMoveIndicator indicator=new LineMoveIndicator(tabLayout);
-        indicator.setEdgeRadius(1);
+        DachshundIndicator indicator=new DachshundIndicator(tabLayout);
+        //indicator.setEdgeRadius(1);
         tabLayout.setAnimatedIndicator(indicator);
         //Adding onTabSelectedListener to swipe views
 

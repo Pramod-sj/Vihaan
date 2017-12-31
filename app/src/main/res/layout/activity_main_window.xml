@@ -20,9 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:tabGravity="center"
-            app:ddIndicatorHeight="4sp"
+            app:ddIndicatorHeight="5sp"
             app:tabPaddingTop="0dp"
-            app:tabIndicatorHeight="1sp"
             app:tabIndicatorColor="#ffffff "/>
     </android.support.design.widget.AppBarLayout>
 
@@ -66,6 +65,16 @@
             fab:fab_colorPressed="#414141"/>
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/stat_notify_chat"
+            fab:fab_label="Feedback"
+            fab:fab_size="mini"
+            fab:fab_colorNormal="#414141"
+            fab:fab_colorPressed="#414141"
+            fab:fab_colorRipple="#99FFFFFF"/>
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_info_details"

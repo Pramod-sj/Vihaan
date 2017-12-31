@@ -19,14 +19,13 @@
 
     </string-array>
     <string-array name="data">
-        <item>Are you too sound at cracking codes? Code trove of vihaan brings you a treasure hunt kinda event in which you have to crack current code to get the glimpse of next. Sounds interesting?Participating in it will. </item>
+        <item>Are you too sound at cracking codes? Code trove of vihaan brings you a treasure hunt kinda event in which you have to crack current code to get the glimpse of next. Sounds interesting? Participating in it will. </item>
         <item>Quiriosity helps you explore your inquisitivess and gives you the opportunity to answer some of the mysterious questions.</item>
         <item>Are you ready to crack any problem? Techtonic brings you an opportunity to team up and rack your brains and jump to an most appropiate solution.</item>
-        <item>The poster presentaion event welcomes you all to display your creativeness and just paint up your artistic imagination.</item>
-        <item>Have you ever aspired to be a blogger? If yes,mega blog event helps you to expirence your aspiration brush up your creativeness and explore a beautiful event of blogging.</item>
+        <item>The poster presentation event welcomes you all to display your creativeness and just paint up your artistic imagination.</item>
+        <item>Have you ever aspired to be a blogger? If yes,mega blog event helps you to experience your aspiration brush up your creativeness and explore a beautiful event of blogging.</item>
         <item>Freeze the moment gives you an open opportunity to capture the moment and edit it in best way you can.</item>
-        <item>Are you creative in Android Programming ?
-        \nCan you code the required layout ?
+        <item>Can you code the required layout ?
         \nApp ki peshkash will set a competetive platform for you where you will be given a specific layout or a sets of layouts .
         \nAll you have to do is use android studio and your coding skills and design thinking to provide the required design.
         \nyou can use your laptop or the machines provided by us
@@ -67,6 +66,5 @@
         <item>Only solo entry accepted </item>
         <item>Team of two / Solo entry accepted</item>
         <item>No Limit</item>
-
     </string-array>
 </resources>

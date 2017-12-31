@@ -39,7 +39,7 @@ public class gallery_activity extends android.support.v4.app.Fragment {
         List<Banner> mbanners=new ArrayList<>();
         mbanners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/Team/marketing/marketing1.jpg"));
         List<Banner> dbanners=new ArrayList<>();
-        dbanners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/Team/digital promotion/digitalpromotion1.jpg"));
+        dbanners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/Team/digital promotion/digitalpromotion2.jpg"));
         dbanners.add(new RemoteBanner("https://github.com/Pramod-sj/Vihaan/raw/master/image/Team/digital promotion/digitalpromotion1.jpg"));
         coreBanner.setBanners(cbanners);
         creativeBanner.setBanners(crbanners);
