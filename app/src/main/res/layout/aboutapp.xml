@@ -15,18 +15,18 @@
         android:id="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8sp"
-        android:layout_marginRight="8sp"
-        android:layout_marginLeft="8sp"
+        android:layout_marginTop="4sp"
+        android:layout_marginRight="4sp"
+        android:layout_marginLeft="4sp"
         app:cardBackgroundColor="#212121"
         >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/img1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
                 android:src="@mipmap/ic_launcher"
                 android:layout_marginTop="5sp"
                 android:layout_centerHorizontal="true"/>
@@ -53,7 +53,7 @@
                     <TextView
                         android:id="@+id/t1"
                         android:layout_width="match_parent"
-                        android:layout_height="80sp"
+                        android:layout_height="70sp"
                         android:gravity="center_vertical"
                         android:layout_below="@+id/title"
                         android:fontFamily="sans-serif-condensed"
@@ -83,9 +83,9 @@
         android:layout_below="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="8sp"
-        android:layout_marginRight="8sp"
-        android:layout_marginLeft="8sp"
+        android:layout_marginTop="4sp"
+        android:layout_marginRight="4sp"
+        android:layout_marginLeft="4sp"
         app:cardBackgroundColor="#212121"
         >
             <TextView
@@ -130,10 +130,10 @@
             android:layout_below="@+id/l2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8sp"
-            android:layout_marginRight="8sp"
-            android:layout_marginLeft="8sp"
-            android:layout_marginBottom="8sp"
+            android:layout_marginTop="4sp"
+            android:layout_marginRight="4sp"
+            android:layout_marginLeft="4sp"
+            android:layout_marginBottom="4sp"
             app:cardBackgroundColor="#212121"
             >
             <RelativeLayout
