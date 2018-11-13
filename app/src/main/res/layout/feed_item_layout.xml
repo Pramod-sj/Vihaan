@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="@dimen/cardview_elevation"
+    app:cardCornerRadius="@dimen/cardview_radius"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/colorPrimary">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/feedImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_notifications_black_24dp" />
+        <RelativeLayout
+            android:id="@+id/likeRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@id/feedImageView">
+            <ImageView
+                android:id="@+id/feedlikeButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:onClick="onLikeClick"
+                android:src="@drawable/ic_thumb_up_black_24dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:id="@+id/feedAgoTextView"
+                android:text="1 min ago"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="pramod, suraj ..."
+            android:textColor="@color/white"
+            android:singleLine="true"
+            android:layout_below="@+id/likeRelative"
+            android:id="@+id/feedLikedByTextView"
+            android:textSize="@dimen/small_text"/>
+        <TextView
+            android:layout_below="@+id/feedLikedByTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/feedTitleTextView"
+            android:textSize="@dimen/medium_text"
+            android:text="On 24-25 Jan 2k19"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
+            android:maxLines="2"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
