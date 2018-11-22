@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 public class ChecksumChecker extends AsyncTask<String,Void,String> {
 
+
     String url;
     String data;
     PaytmPGService paytmPGService;
@@ -38,6 +39,7 @@ public class ChecksumChecker extends AsyncTask<String,Void,String> {
 
     }
 
+
     @Override
     protected String doInBackground(String... strings) {
         String data1="";
@@ -48,6 +50,7 @@ public class ChecksumChecker extends AsyncTask<String,Void,String> {
             httpURLConnection= (HttpURLConnection) url_.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.getDoOutput();
+            httpURLConnection.setConnectTimeout(10000);
             DataOutputStream dataOutputStream=new DataOutputStream(httpURLConnection.getOutputStream());
             dataOutputStream.writeBytes(data);
             dataOutputStream.flush();
@@ -89,72 +92,66 @@ public class ChecksumChecker extends AsyncTask<String,Void,String> {
             paramMap.put("EMAIL",mJsonObject.getString("EMAIL"));
             paramMap.put("CALLBACK_URL",mJsonObject.getString("CALLBACK_URL"));
             paramMap.put("CHECKSUMHASH",mJsonObject.getString("CHECKSUMHASH"));
+            PaytmOrder Order = new PaytmOrder(paramMap);
+            paytmPGService.initialize(Order, null);
+            paytmPGService.startPaymentTransaction(context, true, true,
+                    new PaytmPaymentTransactionCallback() {
 
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        PaytmOrder Order = new PaytmOrder(paramMap);
-
-        paytmPGService.initialize(Order, null);
-
-        paytmPGService.startPaymentTransaction(context, true, true,
-                new PaytmPaymentTransactionCallback() {
-
-                    @Override
-                    public void someUIErrorOccurred(String inErrorMessage) {
-                        onPaymentListener.onFailed(inErrorMessage);
-                        Log.i("uiError",inErrorMessage);
-                    }
-
-                    @Override
-                    public void onTransactionResponse(Bundle inResponse) {
-                        Log.d("LOG", "Payment Transaction :" + inResponse);
-
-                        String response=inResponse.getString("RESPMSG");
-
-                        Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
-                        if (response.toLowerCase().equals("Txn Success".toLowerCase()))
-                        {
-                            onPaymentListener.onSuccessFullyPaid();
-                        }else
-                        {
-                            onPaymentListener.onFailed(response);
+                        @Override
+                        public void someUIErrorOccurred(String inErrorMessage) {
+                            onPaymentListener.onFailed(inErrorMessage);
+                            Log.i("uiError", inErrorMessage);
                         }
 
-                    }
+                        @Override
+                        public void onTransactionResponse(Bundle inResponse) {
+                            Log.d("LOG", "Payment Transaction :" + inResponse);
 
-                    @Override
-                    public void networkNotAvailable() {
-                        onPaymentListener.onFailed("Network is not available or might be slow!");
-                    }
+                            String response = inResponse.getString("RESPMSG");
 
-                    @Override
-                    public void clientAuthenticationFailed(String inErrorMessage) {
-                        onPaymentListener.onFailed(inErrorMessage);
-                    }
+                            Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+                            if (response.toLowerCase().equals("Txn Success".toLowerCase())) {
+                                onPaymentListener.onSuccessFullyPaid();
+                            } else {
+                                onPaymentListener.onFailed(response);
+                            }
 
-                    @Override
-                    public void onErrorLoadingWebPage(int iniErrorCode,
-                                                      String inErrorMessage, String inFailingUrl) {
+                        }
 
-                        onPaymentListener.onFailed(inErrorMessage);
-                    }
+                        @Override
+                        public void networkNotAvailable() {
+                            onPaymentListener.onFailed("Network is not available or might be slow!");
+                        }
 
-                    @Override
-                    public void onBackPressedCancelTransaction() {
-                        onPaymentListener.onFailed("Transaction is cancelled");
-                    }
+                        @Override
+                        public void clientAuthenticationFailed(String inErrorMessage) {
+                            onPaymentListener.onFailed(inErrorMessage);
+                        }
 
-                    @Override
-                    public void onTransactionCancel(String inErrorMessage,
-                                                    Bundle inResponse) {
-                        Log.d("LOG", "Payment Transaction Failed "
-                                + inErrorMessage);
-                        onPaymentListener.onFailed("Payment Transaction Failed ");
-                    }
+                        @Override
+                        public void onErrorLoadingWebPage(int iniErrorCode,
+                                                          String inErrorMessage, String inFailingUrl) {
 
-                });
+                            onPaymentListener.onFailed(inErrorMessage);
+                        }
+
+                        @Override
+                        public void onBackPressedCancelTransaction() {
+                            onPaymentListener.onFailed("Transaction is cancelled");
+                        }
+
+                        @Override
+                        public void onTransactionCancel(String inErrorMessage,
+                                                        Bundle inResponse) {
+                            Log.d("LOG", "Payment Transaction Failed "
+                                    + inErrorMessage);
+                            onPaymentListener.onFailed("Payment Transaction Failed ");
+                        }
+
+                    });
+        }
+        catch (Exception e){
+            onPaymentListener.onFailed(e.getMessage());
+        }
     }
 }
