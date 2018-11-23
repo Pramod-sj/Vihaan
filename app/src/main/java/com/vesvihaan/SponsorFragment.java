@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +25,7 @@ public class SponsorFragment extends Fragment {
     RecyclerView sponsorCatRecyclerView;
     SponsorCategoryAdapter sponsorCategoryAdapter;
     ArrayList<Sponsors> sponsors=new ArrayList<>();
+    TextView noSponsor;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class SponsorFragment extends Fragment {
         sponsorCatRecyclerView=view.findViewById(R.id.allCatSponsorRecyclerView);
         sponsorCategoryAdapter=new SponsorCategoryAdapter(getActivity().getApplicationContext(),sponsors);
         sponsorCatRecyclerView.setAdapter(sponsorCategoryAdapter);
+        noSponsor=view.findViewById(R.id.noSponsorTextView);
         getSponsorData();
         return view;
     }
@@ -56,8 +59,16 @@ public class SponsorFragment extends Fragment {
                             sponsor.setSponsor(sponsorsData);
                             sponsors.add(sponsor);
                         }
+                        if(sponsors.size()==0){
+                            sponsorCatRecyclerView.setVisibility(View.GONE);
+                            noSponsor.setVisibility(View.VISIBLE);
+                        }
+                        else{
+                            sponsorCatRecyclerView.setVisibility(View.VISIBLE);
+                            noSponsor.setVisibility(View.GONE);
+                            sponsorCategoryAdapter.notifyDataSetChanged();
+                        }
                         Log.i("Size", String.valueOf(sponsors.size()));
-                        sponsorCategoryAdapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -66,7 +77,6 @@ public class SponsorFragment extends Fragment {
                     }
                 });
 
-        Log.i("hello", "endhello");
     }
 
 

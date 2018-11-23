@@ -126,6 +126,9 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener 
                 Intent intent=googleSinginHelper.getGoogleSignInClient().getSignInIntent();
                 startActivityForResult(intent,GoogleSinginHelper.GOOGLE_SIGIN_CODE);
             }
+            else {
+                showSnackBar("Please update your google play sevice");
+            }
         }
         else{
             Pair pair=new Pair(findViewById(R.id.profileImage),"profile_transition");

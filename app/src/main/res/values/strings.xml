@@ -7,6 +7,9 @@
 
     <string name="justregister">register only</string>
 
+    <string name="dev_profile_pic_url">https://github.com/Pramod-sj/TaskPlace/raw/master/DevDP/pramod.jpg</string>
+    <string name="admob_app_id">ca-app-pub-3667665582847109~8276765911</string>
+    <string name="admob_ADS_unit_id">ca-app-pub-3667665582847109/3604187062</string>
     <string name="title_about_us">About us</string>
     <string name="about_us_option_menu">About us</string>
     <string name="logout_button">Logout</string>

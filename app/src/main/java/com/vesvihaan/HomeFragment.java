@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -33,10 +34,14 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     TextView noFeed;
     LikeHelper likeHelper;
 
+    DatabaseReference feedReference;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        feedReference=FirebaseDatabase.getInstance().getReference("Feeds");
+        feedReference.keepSynced(true);
         noFeed = view.findViewById(R.id.noFeedTextView);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -53,13 +58,11 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
         getFeedData();
-        Log.i("Refreshing", "refreshing feeds");
     }
 
 
     public void getFeedData() {
-        Log.i("HELLO","HELLO");
-        FirebaseDatabase.getInstance().getReference("Feeds").addListenerForSingleValueEvent(new ValueEventListener() {
+        feedReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {

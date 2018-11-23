@@ -5,9 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by pramod_sj on 25/11/17.
@@ -15,7 +20,6 @@ import android.widget.TextView;
 
 public class AboutAppActivity extends AppCompatActivity {
     TextView t11;
-    ImageView img1,img2;
     String versionName = BuildConfig.VERSION_NAME;
     Toolbar toolbar;
     @Override
@@ -25,27 +29,42 @@ public class AboutAppActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar);
         toolbar.setTitle("About");
         setSupportActionBar(toolbar);
-        t11=(TextView)findViewById(R.id.vernumber);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        t11=findViewById(R.id.vernumber);
         t11.setText("Version "+versionName);
-        img1= (ImageView) findViewById(R.id.fb);
-        img2=(ImageView)findViewById(R.id.insta);
-        img1.setOnClickListener(new ToWebLink());
-        img2.setOnClickListener(new ToWebLink());
+        GlideApp.with(this).load(getResources().getString(R.string.dev_profile_pic_url)).placeholder(R.drawable.user_profile_drawable).transition(DrawableTransitionOptions.withCrossFade(200)).skipMemoryCache(false).into((CircleImageView)findViewById(R.id.devImage));
     }
-    class ToWebLink implements View.OnClickListener{
 
-        @Override
-        public void onClick(View view) {
-            if(view.getId()==R.id.fb) {
-                Uri uri = Uri.parse("http://www.facebook.com/vihaan2k18/");
-                Intent i1 = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(i1);
-            }
-            else if(view.getId()==R.id.insta) {
-                Uri uri = Uri.parse("http://www.instagram.com/vihaan2k18/");
-                Intent i2 = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(i2);
-            }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home){
+            onBackPressed();
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void onUrlClick(View view){
+        if(view.getId()==R.id.fb) {
+            Uri uri = Uri.parse("http://www.facebook.com/vihaan2k18/");
+            Intent i1 = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(i1);
+        }
+        else if(view.getId()==R.id.insta) {
+            Uri uri = Uri.parse("http://www.instagram.com/vihaan2k18/");
+            Intent i2 = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(i2);
+        }
+        else if(view.getId()==R.id.websitelink){
+            Uri uri = Uri.parse("http://www.vesvihaan.com/");
+            Intent i2 = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(i2);
+        }
+        else if(view.getId()==R.id.githubLink){
+            Uri uri = Uri.parse("http://www.github.com/pramod-sj/vihaan");
+            Intent i2 = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(i2);
+        }
+
     }
 }

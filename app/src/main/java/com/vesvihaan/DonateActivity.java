@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
+
+import java.util.ArrayList;
 
 public class DonateActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
 
@@ -18,6 +21,7 @@ public class DonateActivity extends AppCompatActivity implements BillingProcesso
         billingProcessor=new BillingProcessor(this,null,this);
         billingProcessor.initialize();
     }
+
 
     @Override
     public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {

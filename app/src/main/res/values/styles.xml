@@ -13,6 +13,7 @@
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
     <style name="BottomNavActiveText" parent="@style/TextAppearance.AppCompat.Small">
         <item name="android:textSize">15dp</item>

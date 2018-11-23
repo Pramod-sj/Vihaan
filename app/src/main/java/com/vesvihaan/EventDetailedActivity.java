@@ -1,5 +1,6 @@
 package com.vesvihaan;
 
+import android.app.ProgressDialog;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,49 +79,79 @@ public class EventDetailedActivity extends AppCompatActivity {
 
     }
 
+    public void showBottomSheetForPaymentConfirmation(){
+        final ProgressDialog progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Please wait....");
+        progressDialog.setMessage("We redirecting you to paytm gateway");
+        RoundedBottomSheetDialogFragment sheetDialogFragment=new RoundedBottomSheetDialogFragment();
+        sheetDialogFragment.setButton1_text("No");
+        sheetDialogFragment.setButton2_text("Yes");
+        sheetDialogFragment.setTitle("Read carefully!");
+        sheetDialogFragment.setDesc("Note: Payment is done using Paytm");
+        sheetDialogFragment.setButtonClickListener(new RoundedBottomSheetDialogFragment.OnButtonClickListener() {
+            @Override
+            public void onRightButtonClick(final RoundedBottomSheetDialogFragment dialogFragment) {
+                progressDialog.show();
+                eventRegistrationHelper.pay(new EventRegistrationHelper.OnPaymentListener() {
+                    @Override
+                    public void onSuccessFullyPaid() {
+                        FirebaseDatabase.getInstance().getReference("Events").child(event.getEventId()).child("eventRegisteredUsers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("paid").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                progressDialog.hide();
+                                if(task.isSuccessful()){
+                                    checkRegistrationAndPaidStatus();
+                                    Snackbar.make(coordinatorLayout,"Successfully payment done!",Snackbar.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailed(String errorMessage) {
+                        Snackbar.make(coordinatorLayout,errorMessage,Snackbar.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                });
+                dialogFragment.dismiss();
+            }
+
+            @Override
+            public void onLeftButtonClick(RoundedBottomSheetDialogFragment dialogFragment) {
+                dialogFragment.dismiss();
+            }
+        });
+        sheetDialogFragment.show(getSupportFragmentManager(),"PaymentConfirmDialog");
+    }
 
     public void onRegisterAndPayClick(View view){
-        if(isValidToRegisterOrPay()){
-            eventRegistrationHelper.registerForEvent(new EventRegistrationHelper.OnRegistrationListener() {
-                @Override
-                public void onSuccessfullyRegistered() {
-                    eventRegistrationHelper.registerForEvent(new EventRegistrationHelper.OnRegistrationListener() {
-                        @Override
-                        public void onSuccessfullyRegistered() {
-                            eventRegistrationHelper.pay(new EventRegistrationHelper.OnPaymentListener() {
-                                @Override
-                                public void onSuccessFullyPaid() {
-                                    FirebaseDatabase.getInstance().getReference("Events").child(event.getEventId()).child("eventRegisteredUsers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("paid").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-                                                checkRegistrationAndPaidStatus();
-                                                Snackbar.make(coordinatorLayout,"Successfully payment done!",Snackbar.LENGTH_SHORT).show();
-                                            }
-                                                }
-                                    });
-                                }
+        if (ConnectionUtil.isConnectedToInternet(this)) {
+            if (isValidToRegisterOrPay()) {
+                eventRegistrationHelper.registerForEvent(new EventRegistrationHelper.OnRegistrationListener() {
+                    @Override
+                    public void onSuccessfullyRegistered() {
+                        eventRegistrationHelper.registerForEvent(new EventRegistrationHelper.OnRegistrationListener() {
+                            @Override
+                            public void onSuccessfullyRegistered() {
+                                showBottomSheetForPaymentConfirmation();
+                            }
 
-                                @Override
-                                public void onFailed(String errorMessage) {
-                                    Snackbar.make(coordinatorLayout,errorMessage,Snackbar.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
+                            @Override
+                            public void onFailure(String errorMessage) {
+                                Snackbar.make(coordinatorLayout, errorMessage, Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
 
-                        @Override
-                        public void onFailure(String errorMessage) {
+                    @Override
+                    public void onFailure(String errorMessage) {
 
-                            Snackbar.make(coordinatorLayout,errorMessage,Snackbar.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-
-                @Override
-                public void onFailure(String errorMessage) {
-
-                }
-            });
+                    }
+                });
+            }
+        }
+        else {
+            Snackbar.make(coordinatorLayout,"Please connect to internet",Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -197,60 +230,57 @@ public class EventDetailedActivity extends AppCompatActivity {
     }
 
     public void onPayClick(View view){
-        if(isValidToRegisterOrPay()) {
-            eventRegistrationHelper.pay(new EventRegistrationHelper.OnPaymentListener() {
-                @Override
-                public void onSuccessFullyPaid() {
-                    FirebaseDatabase.getInstance().getReference("Events").child(event.getEventId()).child("eventRegisteredUsers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("paid").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                checkRegistrationAndPaidStatus();
-                                Snackbar.make(coordinatorLayout,"Successfully payment done!",Snackbar.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }
-
-                @Override
-                public void onFailed(String errorMessage) {
-                    Snackbar.make(coordinatorLayout,errorMessage,Snackbar.LENGTH_SHORT).show();
-                }
-            });
+        if(ConnectionUtil.isConnectedToInternet(this)) {
+            if (isValidToRegisterOrPay()) {
+                showBottomSheetForPaymentConfirmation();
+            }
+        }
+        else {
+            Snackbar.make(coordinatorLayout,"Please connect to internet",Snackbar.LENGTH_SHORT).show();
         }
     }
 
     public void onUnRegisterClick(View view){
-        if(isValidToRegisterOrPay()) {
-            eventRegistrationHelper.unRegisterEvent(FirebaseAuth.getInstance().getCurrentUser().getUid(), new EventRegistrationHelper.OnUnRegistrationListener() {
-                @Override
-                public void onSuccessfullyUnRegistered() {
-                    checkRegistrationAndPaidStatus();
-                    Snackbar.make(coordinatorLayout,"We have un registered you",Snackbar.LENGTH_SHORT).show();
-                }
+        if(ConnectionUtil.isConnectedToInternet(this)) {
+            if (isValidToRegisterOrPay()) {
+                eventRegistrationHelper.unRegisterEvent(FirebaseAuth.getInstance().getCurrentUser().getUid(), new EventRegistrationHelper.OnUnRegistrationListener() {
+                    @Override
+                    public void onSuccessfullyUnRegistered() {
+                        checkRegistrationAndPaidStatus();
+                        Snackbar.make(coordinatorLayout, "We have un registered you", Snackbar.LENGTH_SHORT).show();
+                    }
 
-                @Override
-                public void onFailure(String errorMessage) {
-                    Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
-                }
-            });
+                    @Override
+                    public void onFailure(String errorMessage) {
+                        Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+        else {
+            Snackbar.make(coordinatorLayout,"Please connect to internet",Snackbar.LENGTH_SHORT).show();
         }
     }
 
     public void onRegisterClick(View view){
-        if(isValidToRegisterOrPay()) {
-            eventRegistrationHelper.registerForEvent(new EventRegistrationHelper.OnRegistrationListener() {
-                @Override
-                public void onSuccessfullyRegistered() {
-                    checkRegistrationAndPaidStatus();
-                    Snackbar.make(coordinatorLayout,"Successfully registered! pay now or on spot",Snackbar.LENGTH_LONG).show();
-                }
+        if(ConnectionUtil.isConnectedToInternet(this)) {
+            if (isValidToRegisterOrPay()) {
+                eventRegistrationHelper.registerForEvent(new EventRegistrationHelper.OnRegistrationListener() {
+                    @Override
+                    public void onSuccessfullyRegistered() {
+                        checkRegistrationAndPaidStatus();
+                        Snackbar.make(coordinatorLayout, "Successfully registered! pay now or on spot", Snackbar.LENGTH_SHORT).show();
+                    }
 
-                @Override
-                public void onFailure(String errorMessage) {
-                    Snackbar.make(coordinatorLayout,errorMessage,Snackbar.LENGTH_LONG).show();
-                }
-            });
+                    @Override
+                    public void onFailure(String errorMessage) {
+                        Snackbar.make(coordinatorLayout, errorMessage, Snackbar.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
+        else {
+            Snackbar.make(coordinatorLayout,"Please connect to internet",Snackbar.LENGTH_SHORT).show();
         }
     }
 

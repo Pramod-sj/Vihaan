@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 public class EventFragment extends Fragment implements OnEventClickListener {
     RecyclerView eventRecyclerView;
     EventAdapter eventAdapter;
+    ProgressBar progressBar;
     ArrayList<Event> events=new ArrayList<>();
     @Nullable
     @Override
@@ -39,7 +41,6 @@ public class EventFragment extends Fragment implements OnEventClickListener {
         eventRecyclerView=view.findViewById(R.id.eventsReyclerView);
         eventAdapter=new EventAdapter(getActivity(),events,this);
         eventRecyclerView.setAdapter(eventAdapter);
-
         FirebaseDatabase.getInstance().getReference(Constant.FIREBASE_EVENT_REFERENCE).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
