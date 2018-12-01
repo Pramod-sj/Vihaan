@@ -24,4 +24,5 @@ public class Constant {
     public static final String CALLBACK_URL_VAL = "https://pguat.paytm.com/paytmchecksum/paytmCallback.jsp";
 
 
+    public static final String SHAREDPREF_USER_LOGGEDIN="LoggedIn";
 }
