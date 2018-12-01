@@ -88,6 +88,7 @@
         <include layout="@layout/card_about_connect_with_us"/>
         <include layout="@layout/card_about_developer"/>
         <include layout="@layout/card_about_support_development"/>
+        <include layout="@layout/card_about_others"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
