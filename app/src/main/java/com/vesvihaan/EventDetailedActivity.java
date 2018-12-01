@@ -37,10 +37,16 @@ public class EventDetailedActivity extends AppCompatActivity {
     Button register,registerandpay,unregister,pay;
     EventRegistrationHelper eventRegistrationHelper;
     CoordinatorLayout coordinatorLayout;
+    ProgressDialog progressDialog;
+    private void initDialog(){
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setMessage("Please wait");
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detailed);
+        initDialog();
         coordinatorLayout=findViewById(R.id.eventdetailcoordinatelayout);
         event = (Event) getIntent().getSerializableExtra("Event");
         register=findViewById(R.id.registerButton);
@@ -127,6 +133,7 @@ public class EventDetailedActivity extends AppCompatActivity {
     public void onRegisterAndPayClick(View view){
         if (ConnectionUtil.isConnectedToInternet(this)) {
             if (isValidToRegisterOrPay()) {
+                progressDialog.show();
                 eventRegistrationHelper.registerForEvent(new EventRegistrationHelper.OnRegistrationListener() {
                     @Override
                     public void onSuccessfullyRegistered() {
@@ -134,11 +141,14 @@ public class EventDetailedActivity extends AppCompatActivity {
                             @Override
                             public void onSuccessfullyRegistered() {
                                 showBottomSheetForPaymentConfirmation();
+                                progressDialog.dismiss();
                             }
 
                             @Override
                             public void onFailure(String errorMessage) {
+                                progressDialog.dismiss();
                                 Snackbar.make(coordinatorLayout, errorMessage, Snackbar.LENGTH_SHORT).show();
+
                             }
                         });
                     }
@@ -241,6 +251,7 @@ public class EventDetailedActivity extends AppCompatActivity {
     }
 
     public void onUnRegisterClick(View view){
+        progressDialog.show();
         if(ConnectionUtil.isConnectedToInternet(this)) {
             if (isValidToRegisterOrPay()) {
                 eventRegistrationHelper.unRegisterEvent(FirebaseAuth.getInstance().getCurrentUser().getUid(), new EventRegistrationHelper.OnUnRegistrationListener() {
@@ -248,11 +259,13 @@ public class EventDetailedActivity extends AppCompatActivity {
                     public void onSuccessfullyUnRegistered() {
                         checkRegistrationAndPaidStatus();
                         Snackbar.make(coordinatorLayout, "We have un registered you", Snackbar.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
 
                     @Override
                     public void onFailure(String errorMessage) {
                         Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
             }
@@ -265,16 +278,19 @@ public class EventDetailedActivity extends AppCompatActivity {
     public void onRegisterClick(View view){
         if(ConnectionUtil.isConnectedToInternet(this)) {
             if (isValidToRegisterOrPay()) {
+                progressDialog.show();
                 eventRegistrationHelper.registerForEvent(new EventRegistrationHelper.OnRegistrationListener() {
                     @Override
                     public void onSuccessfullyRegistered() {
                         checkRegistrationAndPaidStatus();
                         Snackbar.make(coordinatorLayout, "Successfully registered! pay now or on spot", Snackbar.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
 
                     @Override
                     public void onFailure(String errorMessage) {
                         Snackbar.make(coordinatorLayout, errorMessage, Snackbar.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                     }
                 });
             }
