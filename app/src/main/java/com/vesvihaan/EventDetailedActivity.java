@@ -1,9 +1,11 @@
 package com.vesvihaan;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -165,10 +167,46 @@ public class EventDetailedActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case GoogleSinginHelper.GOOGLE_SIGIN_CODE:
+                if(resultCode==RESULT_OK){
+                    googleSinginHelper.signInUsingData(data);
+                }
+        }
+    }
+
+
+
+    GoogleSinginHelper googleSinginHelper;
     public boolean isValidToRegisterOrPay(){
         if(FirebaseAuth.getInstance().getCurrentUser()==null){
+            Snackbar.make(coordinatorLayout,"Please login first",Snackbar.LENGTH_SHORT).setAction("Login", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    googleSinginHelper=new GoogleSinginHelper(EventDetailedActivity.this, new OnSigninListener() {
+                        @Override
+                        public void onSuccess() {
+                            recreate();
+                        }
 
-            Snackbar.make(coordinatorLayout,"Please login first",Snackbar.LENGTH_SHORT).show();
+                        @Override
+                        public void onFailure(String errorMessage) {
+
+                        }
+                    });
+                    if(googleSinginHelper.isGooglePlayServiceAvailable()){
+                        googleSinginHelper.buildGoogleSigninOption();
+                        Intent intent=googleSinginHelper.getGoogleSignInClient().getSignInIntent();
+                        startActivityForResult(intent,GoogleSinginHelper.GOOGLE_SIGIN_CODE);
+                    }
+                    else {
+                        Snackbar.make(coordinatorLayout,"Please update your google play sevice",Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+            }).show();
             return false;
         }
         if(event.getEventEntryPrice()==0.0f){
