@@ -3,7 +3,9 @@ package com.vesvihaan;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -36,7 +38,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity implements OnSigninListener {
+public class MainActivity extends AppCompatActivity implements OnSigninListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
 
     ViewPager viewPager;
@@ -63,13 +65,16 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener 
     BottomNavigationView navigation;
     Toolbar toolbar;
     GoogleSinginHelper googleSinginHelper;
-
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        googleSinginHelper=new GoogleSinginHelper(this,this);
+        sharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         coordinatorLayout=findViewById(R.id.container);
         viewPager=findViewById(R.id.mainViewPager);
         viewPager.setAdapter(new CustomPagerAdapter(getSupportFragmentManager()));
@@ -118,9 +123,13 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener 
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     public void onProfileImageClick(View v){
         if(FirebaseAuth.getInstance().getCurrentUser()==null){
-            googleSinginHelper=new GoogleSinginHelper(this,this);
             if(googleSinginHelper.isGooglePlayServiceAvailable()){
                 googleSinginHelper.buildGoogleSigninOption();
                 Intent intent=googleSinginHelper.getGoogleSignInClient().getSignInIntent();
@@ -207,12 +216,8 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener 
                 sheetDialogFragment.setButtonClickListener(new RoundedBottomSheetDialogFragment.OnButtonClickListener() {
                     @Override
                     public void onRightButtonClick(final RoundedBottomSheetDialogFragment dialogFragment) {
-                        FirebaseAuth.getInstance().signOut();
-                        GoogleApiClient googleApiClient=Vihaan.getGoogleApiHelper().getGoogleApiClient();
-                        Auth.GoogleSignInApi.signOut(googleApiClient);
-                        showProfileImage();
+                        googleSinginHelper.signOut();
                         dialogFragment.dismiss();
-                        recreate();
                         showSnackBar("Successfully signed out");
                     }
 
@@ -225,6 +230,14 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener 
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if(key.equals(Constant.SHAREDPREF_USER_LOGGEDIN))
+        {
+            recreate();
+        }
     }
 
 
@@ -255,5 +268,9 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener 
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        super.onDestroy();
+    }
 }
