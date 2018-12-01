@@ -2,6 +2,8 @@ package com.vesvihaan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -29,9 +31,12 @@ public class GoogleSinginHelper {
     GoogleSignInClient googleSignInClient;
     FirebaseAuth auth;
     OnSigninListener onSigninListener;
+    SharedPreferences.Editor editor;
     public GoogleSinginHelper(Context context,OnSigninListener onSigninListener) {
         this.context = context;
         this.onSigninListener=onSigninListener;
+        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
+        editor=sharedPreferences.edit();
     }
 
     public void buildGoogleSigninOption(){
@@ -61,7 +66,6 @@ public class GoogleSinginHelper {
         GoogleSignInResult result= Auth.GoogleSignInApi.getSignInResultFromIntent(data);
         if(result.isSuccess()){
             GoogleSignInAccount account=result.getSignInAccount();
-            Log.i("Success",account.getId());
             firebaseAuthWithGoogle(account);
         }
         else {
@@ -76,6 +80,7 @@ public class GoogleSinginHelper {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    editor.putBoolean(Constant.SHAREDPREF_USER_LOGGEDIN,true).commit();
                     onSigninListener.onSuccess();
                 }
                 else{
@@ -84,6 +89,15 @@ public class GoogleSinginHelper {
             }
         });
     }
+
+    public void signOut(){
+        FirebaseAuth.getInstance().signOut();
+        GoogleApiClient googleApiClient=Vihaan.getGoogleApiHelper().getGoogleApiClient();
+        Auth.GoogleSignInApi.signOut(googleApiClient);
+        editor.putBoolean(Constant.SHAREDPREF_USER_LOGGEDIN,false).commit();
+    }
+
+    private SharedPreferences sharedPreferences;
 
 
 }
