@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -113,7 +114,7 @@ public class EventDetailedActivity extends AppCompatActivity {
                                 progressDialog.hide();
                                 if(task.isSuccessful()){
                                     checkRegistrationAndPaidStatus();
-                                    Snackbar.make(coordinatorLayout,"Successfully payment done!",Snackbar.LENGTH_SHORT).show();
+                                    showSnackBar("Successfully payment done!").show();
                                 }
                             }
                         });
@@ -167,7 +168,7 @@ public class EventDetailedActivity extends AppCompatActivity {
             }
         }
         else {
-            Snackbar.make(coordinatorLayout,"Please connect to internet",Snackbar.LENGTH_SHORT).show();
+            showSnackBar("Please connect to internet").show();
         }
     }
 
@@ -187,7 +188,7 @@ public class EventDetailedActivity extends AppCompatActivity {
     GoogleSinginHelper googleSinginHelper;
     public boolean isValidToRegisterOrPay(){
         if(FirebaseAuth.getInstance().getCurrentUser()==null){
-            Snackbar.make(coordinatorLayout,"Please login first",Snackbar.LENGTH_SHORT).setAction("Login", new View.OnClickListener() {
+            showSnackBar("Please login first").setAction("Login", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     googleSinginHelper=new GoogleSinginHelper(EventDetailedActivity.this, new OnSigninListener() {
@@ -207,7 +208,7 @@ public class EventDetailedActivity extends AppCompatActivity {
                         startActivityForResult(intent,GoogleSinginHelper.GOOGLE_SIGIN_CODE);
                     }
                     else {
-                        Snackbar.make(coordinatorLayout,"Please update your google play sevice",Snackbar.LENGTH_SHORT).show();
+                        showSnackBar("Please update your google play sevice").show();
                     }
                 }
             }).show();
@@ -215,7 +216,7 @@ public class EventDetailedActivity extends AppCompatActivity {
         }
         if(event.getEventEntryPrice()==0.0f){
 
-            Snackbar.make(coordinatorLayout,"Fee is not available please contact developer",Snackbar.LENGTH_SHORT).show();
+            showSnackBar("Fee is not available please contact developer").show();
             return false;
         }
         return true;
@@ -288,7 +289,7 @@ public class EventDetailedActivity extends AppCompatActivity {
             }
         }
         else {
-            Snackbar.make(coordinatorLayout,"Please connect to internet",Snackbar.LENGTH_SHORT).show();
+            showSnackBar("Please connect to internet").show();
         }
     }
 
@@ -300,20 +301,20 @@ public class EventDetailedActivity extends AppCompatActivity {
                     @Override
                     public void onSuccessfullyUnRegistered() {
                         checkRegistrationAndPaidStatus();
-                        Snackbar.make(coordinatorLayout, "We have un registered you", Snackbar.LENGTH_SHORT).show();
+                        showSnackBar("We have un registered you").show();
                         progressDialog.dismiss();
                     }
 
                     @Override
                     public void onFailure(String errorMessage) {
-                        Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                        showSnackBar(errorMessage).show();
                         progressDialog.dismiss();
                     }
                 });
             }
         }
         else {
-            Snackbar.make(coordinatorLayout,"Please connect to internet",Snackbar.LENGTH_SHORT).show();
+            showSnackBar("Please connect to internet").show();
         }
     }
 
@@ -325,23 +326,32 @@ public class EventDetailedActivity extends AppCompatActivity {
                     @Override
                     public void onSuccessfullyRegistered() {
                         checkRegistrationAndPaidStatus();
-                        Snackbar.make(coordinatorLayout, "Successfully registered! pay now or on spot", Snackbar.LENGTH_SHORT).show();
+                        showSnackBar("Successfully registered! pay now or on spot").show();
                         progressDialog.dismiss();
                     }
 
                     @Override
                     public void onFailure(String errorMessage) {
-                        Snackbar.make(coordinatorLayout, errorMessage, Snackbar.LENGTH_LONG).show();
+                        showSnackBar(errorMessage).show();
                         progressDialog.dismiss();
                     }
                 });
             }
         }
         else {
-            Snackbar.make(coordinatorLayout,"Please connect to internet",Snackbar.LENGTH_SHORT).show();
+            showSnackBar("Please connect to internet").show();
         }
     }
 
 
+    public Snackbar showSnackBar(String message){
+        Snackbar snackbar=Snackbar.make(findViewById(R.id.eventdetailcoordinatelayout),message,Snackbar.LENGTH_SHORT);
+        CoordinatorLayout.LayoutParams params= (CoordinatorLayout.LayoutParams) snackbar.getView().getLayoutParams();
+        params.setAnchorId(R.id.buttonLayout);
+        params.anchorGravity= Gravity.TOP;
+        params.gravity=Gravity.TOP;
+        snackbar.getView().setLayoutParams(params);
+        return snackbar;
+    }
 
 }
