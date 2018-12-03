@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Pair;
@@ -229,9 +230,21 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
                     }
                 });
                 sheetDialogFragment.show(getSupportFragmentManager(),"SignoutDialog");
+                break;
+            case R.id.share:
+                shareApp();
+                break;
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void shareApp(){
+        Intent intent=new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
+        intent.putExtra(Intent.EXTRA_TEXT,"Download Vihaan'19 app now\n"+getResources().getString(R.string.google_play_store_app_url));
+        startActivity(Intent.createChooser(intent,"Choose one of the app to share"));
     }
 
     @Override

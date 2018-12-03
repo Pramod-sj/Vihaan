@@ -25,4 +25,5 @@
         <item>https://github.com/hdodenhof/CircleImageView</item>
         <item>https://github.com/bumptech/glide</item>
     </string-array>
+    <string name="google_play_store_app_url">https://play.google.com/store/apps/details?id=com.vesvihaan</string>
 </resources>

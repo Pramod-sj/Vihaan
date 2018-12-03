@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/about_us"
-        android:title="About us"/>
+        android:title="About us"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/share"
+        android:title="Share"
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_logout"
         android:title="Logout"
+        app:showAsAction="never"
         android:icon="@drawable/ic_lock_outline_black_24dp" />
 </menu>
