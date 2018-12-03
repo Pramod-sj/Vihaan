@@ -8,12 +8,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.anjlab.android.iab.v3.SkuDetails;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.vesvihaan.BuildConfig;
 import com.vesvihaan.GlideApp;
+import com.vesvihaan.UI.Fragment.DonateDialogFragment;
 import com.vesvihaan.UI.Fragment.OpenSourceLibDialogFragment;
 import com.vesvihaan.R;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -75,4 +80,17 @@ public class AboutAppActivity extends AppCompatActivity {
         OpenSourceLibDialogFragment openSourceLibDialogFragment=new OpenSourceLibDialogFragment();
         openSourceLibDialogFragment.show(getSupportFragmentManager(),"OpenSourceLibDialog");
     }
+
+    public void onDonateClick(View view){
+        DonateDialogFragment donateDialogFragment=new DonateDialogFragment();
+        donateDialogFragment.setOnDonateItemClickListener(new DonateDialogFragment.OnDonateItemClickListener() {
+            @Override
+            public void onItemClick(String itemName) {
+                Toast.makeText(getApplicationContext(),itemName,Toast.LENGTH_SHORT).show();
+            }
+        });
+        donateDialogFragment.show(getSupportFragmentManager(),"DonateDialogFragment");
+    }
+
+
 }
