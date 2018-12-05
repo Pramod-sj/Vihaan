@@ -3,16 +3,24 @@ package com.vesvihaan.UI.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.SkuDetails;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.vesvihaan.BuildConfig;
+import com.vesvihaan.Constant;
 import com.vesvihaan.GlideApp;
 import com.vesvihaan.UI.Fragment.DonateDialogFragment;
 import com.vesvihaan.UI.Fragment.OpenSourceLibDialogFragment;
@@ -30,6 +38,7 @@ public class AboutAppActivity extends AppCompatActivity {
     TextView t11;
     String versionName = BuildConfig.VERSION_NAME;
     Toolbar toolbar;
+    BillingProcessor billingProcessor;
     @Override
     public void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
@@ -38,6 +47,7 @@ public class AboutAppActivity extends AppCompatActivity {
         toolbar.setTitle("About");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setUpBilling();
         t11=findViewById(R.id.vernumber);
         t11.setText("Version "+versionName);
         GlideApp.with(this).load(getResources().getString(R.string.dev_profile_pic_url)).placeholder(R.drawable.user_profile_drawable).transition(DrawableTransitionOptions.withCrossFade(200)).skipMemoryCache(false).into((CircleImageView)findViewById(R.id.devImage));
@@ -86,11 +96,74 @@ public class AboutAppActivity extends AppCompatActivity {
         donateDialogFragment.setOnDonateItemClickListener(new DonateDialogFragment.OnDonateItemClickListener() {
             @Override
             public void onItemClick(String itemName) {
-                Toast.makeText(getApplicationContext(),itemName,Toast.LENGTH_SHORT).show();
+                if(itemName.equals("COOKIE")){
+                    if(!billingProcessor.isPurchased(Constant.GOOGLE_IN_APP_PRODUCT_COOKIE)) {
+                        billingProcessor.purchase(AboutAppActivity.this, Constant.GOOGLE_IN_APP_PRODUCT_COOKIE);
+                    }
+                    else{
+                        showSnackBar("You have already donated that, Thank you so much:)");
+                    }
+                }
+                else if(itemName.equals("COFFEE")){
+                    if(!billingProcessor.isPurchased(Constant.GOOGLE_IN_APP_PRODUCT_COFFEE)) {
+                        billingProcessor.purchase(AboutAppActivity.this, Constant.GOOGLE_IN_APP_PRODUCT_COFFEE);
+                    }
+                    else{
+                        showSnackBar("You have already donated that, Thank You so much:)");
+                    }
+                }
+                else if(itemName.equals("GIFT")){
+                    if(!billingProcessor.isPurchased(Constant.GOOGLE_IN_APP_PRODUCT_GIFT)) {
+                        billingProcessor.purchase(AboutAppActivity.this, Constant.GOOGLE_IN_APP_PRODUCT_GIFT);
+                    }
+                    else{
+                        showSnackBar("You have already donated that, Thank you so much:)");
+                    }
+                }
             }
         });
         donateDialogFragment.show(getSupportFragmentManager(),"DonateDialogFragment");
     }
 
+    private void setUpBilling(){
+        billingProcessor=new BillingProcessor(this, BuildConfig.GoogleSpecAPIKEY, new BillingProcessor.IBillingHandler() {
+            @Override
+            public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
+                showSnackBar("Thank you so much :)");
+            }
 
+            @Override
+            public void onPurchaseHistoryRestored() {
+
+            }
+
+            @Override
+            public void onBillingError(int errorCode, @Nullable Throwable error) { }
+
+            @Override
+            public void onBillingInitialized() {
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (!billingProcessor.handleActivityResult(requestCode,resultCode,data)){
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(billingProcessor!=null){
+            billingProcessor.release();
+        }
+
+        super.onDestroy();
+    }
+    public void showSnackBar(String message){
+        Snackbar.make(findViewById(R.id.activity_about_app_parent_layout),message,Snackbar.LENGTH_SHORT).show();
+    }
 }

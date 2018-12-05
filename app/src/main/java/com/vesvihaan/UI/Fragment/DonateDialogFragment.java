@@ -49,7 +49,7 @@ public class DonateDialogFragment extends DialogFragment implements View.OnClick
                 break;
             case R.id.coffie:
                 dismiss();
-                onDonateItemClickListener.onItemClick("COFFIE");
+                onDonateItemClickListener.onItemClick("COFFEE");
                 break;
             case R.id.gift:
                 dismiss();

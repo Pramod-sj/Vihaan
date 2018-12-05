@@ -25,4 +25,11 @@ public class Constant {
 
 
     public static final String SHAREDPREF_USER_LOGGEDIN="LoggedIn";
+
+
+
+
+    public static final String GOOGLE_IN_APP_PRODUCT_COFFEE="coffee_1.";
+    public static final String GOOGLE_IN_APP_PRODUCT_COOKIE="cookie_2.";
+    public static final String GOOGLE_IN_APP_PRODUCT_GIFT="gift_3.";
 }
