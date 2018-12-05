@@ -1,4 +1,4 @@
-package pramod.com.yourcook.Util;
+package com.vesvihaan.admin;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

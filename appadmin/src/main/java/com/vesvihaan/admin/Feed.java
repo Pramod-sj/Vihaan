@@ -1,4 +1,6 @@
-package com.vesvihaan.Model;
+package com.vesvihaan.admin;
+
+import com.google.firebase.database.Exclude;
 
 import java.util.Map;
 
@@ -52,7 +54,8 @@ public class Feed {
         this.feedLikes = feedLikes;
     }
 
-    public boolean isLiked=false;
+    @Exclude
+    public boolean isLiked;
 
     public boolean isLiked() {
         return isLiked;

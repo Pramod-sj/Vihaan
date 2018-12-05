@@ -1,7 +1,6 @@
-package com.vesvihaan.Model;
+package com.vesvihaan.admin;
 
 import java.io.Serializable;
-import java.util.Map;
 
 public class User implements Serializable{
     String uid;

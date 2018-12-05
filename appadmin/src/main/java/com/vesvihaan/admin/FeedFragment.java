@@ -1,108 +1,133 @@
 package com.vesvihaan.admin;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FeedFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FeedFragment#newInstance} factory method to
- * create an instance of this fragment.
- *
- */
-public class FeedFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class FeedFragment extends android.support.v4.app.Fragment{
 
-    private OnFragmentInteractionListener mListener;
+    ImageButton camera;
+    EditText editText;
+    Button addFeed;
+    ImageView feedImageView;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FeedFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FeedFragment newInstance(String param1, String param2) {
-        FeedFragment fragment = new FeedFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-    public FeedFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    ProgressDialog progressDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feed, container, false);
+        View view=inflater.inflate(R.layout.fragment_feed, container, false);
+        camera=view.findViewById(R.id.camera);
+        feedImageView=view.findViewById(R.id.image);
+        feed_image_id=FirebaseDatabase.getInstance().getReference().push().getKey();
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera();
+            }
+        });
+        editText=view.findViewById(R.id.feedEdtText);
+        progressDialog=new ProgressDialog(getActivity());
+
+        //required for running camera properly
+        StrictMode.VmPolicy.Builder builder=new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        addFeed=view.findViewById(R.id.addFeeds);
+        addFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(compressedImage!=null||!editText.getText().toString().isEmpty()){
+                    progressDialog.setTitle("Uploading new feed");
+                    progressDialog.setMessage("Please wait for a while...");
+                    progressDialog.show();
+                    FeedAdderHelper feedAdderHelper=new FeedAdderHelper();
+                    feedAdderHelper.setFeedImageURI(compressedImage);
+                    Feed feed=new Feed();
+                    feed.setFeedImageUrl(null);
+                    feed.setFeedId(feed_image_id);
+                    feed.setFeedTitle(editText.getText().toString());
+                    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                    feed.setFeedDateTime(simpleDateFormat.format(new Date()));
+                    feedAdderHelper.setFeed(feed);
+                    feedAdderHelper.setOnFeedAddListener(new FeedAdderHelper.OnFeedAddListener() {
+                        @Override
+                        public void onAdded() {
+                            Toast.makeText(getContext(),"Successfully added new feed",Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onFailed(String message) {
+                            progressDialog.dismiss();
+                        }
+                    });
+                    feedAdderHelper.uploadImageAndFeed();
+                }
+                else{
+                    Toast.makeText(getActivity().getApplicationContext(),"Enter all content",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+
+
+    Uri capturedfileUri;
+    public final static int CAMERA_CAPTURED_CODE=7895;
+    public void openCamera(){
+        Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        capturedfileUri=Uri.fromFile(createImageFile());
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,capturedfileUri);
+        getActivity().startActivityForResult(intent,CAMERA_CAPTURED_CODE);
+    }
+
+
+    private String feed_image_id;
+    private File createImageFile(){
+        File imageFile=new File(Environment.getExternalStorageDirectory()+"/Vihaan/",feed_image_id+"_original.jpg");
+        return imageFile;
+    }
+
+    Uri compressedImage;
+    public void result(Intent intent) {
+        if(intent!=null){
+            try {
+                compressedImage=new ImageCompressorHelper(getActivity().getApplicationContext())
+                        .setHeight(700)
+                        .setWidth(500)
+                        .setImageName(String.valueOf(feed_image_id))
+                        .setSource(Constant.UPLOAD_IMAGE_USING_CAMERA)
+                        .compressImage(capturedfileUri);
+                Glide.with(getActivity()).load(compressedImage).into(feedImageView);
+            }
+            catch (Exception e){
+                Log.i("Hello",e.getLocalizedMessage());
+
+            }
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

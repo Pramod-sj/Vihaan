@@ -1,4 +1,4 @@
-package pramod.com.yourcook.Helper;
+package com.vesvihaan.admin;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,8 +10,6 @@ import android.provider.MediaStore;
 
 import java.io.File;
 
-import pramod.com.yourcook.Constant;
-import pramod.com.yourcook.Util.ImageCompressor;
 
 public class ImageCompressorHelper {
     int height=700;
@@ -47,7 +45,7 @@ public class ImageCompressorHelper {
         return this;
     }
     public Uri compressImage(Uri originalImageUri){
-        File compressedImageFileLocation = new File(Environment.getExternalStorageDirectory() + "/YourCook/", imageName + ".jpg");
+        File compressedImageFileLocation = new File(Environment.getExternalStorageDirectory() + "/Vihaan/", imageName + ".jpg");
         File file=ImageCompressor.compressImage(new File(originalImageUri.getPath()), width, height, imageFormat, quality, compressedImageFileLocation.getPath());
         File compressedFile=null;
         if (imageSource== Constant.UPLOAD_IMAGE_USING_CAMERA) {

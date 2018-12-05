@@ -1,4 +1,4 @@
-package com.vesvihaan.Model;
+package com.vesvihaan.admin;
 
 import java.io.Serializable;
 
