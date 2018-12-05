@@ -1,0 +1,95 @@
+{
+  "project_info": {
+    "project_number": "208290982547",
+    "firebase_url": "https://vesvihaan-5cc66.firebaseio.com",
+    "project_id": "vesvihaan-5cc66",
+    "storage_bucket": "vesvihaan-5cc66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208290982547:android:20ed268d91d73eed",
+        "android_client_info": {
+          "package_name": "com.vesvihaan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208290982547-oitua6hich9c1oidkhv71f129quu62o8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vesvihaan",
+            "certificate_hash": "de0e81248f82bba53a62abc1eaa1bea5e1408da9"
+          }
+        },
+        {
+          "client_id": "208290982547-ka45lq46cbqn2f8mtppim79jetj7r070.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vesvihaan",
+            "certificate_hash": "e4489f98b34186920c89d6de8dd7ce2ccd4bb339"
+          }
+        },
+        {
+          "client_id": "208290982547-q467rs6s807sdv35l4sig8pflmqgut0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGuPtitMZe5aAOfgckajGYrar2EZOBgmM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208290982547-q467rs6s807sdv35l4sig8pflmqgut0o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-3667665582847109~8276765911"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208290982547:android:134dc70ffe3b57a0",
+        "android_client_info": {
+          "package_name": "com.vesvihaan.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208290982547-q467rs6s807sdv35l4sig8pflmqgut0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGuPtitMZe5aAOfgckajGYrar2EZOBgmM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
