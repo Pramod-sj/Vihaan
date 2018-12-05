@@ -42,11 +42,6 @@ public class NotificationHelper {
 
     private NotificationCompat.Builder buildNotification(String title,String body,String imageUrl,String dishId){
         PendingIntent pendingIntent;
-        Bundle bundle=new Bundle();
-        bundle.putString("fromNotification","fromNotification");
-        bundle.putString("dishId",dishId);
-        Log.i("id",dishId);
-
         pendingIntent = PendingIntent.getActivity(context, 10, new Intent(context, MainActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
         Uri ringtoneManager=RingtoneManager.getActualDefaultRingtoneUri(context,RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,PRIMARY_CHANNEL)
@@ -57,9 +52,7 @@ public class NotificationHelper {
                 .setPriority(NotificationManager.IMPORTANCE_MAX)
                 .setSound(ringtoneManager)
                 .setContentIntent(pendingIntent);
-        if(preferences.getBoolean("notifications_vibrate",true)==true){
-            builder.setVibrate(new long[]{1000,1000});
-        }
+        builder.setVibrate(new long[]{1000,1000});
         if (!imageUrl.isEmpty()) {
             Bitmap bitmap = getBitmapFromUrl(imageUrl);
             builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
@@ -82,9 +75,7 @@ public class NotificationHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             channel=new NotificationChannel(PRIMARY_CHANNEL,DEFAULT_CHANNEL,NotificationManager.IMPORTANCE_HIGH);
             channel.enableLights(true);
-            if(preferences.getBoolean("notifications_vibrate",true)==true) {
-                channel.enableVibration(true);
-            }
+            channel.enableVibration(true);
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             getNotificationManager().createNotificationChannel(channel);
         }

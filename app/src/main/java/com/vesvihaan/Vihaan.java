@@ -1,9 +1,13 @@
 package com.vesvihaan;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.vesvihaan.Helper.GoogleApiHelper;
 
 public class Vihaan extends Application {
@@ -16,6 +20,17 @@ public class Vihaan extends Application {
         googleApiHelper=new GoogleApiHelper(instance);
         Log.i("onCreate","Vihaan application class");
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        FirebaseMessaging.getInstance().subscribeToTopic("users").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Log.i("Successfully","register app to users");
+                }
+                else {
+                    Log.i("Failed","fail to registered");
+                }
+            }
+        });
     }
 
 
