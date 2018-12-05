@@ -1,4 +1,4 @@
-package pramod.com.yourcook.Helper;
+package com.vesvihaan.Helper;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -17,20 +17,18 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.vesvihaan.R;
+import com.vesvihaan.UI.Activity.MainActivity;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import pramod.com.yourcook.Activities.DashBoardActivity;
-import pramod.com.yourcook.Activities.DishActivity;
-import pramod.com.yourcook.Activities.DishCertificationActivity;
-import pramod.com.yourcook.R;
-
 public class NotificationHelper {
     private final static int NOTIFICATION_ID=99999;
-    private final static String PRIMARY_CHANNEL="YourCook channel";
+    private final static String PRIMARY_CHANNEL="Vihaan channel";
     private final static String DEFAULT_CHANNEL="default channel";
     private Context context;
     private NotificationManager notificationManager;
@@ -42,49 +40,35 @@ public class NotificationHelper {
         createNotificationChannel();
     }
 
-    private NotificationCompat.Builder buildNotification(String title,String body,String imageUrl,String intentTo,String dishId){
+    private NotificationCompat.Builder buildNotification(String title,String body,String imageUrl,String dishId){
         PendingIntent pendingIntent;
-        Intent intent;
         Bundle bundle=new Bundle();
         bundle.putString("fromNotification","fromNotification");
         bundle.putString("dishId",dishId);
         Log.i("id",dishId);
-        if(intentTo.equals("DishActivity")) {
-            intent=new Intent(context, DishActivity.class);
-            intent.putExtras(bundle);
-            pendingIntent=PendingIntent.getActivity(context, 10,intent , PendingIntent.FLAG_CANCEL_CURRENT);
-        }
-        else if(intentTo.equals("DishCertificationActivity")){
-            intent=new Intent(context, DishCertificationActivity.class);
-            intent.putExtras(bundle);
-            pendingIntent=PendingIntent.getActivity(context, 10, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        }
-        else {
-            pendingIntent = PendingIntent.getActivity(context, 10, new Intent(context, DashBoardActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
-        }
+
+        pendingIntent = PendingIntent.getActivity(context, 10, new Intent(context, MainActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
         Uri ringtoneManager=RingtoneManager.getActualDefaultRingtoneUri(context,RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,PRIMARY_CHANNEL)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setAutoCancel(true)
-                .setSmallIcon(R.drawable.chef_fab_icon)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setPriority(NotificationManager.IMPORTANCE_MAX)
                 .setSound(ringtoneManager)
                 .setContentIntent(pendingIntent);
         if(preferences.getBoolean("notifications_vibrate",true)==true){
             builder.setVibrate(new long[]{1000,1000});
         }
-        Bitmap bitmap = getBitmapFromUrl(imageUrl);
-        if (bitmap != null) {
+        if (!imageUrl.isEmpty()) {
+            Bitmap bitmap = getBitmapFromUrl(imageUrl);
             builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
-        } else {
-            builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(context.getResources(), R.drawable.food_placeholder)));
         }
         return builder;
     }
-    public void showNotification(String title,String body,String imageUrl,String intentTo,String dishId){
+    public void showNotification(String title,String body,String imageUrl,String dishId){
         NotificationManager notificationManager=getNotificationManager();
-        notificationManager.notify(NOTIFICATION_ID,buildNotification(title,body,imageUrl,intentTo,dishId).build());
+        notificationManager.notify(NOTIFICATION_ID,buildNotification(title,body,imageUrl,dishId).build());
     }
 
 
