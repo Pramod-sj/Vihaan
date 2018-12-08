@@ -243,6 +243,9 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
             case R.id.share:
                 shareApp();
                 break;
+            case R.id.menu_show_on_map:
+                openMap();
+                break;
 
         }
         return super.onOptionsItemSelected(item);
@@ -298,6 +301,10 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
         super.onDestroy();
     }
 
-
+    public void openMap(){
+        String uri="http://maps.google.com/maps?q=loc:"+19.0481+","+72.8900+"(Vivekanand Education Society's College of Arts, Science & Commerce)";
+        Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse(uri));
+        startActivity(intent);
+    }
 
 }
