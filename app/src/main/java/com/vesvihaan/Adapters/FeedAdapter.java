@@ -55,12 +55,10 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         }
         if(feeds.get(i).isLiked()){
             GlideApp.with(context).load(R.drawable.ic_thumb_up_black_24dp).into(viewHolder.feedLikeButton);
-            Log.i(feeds.get(i).getFeedTitle(),"LIKED");
         }
         else{
 
             GlideApp.with(context).load(R.drawable.ic_thumb_up_white_24dp).into(viewHolder.feedLikeButton);
-            Log.i(feeds.get(i).getFeedTitle(),"NOT LIKED");
         }
     }
 

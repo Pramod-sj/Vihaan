@@ -9,14 +9,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip">
-        <TextView android:textSize="@dimen/medium_text" android:textStyle="bold" android:textColor="#ffffffff" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Support Development" android:textAlignment="center" />
+        <TextView android:textSize="@dimen/medium_text" android:textStyle="bold" android:textColor="#ffffffff" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/about_support_development_text" android:textAlignment="center" />
         <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/githubLink" android:layout_width="fill_parent" android:layout_height="wrap_content" android:foreground="?selectableItemBackground" android:onClick="onUrlClick">
             <ImageView android:padding="10.0dip" android:layout_width="50.0dip" android:layout_height="50.0dip" android:src="@drawable/github" />
-            <TextView android:textSize="@dimen/small_text" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Help us to improve this app" />
+            <TextView android:textSize="@dimen/small_text" android:textColor="@color/secondary_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="@string/about_github_text" />
         </LinearLayout>
         <LinearLayout android:gravity="center_vertical"  android:orientation="horizontal" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:foreground="?selectableItemBackground" android:onClick="onDonateClick">
             <ImageView android:padding="10.0dip" android:layout_width="50.0dip" android:layout_height="50.0dip" android:src="@drawable/heart" />
-            <TextView android:textSize="@dimen/small_text" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="Liked my work ?" />
+            <TextView android:textSize="@dimen/small_text" android:textColor="@color/secondary_text_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="@string/about_donate_text" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

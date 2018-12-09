@@ -20,7 +20,7 @@ public class Vihaan extends Application {
         googleApiHelper=new GoogleApiHelper(instance);
         Log.i("onCreate","Vihaan application class");
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        FirebaseMessaging.getInstance().subscribeToTopic("users").addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseMessaging.getInstance().subscribeToTopic(Constant.FIREBASE_FEED_TOPIC).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){

@@ -18,12 +18,26 @@
     <string name="participate">register and pay</string>
 
     <string-array name="library_names">
-        <item><ul>CircleImageView</ul></item>
-        <item><ul>Glide</ul></item>
+        <item>Firebase core</item>
+        <item>Firebase authentication</item>
+        <item>Firebase messaging</item>
+        <item>Firebase database</item>
+        <item>Firebase auth</item>
+        <item>Andriod In-App Billing v3 library</item>
+        <item>CircleImageView</item>
+        <item>Glide</item>
+        <item>Paytm sdk</item>
     </string-array>
     <string-array name="library_url">
+        <item>https://firebase.com</item>
+        <item>https://firebase.com</item>
+        <item>https://firebase.com</item>
+        <item>https://firebase.com</item>
+        <item>https://firebase.com</item>
+        <item>https://github.com/anjlab/android-inapp-billing-v3</item>
         <item>https://github.com/hdodenhof/CircleImageView</item>
         <item>https://github.com/bumptech/glide</item>
+        <item>https://github.com/Paytm-Payments/Paytm_Android_App_Kit</item>
     </string-array>
 
 
@@ -32,4 +46,23 @@
     <string name="donate_gift">Buy me a Gift</string>
 
     <string name="google_play_store_app_url">https://play.google.com/store/apps/details?id=com.vesvihaan</string>
+
+    <string name="about_development_text">Developed by V.E.S.A.S.C. Computer Science students</string>
+
+    <string name="visit_our_website_text">Visit our website</string>
+
+    <string name="no_sponsor_text">No sponsors!</string>
+
+    <string name="no_feed_text">No feed!</string>
+
+    <string name="about_github_text">Help us to improve this app</string>
+    <string name="about_facebook_text">Follow and share us on facebook</string>
+
+    <string name="about_connect_text">Connect with us</string>
+    <string name="about_instagram_text">Follow, like and share us on Instagram</string>
+    <string name="about_donate_text">Liked my work?</string>
+
+    <string name="about_developer_text">Lead developer</string>
+    <string name="about_other_text">Others</string>
+    <string name="about_support_development_text">Support Development</string>
 </resources>

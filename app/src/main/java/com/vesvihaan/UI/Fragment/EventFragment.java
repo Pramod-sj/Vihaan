@@ -51,7 +51,6 @@ public class EventFragment extends Fragment implements OnEventClickListener {
                     event.setEventId(snapshot.getKey());
                     events.add(event);
                 }
-                Log.i("SIZE", String.valueOf(events.size()));
                 eventAdapter.notifyDataSetChanged();
             }
 

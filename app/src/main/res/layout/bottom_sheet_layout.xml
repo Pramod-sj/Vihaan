@@ -16,14 +16,14 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="@dimen/medium_text"
             android:padding="5dp"/>
         <TextView
             android:id="@+id/bottom_sheet_desc"
             android:text="Do you want to logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="@dimen/small_text"
             android:padding="5dp"/>
         <RelativeLayout
             android:id="@+id/bottonRelativeLayout"

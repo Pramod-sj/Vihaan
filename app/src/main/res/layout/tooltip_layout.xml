@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textColor="@color/black"
+        android:textSize="@dimen/small_text"
         android:text="Placeholder"
         android:background="@drawable/tooltip_background"/>
 </LinearLayout>

@@ -5,28 +5,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.vesvihaan.BuildConfig;
 import com.vesvihaan.Constant;
 import com.vesvihaan.GlideApp;
+import com.vesvihaan.UI.Fragment.CustomInfoDialog;
 import com.vesvihaan.UI.Fragment.DonateDialogFragment;
 import com.vesvihaan.UI.Fragment.OpenSourceLibDialogFragment;
 import com.vesvihaan.R;
-
-import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -86,9 +81,23 @@ public class AboutAppActivity extends AppCompatActivity {
 
     }
 
-    public void onOpenSourceLibClick(View view){
-        OpenSourceLibDialogFragment openSourceLibDialogFragment=new OpenSourceLibDialogFragment();
-        openSourceLibDialogFragment.show(getSupportFragmentManager(),"OpenSourceLibDialog");
+    public void onOthersClick(View view){
+        switch (view.getId()){
+            case R.id.openSourceLib:
+                OpenSourceLibDialogFragment openSourceLibDialogFragment=new OpenSourceLibDialogFragment();
+                openSourceLibDialogFragment.show(getSupportFragmentManager(),"OpenSourceLibDialog");
+                break;
+            case R.id.privacyPolicy:
+                CustomInfoDialog dialog=new CustomInfoDialog();
+                dialog.showPrivacyPolicy();
+                dialog.show(getSupportFragmentManager(),"PrivacyPolicyDialog");
+                break;
+            case R.id.termAndCondition:
+                CustomInfoDialog termConditionDialog=new CustomInfoDialog();
+                termConditionDialog.showTermCondition();
+                termConditionDialog.show(getSupportFragmentManager(),"TermAndConditionDialog");
+                break;
+        }
     }
 
     public void onDonateClick(View view){

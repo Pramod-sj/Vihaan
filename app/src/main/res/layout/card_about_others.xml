@@ -14,11 +14,11 @@
         android:layout_margin="10.0dip">
         <TextView android:textSize="@dimen/medium_text"
             android:textStyle="bold"
-            android:textColor="#ffffffff"
+            android:textColor="@color/primary_text_color"
             android:padding="5.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Others"
+            android:text="@string/about_other_text"
             android:textAlignment="center" />
         <LinearLayout
             android:gravity="center_vertical"
@@ -28,13 +28,45 @@
             android:layout_height="wrap_content"
             android:padding="10.0dip"
             android:foreground="?selectableItemBackground"
-            android:onClick="onOpenSourceLibClick">
+            android:onClick="onOthersClick">
             <TextView android:textSize="@dimen/small_text"
-                android:textColor="@color/white"
+                android:textColor="@color/secondary_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10.0dip"
                 android:text="Open source libraries" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:id="@+id/privacyPolicy"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10.0dip"
+            android:foreground="?selectableItemBackground"
+            android:onClick="onOthersClick">
+            <TextView android:textSize="@dimen/small_text"
+                android:textColor="@color/secondary_text_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:text="Privacy policy" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:id="@+id/termAndCondition"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10.0dip"
+            android:foreground="?selectableItemBackground"
+            android:onClick="onOthersClick">
+            <TextView android:textSize="@dimen/small_text"
+                android:textColor="@color/secondary_text_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:text="Terms and conditions" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -17,8 +17,8 @@
             android:id="@+id/sponCategoryTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/medium_text"
             android:padding="5dp"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/sponsorRecyclerView"

@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/cardBGColor"
     app:cardUseCompatPadding="true"
     app:cardElevation="@dimen/cardview_elevation"
-    app:cardCornerRadius="@dimen/cardview_radius"
-    app:cardBackgroundColor="@color/cardBGColor">
+    app:cardCornerRadius="@dimen/cardview_radius">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -30,17 +30,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/regName"
+            android:textColor="@color/secondary_text_color"
             android:text="pramodsinghjantwal@gmail.com"
-            android:textColor="@color/white"
             android:textSize="@dimen/small_text" />
 
         <TextView
+            android:textColor="@color/secondary_text_color"
             android:id="@+id/eventName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/regEmail"
             android:text="Event: CodeTrove"
-            android:textColor="@color/white"
             android:textSize="@dimen/small_text" />
     </RelativeLayout>
 
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:text="paid"
-        android:textColor="@color/white"
+        android:textColor="@color/primary_text_color"
         android:textSize="@dimen/small_text"
         android:padding="7dp"
         android:paddingLeft="7dp"

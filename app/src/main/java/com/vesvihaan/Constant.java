@@ -26,7 +26,7 @@ public class Constant {
 
     public static final String SHAREDPREF_USER_LOGGEDIN="LoggedIn";
 
-
+    public static final String FIREBASE_FEED_TOPIC="feeds";
 
 
     public static final String GOOGLE_IN_APP_PRODUCT_COFFEE="coffee_1.";

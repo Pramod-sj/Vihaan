@@ -58,7 +58,7 @@
                     android:id="@+id/userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="25sp"
+                    android:textSize="@dimen/medium_text"
                     android:padding="3dp"
                     android:textColor="@color/white"
                     android:singleLine="true"/>
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/small_text"
                     android:textColor="@color/white"
                     android:singleLine="true"/>
                 </LinearLayout>

@@ -6,13 +6,13 @@ android {
         applicationId "com.vesvihaan"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 203
-        versionName '2.0 beta 3'
+        versionCode 20181209
+        versionName '2.0 Official'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes{
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

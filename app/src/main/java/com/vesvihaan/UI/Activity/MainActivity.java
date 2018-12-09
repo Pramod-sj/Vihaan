@@ -29,6 +29,7 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.vesvihaan.Constant;
 import com.vesvihaan.Helper.Tooltip;
+import com.vesvihaan.UI.Fragment.CustomInfoDialog;
 import com.vesvihaan.UI.Fragment.EventFragment;
 import com.vesvihaan.GlideApp;
 import com.vesvihaan.Helper.GoogleSinginHelper;
@@ -246,6 +247,10 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
             case R.id.menu_show_on_map:
                 openMap();
                 break;
+            case R.id.about_computer_science:
+                CustomInfoDialog infoDialog=new CustomInfoDialog();
+                infoDialog.showAboutComputerScience();
+                infoDialog.show(getSupportFragmentManager(),"AboutComputerScienceDialog");
 
         }
         return super.onOptionsItemSelected(item);

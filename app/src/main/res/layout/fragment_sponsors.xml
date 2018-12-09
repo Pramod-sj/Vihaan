@@ -13,13 +13,12 @@
         android:layout_height="wrap_content"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:id="@+id/allCatSponsorRecyclerView"/>
-
     <TextView
         android:id="@+id/noSponsorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/small_text"
+        android:textSize="@dimen/medium_text"
         android:layout_centerInParent="true"
         android:visibility="gone"
-        android:text="No sponsors" />
+        android:text="@string/no_sponsor_text" />
 </RelativeLayout>

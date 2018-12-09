@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="cardBGColor">#ff212121</color>
-
+    <color name="statusBarColor">#191919</color>
+    <color name="primary_text_color">#FFFFFFFF</color>
+    <color name="secondary_text_color">#BFffffff</color>
 </resources>

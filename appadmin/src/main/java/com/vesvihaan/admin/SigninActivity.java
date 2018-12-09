@@ -76,7 +76,7 @@ public class SigninActivity extends AppCompatActivity {
                     }
                     if(isAdmin){
                         Toast.makeText(getApplicationContext(),"You are authorize to you this app",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SigninActivity.this,MainActivity.class);
+                        Intent intent = new Intent(SigninActivity.this,EventActivity.class);
                         startActivity(intent);
                         finish();
                     }

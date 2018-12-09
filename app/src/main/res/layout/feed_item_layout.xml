@@ -37,7 +37,8 @@
                 android:layout_alignParentRight="true"
                 android:id="@+id/feedAgoTextView"
                 android:text="1 min ago"
-                android:textColor="@color/white"
+                android:textSize="@dimen/small_text"
+                android:textColor="@color/secondary_text_color"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
         <TextView
@@ -47,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="pramod, suraj ..."
-            android:textColor="@color/white"
+            android:textColor="@color/secondary_text_color"
             android:singleLine="true"
             android:layout_below="@+id/likeRelative"
             android:id="@+id/feedLikedByTextView"
@@ -59,7 +60,7 @@
             android:id="@+id/feedTitleTextView"
             android:textSize="@dimen/medium_text"
             android:text="On 24-25 Jan 2k19"
-            android:textColor="@color/white"
+            android:textColor="@color/secondary_text_color"
             android:layout_marginTop="5dp"
             android:maxLines="2"
             android:layout_marginBottom="10dp"

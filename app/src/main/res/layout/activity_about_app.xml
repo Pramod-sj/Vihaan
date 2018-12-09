@@ -56,8 +56,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/app_name"
                         android:gravity="center_vertical"
-                        android:textColor="#ffffff"
-                        android:textSize="30sp"
+                        android:textColor="@color/primary_text_color"
+                        android:textSize="@dimen/big_text"
                         android:layout_marginTop="10dp"
                         android:paddingBottom="5dp"
                         android:textStyle="bold"
@@ -70,8 +70,8 @@
                         android:gravity="center_vertical"
                         android:layout_below="@+id/title"
                         android:padding="5dp"
-                        android:textColor="@color/white"
-                        android:text="Development by V.E.S.A.S.C. Computer Science students"
+                        android:textColor="@color/secondary_text_color"
+                        android:text="@string/about_development_text"
                         android:textSize="@dimen/medium_text"
                         android:textAlignment="center"/>
                     <TextView
@@ -79,7 +79,7 @@
                         android:layout_width="match_parent"
                         android:gravity="top"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:textColor="@color/secondary_text_color"
                         android:padding="5dp"
                         android:textSize="@dimen/small_text"
                         android:textAlignment="center"/>
@@ -95,14 +95,14 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="@dimen/small_text"
             android:linksClickable="true"
             android:id="@+id/websitelink"
             android:autoLink="web"
             android:onClick="onUrlClick"
             android:layout_margin="15dp"
-            android:text="Visit our website"/>
+            android:text="@string/visit_our_website_text"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
