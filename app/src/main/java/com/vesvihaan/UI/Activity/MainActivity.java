@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
 
             }
         });
+        if(sharedPreferences.getBoolean("rate",true)==true){
+            rateUs();
+        }
     }
 
     @Override
@@ -127,13 +130,19 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
         }
         else {
             GlideApp.with(this).load(R.drawable.user_profile_drawable).placeholder(R.drawable.user_profile_drawable).into(circleImageView);
-            /*final Tooltip tooltip=new Tooltip(this);
+            final Tooltip tooltip=new Tooltip(this);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    tooltip.showTooltip(circleImageView,"Click here to signin");
+                    if(sharedPreferences.getBoolean("Tooltip",true)==true) {
+                        try {
+                            tooltip.showTooltip(circleImageView, "Click here to signin");
+                            sharedPreferences.edit().putBoolean("Tooltip", false).commit();
+                        }
+                        catch (Exception e){}
+                    }
                 }
-            },1000);*/
+            },1500);
         }
     }
 
@@ -232,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
                     public void onRightButtonClick(final RoundedBottomSheetDialogFragment dialogFragment) {
                         googleSinginHelper.signOut();
                         dialogFragment.dismiss();
-                        showSnackBar("Successfully signed out");
+                        sharedPreferences.edit().putBoolean("Tooltip",true).commit();
                     }
 
                     @Override
@@ -313,4 +322,35 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
         startActivity(intent);
     }
 
+    public void rateUs(){
+        final RoundedBottomSheetDialogFragment roundedBottomSheetDialogFragment=new RoundedBottomSheetDialogFragment();
+        roundedBottomSheetDialogFragment.setButton1_text("Later");
+        roundedBottomSheetDialogFragment.setButton2_text("Rate it");
+        roundedBottomSheetDialogFragment.setTitle("Do you like this app");
+        roundedBottomSheetDialogFragment.setDesc("Help us to grow this app by rating it");
+        roundedBottomSheetDialogFragment.setButtonClickListener(new RoundedBottomSheetDialogFragment.OnButtonClickListener() {
+            @Override
+            public void onRightButtonClick(RoundedBottomSheetDialogFragment dialogFragment) {
+                Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id="+getPackageName()));
+                startActivity(intent);
+                dialogFragment.dismiss();
+            }
+
+            @Override
+            public void onLeftButtonClick(RoundedBottomSheetDialogFragment dialogFragment) {
+                dialogFragment.dismiss();
+            }
+        });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    roundedBottomSheetDialogFragment.show(getSupportFragmentManager(), "RateBottomAppBar");
+
+                }
+                catch(Exception e){ }
+                sharedPreferences.edit().putBoolean("rate",false).commit();
+            }
+        },2000);
+    }
 }
