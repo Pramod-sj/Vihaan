@@ -2,6 +2,7 @@ package com.vesvihaan.Helper;
 import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.vesvihaan.UI.Activity.MainActivity;
 
 public class VihaanFirebaseMessagingService extends FirebaseMessagingService {
     String TAG="FirebaseMessagingService";
@@ -14,7 +15,7 @@ public class VihaanFirebaseMessagingService extends FirebaseMessagingService {
         String title = remoteMessage.getData().get("title");
         String body = remoteMessage.getData().get("body");
         String imageUrl = remoteMessage.getData().get("imageUrl");
-        String feedId = remoteMessage.getData().get("dishId");
-        helper.showNotification(title, body, imageUrl, feedId);
+        helper.setPendingIntent(MainActivity.class);
+        helper.showNotification(title, body, imageUrl);
     }
 }

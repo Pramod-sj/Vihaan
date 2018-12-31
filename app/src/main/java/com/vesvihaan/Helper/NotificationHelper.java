@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 public class NotificationHelper {
@@ -31,18 +32,23 @@ public class NotificationHelper {
     private final static String PRIMARY_CHANNEL="Vihaan channel";
     private final static String DEFAULT_CHANNEL="default channel";
     private Context context;
-    private NotificationManager notificationManager;
-    private NotificationCompat.Builder builder;
     private SharedPreferences preferences;
     public NotificationHelper(Context context){
         preferences= PreferenceManager.getDefaultSharedPreferences(context);
         this.context=context;
         createNotificationChannel();
     }
+    public void setPendingIntent(Uri uri){
+        Intent intent=new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(uri,"image/*");
+        pendingIntent=PendingIntent.getActivity(context,11,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+    public void setPendingIntent(Class intentTo){
+        pendingIntent = PendingIntent.getActivity(context, 10, new Intent(context, intentTo), PendingIntent.FLAG_CANCEL_CURRENT);
 
-    private NotificationCompat.Builder buildNotification(String title,String body,String imageUrl,String dishId){
-        PendingIntent pendingIntent;
-        pendingIntent = PendingIntent.getActivity(context, 10, new Intent(context, MainActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+    PendingIntent pendingIntent;
+    private NotificationCompat.Builder buildNotification(String title,String body,String imageUrl){
         Uri ringtoneManager=RingtoneManager.getActualDefaultRingtoneUri(context,RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,PRIMARY_CHANNEL)
                 .setContentTitle(title)
@@ -53,16 +59,23 @@ public class NotificationHelper {
                 .setSound(ringtoneManager)
                 .setContentIntent(pendingIntent);
         builder.setVibrate(new long[]{1000,1000});
-        if (!imageUrl.isEmpty()) {
+
+        if (imageUrl!=null && !imageUrl.isEmpty()) {
             Bitmap bitmap = getBitmapFromUrl(imageUrl);
             builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
         }
         return builder;
     }
-    public void showNotification(String title,String body,String imageUrl,String dishId){
+    public void showNotification(String title,String body,String imageUrl){
         NotificationManager notificationManager=getNotificationManager();
-        notificationManager.notify(NOTIFICATION_ID,buildNotification(title,body,imageUrl,dishId).build());
+        notificationManager.notify(NOTIFICATION_ID,buildNotification(title,body,imageUrl).build());
     }
+
+    public void showNotification(String title,String body){
+        NotificationManager notificationManager=getNotificationManager();
+        notificationManager.notify(NOTIFICATION_ID,buildNotification(title,body,null).build());
+    }
+
 
 
     private NotificationManager getNotificationManager(){
@@ -71,7 +84,7 @@ public class NotificationHelper {
     }
 
     private void createNotificationChannel(){
-        NotificationChannel channel=null;
+        NotificationChannel channel;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             channel=new NotificationChannel(PRIMARY_CHANNEL,DEFAULT_CHANNEL,NotificationManager.IMPORTANCE_HIGH);
             channel.enableLights(true);
@@ -97,4 +110,5 @@ public class NotificationHelper {
         }
         return bitmap;
     }
+
 }
