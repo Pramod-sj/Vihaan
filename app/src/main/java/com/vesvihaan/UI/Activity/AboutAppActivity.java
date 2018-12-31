@@ -45,7 +45,6 @@ public class AboutAppActivity extends AppCompatActivity {
         setUpBilling();
         t11=findViewById(R.id.vernumber);
         t11.setText("Version "+versionName);
-        GlideApp.with(this).load(R.drawable.dev_profile).placeholder(R.drawable.user_profile_drawable).transition(DrawableTransitionOptions.withCrossFade(200)).skipMemoryCache(false).into((CircleImageView)findViewById(R.id.devImage));
     }
 
 

@@ -28,6 +28,7 @@
             android:paddingTop="10.0dip"
             android:layout_width="50.0dip"
             android:layout_height="50.0dip"
+            android:src="@drawable/dev_profile"
             android:layout_marginBottom="10.0dip"
             android:layout_below="@+id/leadDev" />
         <LinearLayout
