@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
         showProfileImage();
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(1);
+        navigation.getMenu().getItem(1).setChecked(true);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
