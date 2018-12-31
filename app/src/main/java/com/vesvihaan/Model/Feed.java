@@ -1,8 +1,9 @@
 package com.vesvihaan.Model;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Feed {
+public class Feed implements Serializable {
     String feedId;
     String feedImageUrl;
     String feedDateTime;

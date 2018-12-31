@@ -126,13 +126,13 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
         }
         else {
             GlideApp.with(this).load(R.drawable.user_profile_drawable).placeholder(R.drawable.user_profile_drawable).into(circleImageView);
-            final Tooltip tooltip=new Tooltip(this);
+            /*final Tooltip tooltip=new Tooltip(this);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     tooltip.showTooltip(circleImageView,"Click here to signin");
                 }
-            },1000);
+            },1000);*/
         }
     }
 

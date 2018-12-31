@@ -36,7 +36,7 @@ public class CustomInfoDialog extends DialogFragment{
     }
 
     public void showAboutComputerScience(){
-        url="file:///android_asset/about_computer_science";
+        url="file:///android_asset/about_computer_science.html";
     }
     @Override
     public void onStart() {

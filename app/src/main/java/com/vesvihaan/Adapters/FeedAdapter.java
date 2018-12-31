@@ -1,9 +1,15 @@
 package com.vesvihaan.Adapters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +25,7 @@ import com.vesvihaan.Model.User;
 import com.vesvihaan.Helper.OnLikeButtonClickListener;
 import com.vesvihaan.Helper.OnLikerClickListener;
 import com.vesvihaan.R;
+import com.vesvihaan.UI.Activity.FullScreenImageActivity;
 
 import java.util.ArrayList;
 
@@ -43,7 +50,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FeedAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final FeedAdapter.ViewHolder viewHolder,final int i) {
         GlideApp.with(context).load(feeds.get(i).getFeedImageUrl()).transition(DrawableTransitionOptions.withCrossFade(300)).into(viewHolder.feedImage);
         viewHolder.feedTitle.setText(feeds.get(i).getFeedTitle());
         viewHolder.feedAgo.setText(FancyTime.getTimeLine(feeds.get(i).getFeedDateTime()));
@@ -60,6 +67,19 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
 
             GlideApp.with(context).load(R.drawable.ic_thumb_up_white_24dp).into(viewHolder.feedLikeButton);
         }
+        viewHolder.feedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Pair[] pairs=new Pair[1];
+                pairs[0]=new Pair(viewHolder.feedImage,"imageView");
+                ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation((Activity) context,pairs);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("Feed",feeds.get(i));
+                Intent intent=new Intent(context,FullScreenImageActivity.class);
+                intent.putExtras(bundle);
+                context.startActivity(intent,options.toBundle());
+            }
+        });
     }
 
     @Override
