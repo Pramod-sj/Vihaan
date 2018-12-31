@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
@@ -22,7 +23,9 @@ import android.widget.Toolbar;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageException;
 import com.vesvihaan.GlideApp;
 import com.vesvihaan.Helper.NotificationHelper;
 import com.vesvihaan.Model.Feed;
@@ -52,7 +55,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fullScreenImageView=findViewById(R.id.fullScreenImageView);
-        GlideApp.with(this).load(feed.getFeedImageUrl()).placeholder(R.color.colorPrimaryDark).transition(DrawableTransitionOptions.withCrossFade(200)).into(fullScreenImageView);
+        GlideApp.with(this).load(feed.getFeedImageUrl()).placeholder(R.color.colorPrimaryDark).dontAnimate().into(fullScreenImageView);
         progressBar=findViewById(R.id.progressBar);
     }
 
@@ -82,29 +85,35 @@ public class FullScreenImageActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<byte[]>() {
                         @Override
                         public void onComplete(@NonNull Task<byte[]> task) {
+                            if(task.isSuccessful()) {
+                                NotificationHelper helper = new NotificationHelper(getApplicationContext());
 
-                            NotificationHelper helper=new NotificationHelper(getApplicationContext());
-
-                            try {
-                                byte[] data = task.getResult();
-                                File dir=new File(Environment.getExternalStorageDirectory()+"/Vihaan'19");
-                                dir.mkdirs();
-                                File file=new File(dir,feed.getFeedTitle() + ".jpg");
-                                file.createNewFile();
-                                if(file.exists()) {
-                                    FileOutputStream fio = new FileOutputStream(file);
-                                    fio.write(data);
-                                    fio.flush();
+                                try {
+                                    byte[] data = task.getResult();
+                                    File dir = new File(Environment.getExternalStorageDirectory() + "/Vihaan'19");
+                                    dir.mkdirs();
+                                    File file = new File(dir, feed.getFeedTitle() + ".jpg");
+                                    file.createNewFile();
+                                    if (file.exists()) {
+                                        FileOutputStream fio = new FileOutputStream(file);
+                                        fio.write(data);
+                                        fio.flush();
+                                    }
+                                    helper.setPendingIntent(Uri.fromFile(file));
+                                    helper.showNotification("Sucessfully downloaded ", "file is stored under " + file.getAbsolutePath());
+                                } catch (Exception e) {
+                                    helper.setPendingIntent(MainActivity.class);
+                                    helper.showNotification("Download failed", "please try after sometime");
+                                    Log.i("Error", e.getLocalizedMessage());
                                 }
-                                helper.setPendingIntent(Uri.fromFile(file));
-                                helper.showNotification("Sucessfully downloaded ","file is stored under "+file.getAbsolutePath());
+                                progressBar.setVisibility(View.GONE);
                             }
-                            catch (Exception e){
-                                helper.setPendingIntent(MainActivity.class);
-                                helper.showNotification("Download failed","please try after sometime");
-                                Log.i("Error",e.getLocalizedMessage());
+                            else{
+                                if(((StorageException)task.getException()).getErrorCode()==StorageException.ERROR_NOT_AUTHENTICATED||((StorageException)task.getException()).getErrorCode()==StorageException.ERROR_NOT_AUTHORIZED) {
+                                    Snackbar.make(findViewById(R.id.fullScreenRelativeLayout),"You won't able to download this image until you login", Snackbar.LENGTH_SHORT).show();
+                                }
+                                progressBar.setVisibility(View.GONE);
                             }
-                            progressBar.setVisibility(View.GONE);
                         }
                     });
         }
