@@ -6,8 +6,8 @@ android {
         applicationId "com.vesvihaan"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 20181209
-        versionName '2.0 Official'
+        versionCode 20181231
+        versionName '2.1 Official'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
