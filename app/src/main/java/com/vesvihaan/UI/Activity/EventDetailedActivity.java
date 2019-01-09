@@ -87,7 +87,7 @@ public class EventDetailedActivity extends AppCompatActivity {
             eventTimeTextView.setText("Time: N/A");
         }
         else{
-            eventTimeTextView.setText("Time: "+event.getEventDay());
+            eventTimeTextView.setText("Time: "+event.getEventTime());
         }
 
     }
