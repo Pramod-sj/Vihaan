@@ -6,5 +6,5 @@
     <color name="cardBGColor">#ff212121</color>
     <color name="statusBarColor">#191919</color>
     <color name="primary_text_color">#FFFFFFFF</color>
-    <color name="secondary_text_color">#BFffffff</color>
+    <color name="secondary_text_color">#FFffffff</color>
 </resources>

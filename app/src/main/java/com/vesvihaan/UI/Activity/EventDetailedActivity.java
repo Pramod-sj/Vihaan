@@ -1,7 +1,9 @@
 package com.vesvihaan.UI.Activity;
 
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -41,7 +43,7 @@ import java.util.ArrayList;
 
 public class EventDetailedActivity extends AppCompatActivity {
     Event event;
-    TextView eventDescTextView,eventRuleTextView,eventDayTextView,eventTimeTextView;
+    TextView eventDescTextView,eventRuleTextView,eventDayTextView,eventTimeTextView,eventHeadName;
     Button register,registerandpay,unregister,pay;
     EventRegistrationHelper eventRegistrationHelper;
     CoordinatorLayout coordinatorLayout;
@@ -71,26 +73,13 @@ public class EventDetailedActivity extends AppCompatActivity {
         eventDescTextView = findViewById(R.id.eventDescTextView);
         eventDescTextView.setText(event.getEventDesc());
         eventRuleTextView=findViewById(R.id.rulesTextView);
-        if (event.getEventRules() == null) {
-            eventRuleTextView.setText("N/A");
-        } else {
-            eventRuleTextView.setText(Html.fromHtml(String.valueOf(DataSetConvertor.makeHtmlList(event.getEventRules())), null, null));
-        }
+        eventRuleTextView.setText(Html.fromHtml(String.valueOf(DataSetConvertor.makeHtmlList(event.getEventRules())), null, null));
         eventDayTextView=findViewById(R.id.dayTextView);
-        if(event.getEventDay()==null){
-            eventDayTextView.setText("Day: N/A");
-        }
-        else{
-            eventDayTextView.setText("Day: "+event.getEventDay());
-        }
-
+        eventDayTextView.setText(event.getEventDay());
         eventTimeTextView=findViewById(R.id.eventTimeTextView);
-        if(event.getEventTime()==null){
-            eventTimeTextView.setText("Time: N/A");
-        }
-        else{
-            eventTimeTextView.setText("Time: "+event.getEventTime());
-        }
+        eventTimeTextView.setText(event.getEventTime());
+        eventHeadName=findViewById(R.id.eventHeadName);
+        eventHeadName.setText(event.getEventHeadName());
 
     }
 
@@ -364,6 +353,25 @@ public class EventDetailedActivity extends AppCompatActivity {
         params.gravity=Gravity.TOP;
         snackbar.getView().setLayoutParams(params);
         return snackbar;
+    }
+
+
+    public void startWhatsApp(){
+        try {
+            Intent i4 = new Intent(Intent.ACTION_SEND);
+            i4.setType("text/plain");
+            i4.putExtra(Intent.EXTRA_TEXT,"Hello "+event.getEventHeadName());
+            i4.putExtra("jid","91"+event.getEventHeadPhone()+"@s.whatsapp.net");
+            i4.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
+            i4.setPackage("com.whatsapp");
+            startActivity(i4);
+        }catch(Exception e){
+            showSnackBar(e.getMessage()).show();
+        }
+    }
+
+    public void onHelpClick(View view){
+        startWhatsApp();
     }
 
 }

@@ -23,24 +23,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
-                <TextView
-                    android:id="@+id/dayTextView"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Day 1"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/medium_text"
-                    android:textColor="@color/primary_text_color"
-                    android:layout_alignParentStart="true"/>
-                <TextView
+                    android:layout_alignParentStart="true"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Date:"
+                        android:layout_marginRight="5dp"
+                        android:textSize="@dimen/medium_text"
+                        android:textColor="@color/primary_text_color"/>
+                    <TextView
+                        android:id="@+id/dayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Day 1"
+                        android:textSize="@dimen/small_text"
+                        android:textColor="@color/secondary_text_color" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/eventTimeTextView"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/medium_text"
-                    android:textColor="@color/primary_text_color"
                     android:layout_alignParentRight="true"
-                    android:text="N/A"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Time:"
+                        android:layout_marginRight="5dp"
+                        android:textSize="@dimen/medium_text"
+                        android:textColor="@color/primary_text_color"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/eventTimeTextView"
+                        android:textSize="@dimen/small_text"
+                        android:textColor="@color/secondary_text_color"
+                        android:text="10-11"/>
+                </LinearLayout>
             </RelativeLayout>
             <TextView
                 android:id="@+id/eventDescTextView"
@@ -49,6 +73,26 @@
                 android:textSize="@dimen/small_text"
                 android:textColor="@color/secondary_text_color"
                 android:layout_margin="5dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Event head:"
+                    android:textStyle="bold"
+                    android:layout_gravity="top"
+                    android:textColor="@color/primary_text_color"
+                    android:textSize="@dimen/medium_text"
+                    android:layout_margin="5dp"/>
+                    <TextView
+                        android:id="@+id/eventHeadName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/secondary_text_color"
+                        android:textSize="@dimen/small_text" />
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,8 +109,22 @@
                 android:textColor="@color/secondary_text_color"
                 android:textSize="@dimen/small_text"
                 android:layout_margin="5dp"/>
-
-
+            <Button
+                android:textAllCaps="false"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:id="@+id/phoneNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:padding="5dp"
+                android:onClick="onHelpClick"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/ic_info_outline_black_24dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Click here if you have any query"
+                android:textColor="@color/secondary_text_color"
+                android:textSize="@dimen/small_text" />
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

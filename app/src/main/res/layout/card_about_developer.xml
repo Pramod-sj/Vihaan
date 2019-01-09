@@ -15,7 +15,7 @@
         <TextView
             android:textSize="@dimen/medium_text"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:id="@+id/leadDev"
             android:padding="5.0dip"
             android:layout_width="match_parent"

@@ -23,6 +23,25 @@ public class Event implements Serializable{
         this.eventRegisteredUsers = eventRegisteredUsers;
     }
 
+    String eventHeadName;
+    String eventHeadPhone;
+
+    public String getEventHeadName() {
+        return eventHeadName;
+    }
+
+    public void setEventHeadName(String eventHeadName) {
+        this.eventHeadName = eventHeadName;
+    }
+
+    public String getEventHeadPhone() {
+        return eventHeadPhone;
+    }
+
+    public void setEventHeadPhone(String eventHeadPhone) {
+        this.eventHeadPhone = eventHeadPhone;
+    }
+
     String eventName;
     String eventQuote;
     String eventDesc;
