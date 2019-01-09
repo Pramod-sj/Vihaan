@@ -114,12 +114,6 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.option_menu,menu);
-        if(FirebaseAuth.getInstance().getCurrentUser()==null) {
-            menu.findItem(R.id.menu_logout).setVisible(false);
-        }
-        else{
-            menu.findItem(R.id.menu_logout).setVisible(true);
-        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -229,27 +223,6 @@ public class MainActivity extends AppCompatActivity implements OnSigninListener,
         switch (item.getItemId()){
             case R.id.about_us:
                 startActivity(new Intent(this,AboutAppActivity.class));
-                break;
-            case R.id.menu_logout:
-                RoundedBottomSheetDialogFragment sheetDialogFragment=new RoundedBottomSheetDialogFragment();
-                sheetDialogFragment.setButton1_text("No");
-                sheetDialogFragment.setButton2_text("Yes");
-                sheetDialogFragment.setTitle("Do you want to logout");
-                sheetDialogFragment.setDesc("Are you sure?");
-                sheetDialogFragment.setButtonClickListener(new RoundedBottomSheetDialogFragment.OnButtonClickListener() {
-                    @Override
-                    public void onRightButtonClick(final RoundedBottomSheetDialogFragment dialogFragment) {
-                        googleSinginHelper.signOut();
-                        dialogFragment.dismiss();
-                        sharedPreferences.edit().putBoolean("Tooltip",true).commit();
-                    }
-
-                    @Override
-                    public void onLeftButtonClick(RoundedBottomSheetDialogFragment dialogFragment) {
-                        dialogFragment.dismiss();
-                    }
-                });
-                sheetDialogFragment.show(getSupportFragmentManager(),"SignoutDialog");
                 break;
             case R.id.share:
                 shareApp();

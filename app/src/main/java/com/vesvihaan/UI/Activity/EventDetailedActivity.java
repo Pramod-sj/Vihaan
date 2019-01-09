@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -65,6 +66,7 @@ public class EventDetailedActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(event.getEventName());
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         GlideApp.with(this).load(event.getEventImageUrl()).into((ImageView) findViewById(R.id.imageview));
         eventDescTextView = findViewById(R.id.eventDescTextView);
         eventDescTextView.setText(event.getEventDesc());
@@ -90,6 +92,16 @@ public class EventDetailedActivity extends AppCompatActivity {
             eventTimeTextView.setText("Time: "+event.getEventTime());
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void showBottomSheetForPaymentConfirmation(){

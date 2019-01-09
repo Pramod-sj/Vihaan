@@ -15,9 +15,4 @@
     <item android:id="@+id/menu_show_on_map"
         android:title="View us on map"
         app:showAsAction="never"/>
-    <item
-        android:id="@+id/menu_logout"
-        android:title="Logout"
-        app:showAsAction="never"
-        android:icon="@drawable/ic_lock_outline_black_24dp" />
 </menu>
