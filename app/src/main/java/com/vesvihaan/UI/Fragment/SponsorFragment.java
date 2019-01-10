@@ -41,15 +41,12 @@ public class SponsorFragment extends Fragment {
 
     public void getSponsorData(){
 
-        Log.i("hello", "starthello");
         FirebaseDatabase.getInstance().getReference("Sponsors")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Log.i("hello", "hello");
                         sponsors.clear();
                         for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
-                            Log.i("Data",dataSnapshot.getValue().toString());
                             Sponsors sponsor=new Sponsors();
                             sponsor.setSponsorCat(snapshot.getKey());
                             ArrayList<Sponsors.Sponsor> sponsorsData=new ArrayList<>();
@@ -68,7 +65,6 @@ public class SponsorFragment extends Fragment {
                             noSponsor.setVisibility(View.GONE);
                             sponsorCategoryAdapter.notifyDataSetChanged();
                         }
-                        Log.i("Size", String.valueOf(sponsors.size()));
                     }
 
                     @Override
