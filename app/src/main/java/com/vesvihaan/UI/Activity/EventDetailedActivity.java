@@ -43,7 +43,7 @@ import java.util.ArrayList;
 
 public class EventDetailedActivity extends AppCompatActivity {
     Event event;
-    TextView eventDescTextView,eventRuleTextView,eventDayTextView,eventTimeTextView,eventHeadName;
+    TextView eventDescTextView,eventRuleTextView,eventDayTextView,eventTimeTextView,eventHeadName,eventVenue;
     Button register,registerandpay,unregister,pay;
     EventRegistrationHelper eventRegistrationHelper;
     CoordinatorLayout coordinatorLayout;
@@ -80,6 +80,8 @@ public class EventDetailedActivity extends AppCompatActivity {
         eventTimeTextView.setText(event.getEventTime());
         eventHeadName=findViewById(R.id.eventHeadName);
         eventHeadName.setText(event.getEventHeadName());
+        eventVenue=findViewById(R.id.eventVenue);
+        eventVenue.setText(event.getEventVenue());
 
     }
 
