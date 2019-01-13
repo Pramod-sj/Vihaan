@@ -360,15 +360,13 @@ public class EventDetailedActivity extends AppCompatActivity {
 
     public void startWhatsApp(){
         try {
-            Intent i4 = new Intent(Intent.ACTION_SEND);
-            i4.setType("text/plain");
-            i4.putExtra(Intent.EXTRA_TEXT,"Hello "+event.getEventHeadName());
-            i4.putExtra("jid","91"+event.getEventHeadPhone()+"@s.whatsapp.net");
-            i4.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
-            i4.setPackage("com.whatsapp");
-            startActivity(i4);
+            String number="91"+event.getEventHeadPhone();
+            Intent whatsAppIntent = new Intent();
+            whatsAppIntent.setAction(Intent.ACTION_VIEW);
+            whatsAppIntent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+number+"&text=Hello "+event.getEventHeadName()));
+            startActivity(whatsAppIntent);
         }catch(Exception e){
-            showSnackBar(e.getMessage()).show();
+            showSnackBar("Something went wrong using this whatsapp number "+event.getEventHeadPhone()).show();
         }
     }
 
